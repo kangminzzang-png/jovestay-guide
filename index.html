@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JoveStay Gangnam — Guest Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Noto+Sans+KR:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --card: #1a1a1a;
+      --card-hover: #222;
+      --gold: #c5a265;
+      --gold-soft: #d4b87a;
+      --text: #e8e4dc;
+      --text-muted: #9a958c;
+      --border: #2a2825;
+      --accent-red: #c94a4a;
+      --accent-green: #5cb85c;
+      --radius: 12px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Noto Sans KR', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Hero ─── */
+    .hero {
+      min-height: 54vh;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      text-align: center;
+      padding: 90px 24px 60px;
+      background: linear-gradient(180deg, #1a1714 0%, var(--bg) 100%);
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .hero-badge {
+      font-family: 'Cormorant Garamond', serif;
+      letter-spacing: 5px; text-transform: uppercase;
+      font-size: 0.75rem; color: var(--gold); margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      color: var(--gold-soft); margin-bottom: 16px; letter-spacing: 2px;
+    }
+    .hero-welcome {
+      color: var(--text-muted); font-size: 0.9rem; font-weight: 300;
+      max-width: 480px; line-height: 1.8; margin-bottom: 8px;
+    }
+    .hero-address { color: var(--text-muted); font-size: 0.8rem; font-weight: 300; opacity: 0.6; margin-top: 6px; }
+    .hero-logo { width: 180px; max-width: 60vw; margin-bottom: 28px; opacity: 0.92; filter: brightness(1.05); }
+
+    /* ─── Language Toggle ─── */
+    .lang-toggle {
+      position: fixed; top: 16px; right: 16px; z-index: 100;
+      display: flex;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 20px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+    .lang-btn {
+      padding: 6px 12px; font-size: 0.78rem;
+      border: none; background: transparent; color: var(--text-muted);
+      cursor: pointer; transition: all 0.3s; font-family: inherit;
+    }
+    .lang-btn.active { background: var(--gold); color: var(--bg); font-weight: 600; }
+
+    /* ─── Container ─── */
+    .container { max-width: 600px; margin: 0 auto; padding: 0 20px 140px; }
+
+    /* ─── Section ─── */
+    .section { margin-bottom: 32px; }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 400; color: var(--gold);
+      margin-bottom: 16px; padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 10px;
+    }
+
+    /* ─── Card ─── */
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 20px; margin-bottom: 12px;
+      transition: background 0.2s;
+    }
+    .card:hover { background: var(--card-hover); }
+
+    /* ─── Info Row ─── */
+    .info-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-label { color: var(--text-muted); font-size: 0.85rem; }
+    .info-value { font-weight: 500; font-size: 0.95rem; text-align: right; }
+    .info-value.large {
+      font-size: 1.5rem; font-family: 'Cormorant Garamond', serif; color: var(--gold-soft);
+    }
+
+    /* ─── Copy Button ─── */
+    .copy-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(197,162,101,0.1); border: 1px solid rgba(197,162,101,0.3);
+      color: var(--gold); padding: 6px 12px; border-radius: 8px;
+      font-size: 0.85rem; cursor: pointer; transition: all 0.2s; font-family: inherit;
+    }
+    .copy-btn:hover { background: rgba(197,162,101,0.2); }
+    .copy-btn.copied { background: rgba(92,184,92,0.15); border-color: rgba(92,184,92,0.4); color: var(--accent-green); }
+
+    /* ─── Steps ─── */
+    .step { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+    .step:last-child { border-bottom: none; }
+    .step-num {
+      flex-shrink: 0; width: 28px; height: 28px;
+      background: rgba(197,162,101,0.15); color: var(--gold);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; font-weight: 600; margin-top: 2px;
+    }
+    .step-text { font-size: 0.9rem; line-height: 1.6; }
+    .step-text .code {
+      background: rgba(197,162,101,0.12); color: var(--gold);
+      padding: 2px 8px; border-radius: 4px;
+      font-family: 'SF Mono', Monaco, monospace;
+      font-size: 0.95em; font-weight: 600; letter-spacing: 1px;
+    }
+
+    /* ─── Rules Grid ─── */
+    .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .rule-item {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px; text-align: center; font-size: 0.85rem;
+    }
+    .rule-icon { font-size: 1.6rem; margin-bottom: 6px; }
+    .rule-text { color: var(--text-muted); }
+
+    /* ─── Appliance ─── */
+    .appliance { padding: 14px 0; border-bottom: 1px solid var(--border); }
+    .appliance:last-child { border-bottom: none; }
+    .appliance-name { font-weight: 500; font-size: 0.9rem; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+    .appliance-desc { color: var(--text-muted); font-size: 0.83rem; line-height: 1.6; }
+    .appliance-sub { margin-top: 4px; display: flex; align-items: flex-start; gap: 6px; font-size: 0.83rem; color: var(--text-muted); }
+    .btn-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+
+    /* ─── Place List ─── */
+    .place-item { padding: 16px 0; border-bottom: 1px solid var(--border); }
+    .place-item:last-child { border-bottom: none; }
+    .place-name { font-weight: 500; font-size: 0.95rem; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .place-tag {
+      display: inline-block; background: rgba(197,162,101,0.12); color: var(--gold);
+      border-radius: 4px; font-size: 0.7rem; padding: 1px 7px; font-weight: 500; white-space: nowrap;
+    }
+    .place-desc { color: var(--text-muted); font-size: 0.83rem; line-height: 1.6; }
+
+    /* ─── Restaurant Photo Card ─── */
+    .resto-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden; margin-bottom: 12px;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .resto-card:hover { background: var(--card-hover); transform: translateY(-2px); }
+    .resto-img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; background: #111;
+    }
+    .resto-body { padding: 14px 16px; }
+    .resto-name { font-weight: 500; font-size: 0.95rem; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .resto-desc { color: var(--text-muted); font-size: 0.83rem; line-height: 1.6; }
+
+    /* ─── Emergency ─── */
+    .emergency-card { background: rgba(201,74,74,0.07); border: 1px solid rgba(201,74,74,0.2); }
+    .emergency-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 0; border-bottom: 1px solid rgba(201,74,74,0.1);
+    }
+    .emergency-row:last-child { border-bottom: none; }
+    .emergency-num { font-weight: 600; font-size: 1.1rem; color: var(--accent-red); }
+    .emergency-num a { color: var(--accent-red); text-decoration: none; }
+
+    /* ─── Host Banner ─── */
+    .host-banner {
+      display: flex; align-items: center; gap: 16px;
+      background: rgba(197,162,101,0.07); border: 1px solid rgba(197,162,101,0.2);
+      border-radius: var(--radius); padding: 18px 20px; margin-bottom: 32px;
+    }
+    .host-avatar {
+      width: 44px; height: 44px; background: rgba(197,162,101,0.15);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; flex-shrink: 0;
+    }
+    .host-info { flex: 1; }
+    .host-name { font-weight: 500; font-size: 0.9rem; color: var(--gold); }
+    .host-phone { font-size: 0.82rem; color: var(--text-muted); margin-top: 2px; }
+    .host-call {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: rgba(197,162,101,0.12); border: 1px solid rgba(197,162,101,0.3);
+      color: var(--gold); padding: 7px 14px; border-radius: 8px;
+      font-size: 0.82rem; text-decoration: none; font-family: inherit;
+      transition: background 0.2s; white-space: nowrap;
+    }
+    .host-call:hover { background: rgba(197,162,101,0.22); }
+
+    /* ─── Footer ─── */
+    .footer {
+      text-align: center; padding: 40px 20px;
+      color: var(--text-muted); font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+    .footer a { color: var(--gold); text-decoration: none; }
+
+    /* ─── Fade In ─── */
+    .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.5s, transform 0.5s; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ════════════════════════════════════════
+       CHAT WIDGET
+    ════════════════════════════════════════ */
+    .chat-fab {
+      position: fixed; bottom: 24px; right: 24px; z-index: 200;
+      width: 56px; height: 56px;
+      background: var(--gold); color: var(--bg);
+      border-radius: 50%; border: none; cursor: pointer;
+      font-size: 1.4rem;
+      box-shadow: 0 4px 20px rgba(197,162,101,0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .chat-fab:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(197,162,101,0.5); }
+    .chat-fab .fab-badge {
+      position: absolute; top: -2px; right: -2px;
+      background: var(--accent-red); color: #fff;
+      width: 18px; height: 18px; border-radius: 50%;
+      font-size: 0.65rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      display: none;
+    }
+
+    .chat-panel {
+      position: fixed; bottom: 92px; right: 24px; z-index: 200;
+      width: 340px; max-width: calc(100vw - 32px);
+      background: #1c1a18; border: 1px solid var(--border);
+      border-radius: 16px; overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+      display: none; flex-direction: column;
+      max-height: 520px;
+    }
+    .chat-panel.open { display: flex; }
+
+    .chat-header {
+      background: rgba(197,162,101,0.1);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 16px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .chat-header-icon { font-size: 1.2rem; }
+    .chat-header-text { flex: 1; }
+    .chat-header-title { font-weight: 600; font-size: 0.9rem; color: var(--gold); }
+    .chat-header-sub { font-size: 0.75rem; color: var(--text-muted); }
+    .chat-close {
+      background: none; border: none; color: var(--text-muted);
+      cursor: pointer; font-size: 1.2rem; padding: 4px;
+      transition: color 0.2s;
+    }
+    .chat-close:hover { color: var(--text); }
+
+    .chat-messages {
+      flex: 1; overflow-y: auto; padding: 16px;
+      display: flex; flex-direction: column; gap: 12px;
+      scroll-behavior: smooth;
+    }
+    .chat-messages::-webkit-scrollbar { width: 4px; }
+    .chat-messages::-webkit-scrollbar-track { background: transparent; }
+    .chat-messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    .msg { display: flex; gap: 8px; align-items: flex-end; }
+    .msg.user { flex-direction: row-reverse; }
+    .msg-bubble {
+      max-width: 80%; padding: 10px 14px; border-radius: 14px;
+      font-size: 0.86rem; line-height: 1.5;
+    }
+    .msg.bot .msg-bubble {
+      background: #252220; color: var(--text);
+      border-bottom-left-radius: 4px;
+    }
+    .msg.user .msg-bubble {
+      background: rgba(197,162,101,0.18); color: var(--text);
+      border-bottom-right-radius: 4px;
+    }
+    .msg-avatar {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: rgba(197,162,101,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem; flex-shrink: 0;
+    }
+
+    .typing-indicator {
+      display: flex; gap: 4px; align-items: center; padding: 4px 0;
+    }
+    .typing-dot {
+      width: 6px; height: 6px; background: var(--text-muted);
+      border-radius: 50%;
+      animation: typing-bounce 1.2s ease-in-out infinite;
+    }
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typing-bounce {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+      30% { transform: translateY(-5px); opacity: 1; }
+    }
+
+    .chat-input-row {
+      padding: 12px;
+      border-top: 1px solid var(--border);
+      display: flex; gap: 8px; align-items: flex-end;
+    }
+    .chat-input {
+      flex: 1; background: #252220; border: 1px solid var(--border);
+      color: var(--text); border-radius: 10px;
+      padding: 9px 12px; font-size: 0.86rem; font-family: inherit;
+      resize: none; outline: none; min-height: 38px; max-height: 90px;
+      transition: border-color 0.2s;
+    }
+    .chat-input:focus { border-color: rgba(197,162,101,0.4); }
+    .chat-input::placeholder { color: var(--text-muted); }
+    .chat-send {
+      width: 38px; height: 38px; flex-shrink: 0;
+      background: var(--gold); color: var(--bg);
+      border: none; border-radius: 10px;
+      cursor: pointer; font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .chat-send:hover { background: var(--gold-soft); }
+    .chat-send:active { transform: scale(0.93); }
+    .chat-send:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 400px) {
+      .rules-grid { grid-template-columns: 1fr; }
+      .info-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+      .info-value { text-align: left; }
+      .host-banner { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Language Toggle -->
+<div class="lang-toggle">
+  <button class="lang-btn active" onclick="setLang('en')">🇺🇸 EN</button>
+  <button class="lang-btn" onclick="setLang('ko')">🇰🇷 KR</button>
+  <button class="lang-btn" onclick="setLang('ja')">🇯🇵 JP</button>
+  <button class="lang-btn" onclick="setLang('zh')">🇨🇳 ZH</button>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <img class="hero-logo" src="img/logo.png" alt="JoveStay Gangnam">
+  <div class="hero-badge">Guest Guide</div>
+  <h1>JoveStay Gangnam</h1>
+  <p class="hero-welcome"
+    data-en="Welcome to JoveStay!<br>We hope you have a wonderful stay."
+    data-ko="조브스테이에 오신 것을 환영합니다.<br>머무시는 동안 즐거운 시간 보내시길 바랍니다."
+    data-ja="JoveStayへようこそ。<br>素晴らしい滞在になりますように。"
+    data-zh="欢迎入住JoveStay！<br>祝您在此度过愉快的时光。"
+  ></p>
+  <p class="hero-address"
+    data-en="22 Eonju-ro 121-gil, Gangnam-gu, Seoul #401"
+    data-ko="서울 강남구 언주로121길 22, 401호"
+    data-ja="ソウル江南区言住路121ギル22、401号"
+    data-zh="首尔江南区言住路121街22号，401室"
+  ></p>
+</div>
+
+<div class="container">
+
+  <!-- Host Banner -->
+  <div class="host-banner fade-in">
+    <div class="host-avatar">🏠</div>
+    <div class="host-info">
+      <div class="host-name"
+        data-en="Host: Lee Kang Min (이강민)"
+        data-ko="호스트: 이강민 (Lee Kang Min)"
+        data-ja="ホスト：イ・ガンミン (Lee Kang Min)"
+        data-zh="房东：李强民 (Lee Kang Min)"
+      ></div>
+      <div class="host-phone">010-5346-7704</div>
+    </div>
+    <a class="host-call" href="tel:+821053467704">📞 <span
+      data-en="Call Host"
+      data-ko="전화하기"
+      data-ja="電話する"
+      data-zh="联系房东"
+    ></span></a>
+  </div>
+
+  <!-- 숙소 기본 정보 -->
+  <div class="section fade-in">
+    <div class="section-title">
+      <span>📍</span>
+      <span data-en="Property Info" data-ko="숙소 기본 정보" data-ja="施設情報" data-zh="房源信息"></span>
+    </div>
+    <div class="card">
+      <div class="info-row">
+        <span class="info-label" data-en="Address (KR)" data-ko="주소 (한국어)" data-ja="住所（韓国語）" data-zh="地址（韩语）"></span>
+        <span class="info-value" style="font-size:0.85rem;">서울 강남구 언주로121길 22</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label" data-en="Address (EN)" data-ko="주소 (영어)" data-ja="住所（英語）" data-zh="地址（英语）"></span>
+        <span class="info-value" style="font-size:0.82rem;">22, Eonju-ro 121-gil, Gangnam-gu</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label" data-en="Unit" data-ko="호실" data-ja="部屋番号" data-zh="房间号"></span>
+        <span class="info-value" style="color:var(--gold);">401</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label" data-en="Host Contact" data-ko="호스트 연락처" data-ja="ホスト連絡先" data-zh="房东联系方式"></span>
+        <span class="info-value"><a href="tel:+821053467704" style="color:var(--gold);text-decoration:none;">010-5346-7704</a></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 체크인/체크아웃 -->
+  <div class="section fade-in">
+    <div class="section-title">
+      <span>🕐</span>
+      <span data-en="Check-in / Check-out" data-ko="체크인 / 체크아웃" data-ja="チェックイン／チェックアウト" data-zh="入住 / 退房"></span>
+    </div>
+    <div class="card">
+      <div class="info-row">
+        <span class="info-label" data-en="Check-in" data-ko="체크인" data-ja="チェックイン" data-zh="入住时间"></span>
+        <span class="info-value large">16:00 ~</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label" data-en="Check-out" data-ko="체크아웃" data-ja="チェックアウト" data-zh="退房时间"></span>
+        <span class="info-value large">~ 11:00</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 입실 방법 -->
+  <div class="section fade-in">
+    <div class="section-title">
+      <span>🔑</span>
+      <span data-en="How to Enter" data-ko="입실 방법" data-ja="入室方法" data-zh="如何进入"></span>
+    </div>
+    <div class="card">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text"
+          data-en="The entrance gate is <strong>inside the building</strong>, not at the front."
+          data-ko="정문은 건물 앞이 아닌 <strong>건물 안쪽</strong>에 있습니다."
+          data-ja="入口ゲートは建物の前ではなく、<strong>建物の内側</strong>にあります。"
+          data-zh="入口大门在<strong>建筑内侧</strong>，不在建筑正面。"
+        ></div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text"
+          data-en="Press 🔔 at entrance → type <span class='code'>5879</span> → press 🔔 → gate opens"
+          data-ko="정문에서 🔔 버튼 → <span class='code'>5879</span> 입력 → 🔔 버튼 → 정문 열림"
+          data-ja="🔔 を押す → <span class='code'>5879</span> を入力 → 🔔 を押す → ゲート開錠"
+          data-zh="按 🔔 → 输入 <span class='code'>5879</span> → 按 🔔 → 大门打开"
+        ></div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text"
+          data-en="Walk up to <strong>#401</strong> → tap keypad → type <span class='code'>6549</span> → press <span class='code'>*</span> → door opens"
+          data-ko="계단으로 올라가 <strong>401호</strong> → 터치패드 탭 → <span class='code'>6549</span> 입력 → <span class='code'>*</span> 버튼 → 문 열림"
+          data-ja="階段で<strong>401号室</strong>へ → キーパッドをタップ → <span class='code'>6549</span> を入力 → <span class='code'>*</span> を押す → ドア開錠"
+          data-zh="上楼至<strong>401室</strong> → 触摸键盘 → 输入 <span class='code'>6549</span> → 按 <span class='code'>*</span> → 门打开"
+        ></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wi-Fi -->
+  <div class="section fade-in">
+    <div class="section-title"><span>📶</span><span>Wi-Fi</span></div>
+    <div class="card">
+      <div class="info-row">
+        <span class="info-label" data-en="Network" data-ko="네트워크" data-ja="ネットワーク" data-zh="网络名称"></span>
+        <span class="info-value">KT_GiGA_36FE</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label" data-en="Password" data-ko="비밀번호" data-ja="パスワード" data-zh="密码"></span>
+        <button class="copy-btn" onclick="copyText('ebb8ec8990', this)">
+          <span>ebb8ec8990</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 하우스 룰 -->
+  <div class="section fade-in">
+    <div class="section-title">
+      <span>📋</span>
+      <span data-en="House Rules" data-ko="하우스 룰" data-ja="ハウスルール" data-zh="住宿规则"></span>
+    </div>
+    <div class="rules-grid">
+      <div class="rule-item">
+        <div class="rule-icon">🚭</div>
+        <div class="rule-text" data-en="No Smoking" data-ko="금연" data-ja="禁煙" data-zh="禁止吸烟"></div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-icon">🐾</div>
+        <div class="rule-text" data-en="No Pets" data-ko="반려동물 금지" data-ja="ペット禁止" data-zh="禁止携带宠物"></div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-icon">🔇</div>
+        <div class="rule-text" data-en="Quiet: 10PM–7AM" data-ko="소음 07–22시" data-ja="静粛：22時〜7時" data-zh="安静：22时至7时"></div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-icon">🗑️</div>
+        <div class="rule-text" data-en="Recycle Required" data-ko="분리수거 필수" data-ja="分別ゴミ必須" data-zh="必须垃圾分类"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 가전 사용법 -->
+  <div class="section fade-in">
+    <div class="section-title">
+      <span>⚡</span>
+      <span data-en="Appliances" data-ko="가전 사용법" data-ja="家電の使い方" data-zh="家电使用说明"></span>
+    </div>
+    <div class="card">
+      <div class="appliance">
+        <div class="appliance-name">🍳 <span data-en="Induction Cooktop" data-ko="인덕션" data-ja="IHクッキングヒーター" data-zh="电磁炉"></span></div>
+        <div class="appliance-sub"><span class="btn-dot" style="background:#e05555;"></span><span data-en="Power On: Hold red button 3 sec." data-ko="전원: 빨간 버튼 3초 길게." data-ja="電源ON：赤ボタン3秒長押し。" data-zh="开机：长按红色按钮3秒。"></span></div>
+        <div class="appliance-sub"><span class="btn-dot" style="background:#c5a265;"></span><span data-en="Temp: +/− buttons. Arrow shows active burner." data-ko="온도: +/− 버튼. 화살표로 활성 화구 확인." data-ja="温度：+/−ボタン。矢印で使用バーナー確認。" data-zh="温度：±按钮。箭头指示激活炉头。"></span></div>
+        <div class="appliance-sub"><span class="btn-dot" style="background:#5cb85c;"></span><span data-en="Lock: Hold green button 3 sec." data-ko="잠금: 초록 버튼 3초 길게." data-ja="ロック：緑ボタン3秒長押し。" data-zh="锁定：长按绿色按钮3秒。"></span></div>
+      </div>
+      <div class="appliance">
+        <div class="appliance-name">👕 <span data-en="Washing Machine" data-ko="세탁기" data-ja="洗濯機" data-zh="洗衣机"></span></div>
+        <div class="appliance-desc"
+          data-en="Right side of kitchen balcony. Select cycle → press Start. Open the red-marked section for detergent."
+          data-ko="주방 베란다 오른쪽. 코스 선택 → 시작. 빨간 표시 부분 열면 세제 투입구."
+          data-ja="キッチンバルコニー右側。コース選択→スタート。赤いマークを開けると洗剤投入口。"
+          data-zh="厨房阳台右侧。选择程序→开始。打开红色标记处投放洗涤剂。"
+        ></div>
+      </div>
+      <div class="appliance">
+        <div class="appliance-name">☀️ <span data-en="Dryer" data-ko="건조기" data-ja="乾燥機" data-zh="烘干机"></span></div>
+        <div class="appliance-desc"
+          data-en="Right side of kitchen balcony. Pull handle in arrow direction to open."
+          data-ko="주방 베란다 오른쪽. 화살표 방향으로 손잡이 당겨 문 열기."
+          data-ja="キッチンバルコニー右側。矢印方向にハンドルを引いてドアを開ける。"
+          data-zh="厨房阳台右侧。按箭头方向拉动把手开门。"
+        ></div>
+      </div>
+      <div class="appliance">
+        <div class="appliance-name">❄️ <span data-en="Air Conditioner" data-ko="에어컨" data-ja="エアコン" data-zh="空调"></span></div>
+        <div class="appliance-desc"
+          data-en="Slide open the red-marked panel to find the remote control."
+          data-ko="빨간 동그라미 표시 부분을 밀어 열면 리모컨이 있습니다."
+          data-ja="赤いマークのパネルをスライドして開けるとリモコンがあります。"
+          data-zh="推开红色标记的面板即可找到遥控器。"
+        ></div>
+      </div>
+      <div class="appliance">
+        <div class="appliance-name">🪟 <span data-en="Balcony Safety" data-ko="발코니 주의" data-ja="バルコニー注意" data-zh="阳台注意事项"></span></div>
+        <div class="appliance-desc"
+          data-en="Do not lean on railings. Do not climb over the balcony."
+          data-ko="난간에 기대지 마세요. 발코니에서 넘어가지 마세요."
+          data-ja="手すりに寄りかからないでください。バルコニーから乗り越えないでください。"
+          data-zh="请勿倚靠栏杆。请勿攀爬阳台。"
+        ></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 분리수거 -->
+  <div class="section fade-in">
+    <div class="section-title">
+      <span>♻️</span>
+      <span data-en="Waste & Recycling" data-ko="쓰레기 분리수거" data-ja="ゴミ・リサイクル" data-zh="垃圾分类"></span>
+    </div>
+    <div class="card">
+      <div class="step">
+        <div class="step-num">•</div>
+        <div class="step-text"
+          data-en="Use bins on right side of kitchen balcony — follow the sticker labels."
+          data-ko="주방 베란다 오른쪽 쓰레기통 — 스티커 안내대로 분리수거."
+          data-ja="キッチンバルコニー右側のゴミ箱 — シールの表示通りに分別してください。"
+          data-zh="使用厨房阳台右侧的垃圾桶 — 按照贴纸说明分类投放。"
+        ></div>
+      </div>
+      <div class="step">
+        <div class="step-num">•</div>
+        <div class="step-text"
+          data-en="General waste must use <strong>official bags</strong> (종량제 봉투 — sold at convenience stores)."
+          data-ko="일반쓰레기는 <strong>종량제 봉투</strong> 사용 (편의점/마트 구매)."
+          data-ja="一般ゴミは<strong>指定袋（종량제 봉투）</strong>を使用（コンビニで購入可）。"
+          data-zh="一般垃圾须使用<strong>专用垃圾袋（종량제 봉투）</strong>（便利店有售）。"
+        ></div>
+      </div>
+      <div class="step">
+        <div class="step-num">⚠️</div>
+        <div class="step-text"
+          data-en="<strong>Never flush food down the sink or toilet</strong> — causes blockage."
+          data-ko="<strong>음식물을 싱크대·변기에 버리지 마세요</strong> — 막힘 위험."
+          data-ja="<strong>食べ物をシンクやトイレに流さないでください</strong> — 詰まりの原因になります。"
+          data-zh="<strong>切勿将食物残渣倒入水槽或马桶</strong> — 会造成堵塞。"
+        ></div>
+      </div>
+      <div class="step">
+        <div class="step-num">•</div>
+        <div class="step-text"
+          data-en="Bag leftover food waste and dispose at check-out."
+          data-ko="남은 음식물은 봉지에 담아 퇴실 시 버려주세요."
+          data-ja="残った食べ物はゴミ袋に入れ、チェックアウト時に捨ててください。"
+          data-zh="将剩余食物装袋，退房时丢弃。"
+        ></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 퇴실 -->
+  <div class="section fade-in">
+    <div class="section-title">
+      <span>🧳</span>
+      <span data-en="Check-out" data-ko="퇴실 안내" data-ja="チェックアウト" data-zh="退房须知"></span>
+    </div>
+    <div class="card">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text"
+          data-en="Gather all your belongings."
+          data-ko="본인 짐 모두 챙기기."
+          data-ja="お荷物をすべてご確認ください。"
+          data-zh="请收好所有随身物品。"
+        ></div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text"
+          data-en="Turn off all appliances (<strong>except fridge</strong>) — heater, AC, TV, etc."
+          data-ko="모든 가전 전원 끄기 (<strong>냉장고 제외</strong>) — 난방, 에어컨, TV 등."
+          data-ja="冷蔵庫以外の家電をすべてオフに（暖房、エアコン、TVなど）。"
+          data-zh="关闭所有家电（<strong>冰箱除外</strong>）— 暖气、空调、电视等。"
+        ></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 맛집 -->
+  <div class="section fade-in">
+    <div class="section-title">
+      <span>🍽️</span>
+      <span data-en="Nearby Restaurants" data-ko="주변 맛집" data-ja="近くのレストラン" data-zh="附近餐厅"></span>
+    </div>
+
+    <div class="resto-card">
+      <img class="resto-img" src="img/allaprima.jpg" alt="Alla Prima" loading="lazy">
+      <div class="resto-body">
+        <div class="resto-name"><span class="place-tag">Michelin</span>알라프리마 Alla Prima</div>
+        <div class="resto-desc"
+          data-en="Michelin-listed Italian fine dining. Creative pasta and refined main courses."
+          data-ko="미슐랭 선정 이탈리안 파인다이닝. 창의적인 파스타와 완성도 높은 메인 요리."
+          data-ja="ミシュラン掲載のイタリアンファインダイニング。創造的なパスタと洗練されたメイン料理。"
+          data-zh="米其林推荐意大利精品餐厅。富有创意的意面与精致主菜。"
+        ></div>
+      </div>
+    </div>
+
+    <div class="resto-card">
+      <img class="resto-img" src="img/hyunudon.jpg" alt="Hyun Udon" loading="lazy">
+      <div class="resto-body">
+        <div class="resto-name"><span class="place-tag">Bib Gourmand</span>현우동 Hyun Udon</div>
+        <div class="resto-desc"
+          data-en="Michelin Bib Gourmand udon spot. Chewy noodles and crispy tempura."
+          data-ko="미슐랭 빕 구르망 우동 전문점. 탱탱한 면발과 바삭한 튀김."
+          data-ja="ミシュランビブグルマン掲載のうどん専門店。もちもちの麺とサクサクの天ぷら。"
+          data-zh="米其林必比登推荐乌冬面专门店。筋道面条与酥脆天妇罗。"
+        ></div>
+      </div>
+    </div>
+
+    <div class="resto-card">
+      <img class="resto-img" src="img/shim.jpg" alt="Shim Restaurant" loading="lazy">
+      <div class="resto-body">
+        <div class="resto-name">쉼 Shim Restaurant</div>
+        <div class="resto-desc"
+          data-en="Modern Western bistro with seasonal dishes and wine pairings. Casual yet refined."
+          data-ko="제철 요리와 와인 페어링 중심의 모던 웨스턴 비스트로. 캐주얼하면서도 세련된 분위기."
+          data-ja="旬の料理とワインペアリングが中心のモダンウエスタンビストロ。カジュアルで上品な雰囲気。"
+          data-zh="以当季食材和葡萄酒搭配为主的现代西式小馆。休闲而精致的氛围。"
+        ></div>
+      </div>
+    </div>
+
+    <div class="resto-card">
+      <img class="resto-img" src="img/hane.jpg" alt="Hane" loading="lazy">
+      <div class="resto-body">
+        <div class="resto-name"><span class="place-tag">Michelin</span>하네 Hane</div>
+        <div class="resto-desc"
+          data-en="Michelin sushi omakase. Premium ingredients, refined Japanese dining."
+          data-ko="미슐랭 스시 오마카세. 최고급 식재료로 절제된 미식의 정수."
+          data-ja="ミシュラン掲載の寿司おまかせ。最高級食材による洗練された日本料理。"
+          data-zh="米其林推荐寿司怀石料理。顶级食材，精致日式美食。"
+        ></div>
+      </div>
+    </div>
+
+    <div class="resto-card">
+      <img class="resto-img" src="img/anshik.jpg" alt="Anshik Myeongga" loading="lazy">
+      <div class="resto-body">
+        <div class="resto-name">안식명가 Anshik Myeongga</div>
+        <div class="resto-desc"
+          data-en="Korean home-style restaurant. Hearty stews, braised dishes, and grilled meats at great value."
+          data-ko="정갈한 한식 가정식. 찜·탕·구이 메뉴를 합리적인 가격에."
+          data-ja="家庭的な韓国料理の店。お手頃価格で煮込み・スープ・焼き料理を楽しめる。"
+          data-zh="韩式家常料理餐厅。价格实惠，提供炖菜、汤品与烤肉。"
+        ></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 관광지 -->
+  <div class="section fade-in">
+    <div class="section-title">
+      <span>🏛️</span>
+      <span data-en="Nearby Attractions" data-ko="주변 관광지" data-ja="近くの観光スポット" data-zh="附近景点"></span>
+    </div>
+    <div class="card">
+      <div class="place-item">
+        <div class="place-name" data-en="My Art Museum" data-ko="마이아트뮤지엄" data-ja="マイアートミュージアム" data-zh="My Art Museum"></div>
+        <div class="place-desc"
+          data-en="Private museum with rotating exhibitions. Comfortable space, good for 1–2 hours."
+          data-ko="사설 미술관, 기획전 자주 교체. 깔끔한 실내, 1–2시간 관람 추천."
+          data-ja="企画展が頻繁に変わる私立美術館。清潔な館内で1〜2時間の鑑賞に最適。"
+          data-zh="私立美术馆，特展轮换频繁。环境舒适，适合游览1-2小时。"
+        ></div>
+      </div>
+      <div class="place-item">
+        <div class="place-name" data-en="2GIL29 Gallery" data-ko="이길이구 갤러리" data-ja="イギリイク ギャラリー" data-zh="2GIL29艺廊"></div>
+        <div class="place-desc"
+          data-en="Contemporary art gallery — compact, stylish, with thoughtful exhibitions."
+          data-ko="현대미술 갤러리. 규모는 크지 않지만 세련되고 알찬 전시."
+          data-ja="現代美術ギャラリー。小規模ながらスタイリッシュで内容の濃い展示。"
+          data-zh="当代艺术画廊。规模不大但风格精致，展览内容丰富。"
+        ></div>
+      </div>
+      <div class="place-item">
+        <div class="place-name" data-en="Horim Museum Sinsa" data-ko="호림박물관 신사분관" data-ja="ホリム博物館新沙分館" data-zh="湖林博物馆新沙分馆"></div>
+        <div class="place-desc"
+          data-en="Traditional Korean crafts and artifacts. Quiet, less crowded than large museums."
+          data-ko="한국 전통 공예·유물 중심. 대형 박물관보다 한적하고 조용한 분위기."
+          data-ja="韓国の伝統工芸・遺物中心の博物館。大型博物館より静かで落ち着いた雰囲気。"
+          data-zh="以韩国传统工艺品和文物为主。比大型博物馆更安静、不拥挤。"
+        ></div>
+      </div>
+      <div class="place-item">
+        <div class="place-name" data-en="Kimreeaa Gallery" data-ko="김리아갤러리" data-ja="キムリアギャラリー" data-zh="Kimreeaa Gallery"></div>
+        <div class="place-desc"
+          data-en="Contemporary art gallery near Cheongdam luxury street. Great stop on a shopping stroll."
+          data-ko="청담 명품거리 근처 현대미술 갤러리. 산책 중 가볍게 들르기 좋음."
+          data-ja="清潭のブランド街近くの現代美術ギャラリー。ショッピングついでに立ち寄れる。"
+          data-zh="位于清潭名品街附近的当代艺术画廊。逛街时顺道一游的好选择。"
+        ></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 산책로 -->
+  <div class="section fade-in">
+    <div class="section-title">
+      <span>🚶</span>
+      <span data-en="Recommended Walks" data-ko="추천 산책로" data-ja="おすすめ散歩コース" data-zh="推荐散步路线"></span>
+    </div>
+    <div class="card">
+      <div class="place-item">
+        <div class="place-name" data-en="Hakdong Neighborhood Park" data-ko="학동근린공원" data-ja="鶴洞近隣公園" data-zh="鹤洞邻里公园"></div>
+        <div class="place-desc"
+          data-en="Quiet park near Nonhyeon. Perfect for a short walk or relaxing break."
+          data-ko="논현동 인근 조용한 공원. 가볍게 산책하거나 쉬기에 좋습니다."
+          data-ja="論峴洞近くの静かな公園。軽い散歩やひと休みに最適。"
+          data-zh="位于论峴洞附近的安静公园。适合短暂散步或休息放松。"
+        ></div>
+      </div>
+      <div class="place-item">
+        <div class="place-name" data-en="Dosan Park" data-ko="도산공원" data-ja="島山公園" data-zh="岛山公园"></div>
+        <div class="place-desc"
+          data-en="Urban park within walking distance. Well-maintained paths and nearby cafés."
+          data-ko="도보 이동 가능한 도심 공원. 잘 조성된 산책로와 주변 카페 거리."
+          data-ja="徒歩圏内の都市公園。整備された遊歩道と周辺カフェストリート。"
+          data-zh="步行可达的城市公园。步道整洁，周边咖啡街一同游逛。"
+        ></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 비상 연락처 -->
+  <div class="section fade-in">
+    <div class="section-title">
+      <span>🚨</span>
+      <span data-en="Emergency Contacts" data-ko="비상 연락처" data-ja="緊急連絡先" data-zh="紧急联系方式"></span>
+    </div>
+    <div class="card emergency-card">
+      <div class="emergency-row">
+        <span class="info-label" data-en="Police" data-ko="경찰" data-ja="警察" data-zh="警察"></span>
+        <span class="emergency-num"><a href="tel:112">112</a></span>
+      </div>
+      <div class="emergency-row">
+        <span class="info-label" data-en="Fire & Rescue" data-ko="소방 / 구급" data-ja="消防・救急" data-zh="消防 / 急救"></span>
+        <span class="emergency-num"><a href="tel:119">119</a></span>
+      </div>
+      <div class="emergency-row">
+        <span class="info-label" data-en="Host (Lee Kang Min)" data-ko="호스트 (이강민)" data-ja="ホスト（イ・ガンミン）" data-zh="房东（李强民）"></span>
+        <span class="emergency-num"><a href="tel:+821053467704">010-5346-7704</a></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 안전 -->
+  <div class="section fade-in">
+    <div class="section-title">
+      <span>🛡️</span>
+      <span data-en="Safety" data-ko="안전 안내" data-ja="安全情報" data-zh="安全须知"></span>
+    </div>
+    <div class="card">
+      <div class="step">
+        <div class="step-num">•</div>
+        <div class="step-text"
+          data-en="Fire extinguishers in each unit and every stairwell."
+          data-ko="각 호실 및 층별 계단에 소화기 비치."
+          data-ja="各部屋および各フロア階段に消火器を設置。"
+          data-zh="每个房间及每层楼梯处均配有灭火器。"
+        ></div>
+      </div>
+      <div class="step">
+        <div class="step-num">•</div>
+        <div class="step-text"
+          data-en="Smoke detectors in every room and living area."
+          data-ko="화재 경보기가 각 방과 거실에 설치되어 있습니다."
+          data-ja="全部屋とリビングに火災感知器を設置。"
+          data-zh="每个房间及客厅均安装烟雾探测器。"
+        ></div>
+      </div>
+      <div class="step">
+        <div class="step-num">🏃</div>
+        <div class="step-text"
+          data-en="<strong>Evacuate:</strong> Use the stairs and exit through the main entrance."
+          data-ko="<strong>대피:</strong> 계단으로 내려와서 정문으로 나가주세요."
+          data-ja="<strong>避難：</strong>階段を使って正面玄関から外へ。"
+          data-zh="<strong>疏散：</strong>走楼梯从正门撤离。"
+        ></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p data-en="Questions? Contact your host anytime." data-ko="궁금한 점은 언제든지 호스트에게 연락해 주세요." data-ja="ご不明な点はいつでもホストにご連絡ください。" data-zh="如有疑问，随时联系房东。"></p>
+  <p style="margin-top:10px;"><a href="tel:+821053467704">📞 010-5346-7704</a></p>
+  <p style="margin-top:18px;font-size:0.7rem;opacity:0.5;">JoveStay Gangnam © 2026</p>
+</div>
+
+<!-- ═══════════════════════════════════
+     CHAT WIDGET
+════════════════════════════════════ -->
+
+<!-- FAB Button -->
+<button class="chat-fab" id="chatFab" onclick="toggleChat()">
+  <span id="fabIcon">💬</span>
+  <div class="fab-badge" id="fabBadge">1</div>
+</button>
+
+<!-- Chat Panel -->
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-header">
+    <div class="chat-header-icon">🏠</div>
+    <div class="chat-header-text">
+      <div class="chat-header-title">JoveStay AI Concierge</div>
+      <div class="chat-header-sub" id="chatHeaderSub">Ask me anything about your stay</div>
+    </div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="msg bot">
+      <div class="msg-avatar">🏠</div>
+      <div class="msg-bubble" id="welcomeMsg">Hi! I'm your JoveStay AI concierge. Ask me anything — check-in instructions, Wi-Fi, nearby restaurants, or anything else about your stay! 😊</div>
+    </div>
+  </div>
+  <div class="chat-input-row">
+    <textarea class="chat-input" id="chatInput" rows="1"
+      placeholder="Ask a question..."
+      onkeydown="handleKey(event)"
+      oninput="autoResize(this)"
+    ></textarea>
+    <button class="chat-send" id="sendBtn" onclick="sendMessage()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  // ─── Language ───
+  const LANGS = {
+    en: { chatSub: "Ask me anything about your stay", chatPlaceholder: "Ask a question...", welcomeMsg: "Hi! I'm your JoveStay AI concierge. Ask me anything — check-in, Wi-Fi, restaurants, or anything about your stay! 😊", copied: "Copied!" },
+    ko: { chatSub: "숙소에 대해 무엇이든 물어보세요", chatPlaceholder: "질문을 입력하세요...", welcomeMsg: "안녕하세요! JoveStay AI 컨시어지입니다. 체크인, 와이파이, 맛집 등 무엇이든 물어보세요! 😊", copied: "복사됨!" },
+    ja: { chatSub: "滞在について何でもお聞きください", chatPlaceholder: "ご質問を入力してください...", welcomeMsg: "こんにちは！JoveStayのAIコンシェルジュです。チェックイン、Wi-Fi、近くのレストランなど、何でもお気軽にどうぞ！😊", copied: "コピーしました！" },
+    zh: { chatSub: "关于您的住宿，请随时提问", chatPlaceholder: "请输入您的问题...", welcomeMsg: "您好！我是JoveStay AI礼宾助手。关于入住、Wi-Fi、附近餐厅等任何问题，请随时询问！😊", copied: "已复制！" }
+  };
+
+  let currentLang = 'en';
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      const map = {en:'🇺🇸 EN',ko:'🇰🇷 KR',ja:'🇯🇵 JP',zh:'🇨🇳 ZH'};
+      btn.classList.toggle('active', btn.textContent.trim() === map[lang]);
+    });
+    document.querySelectorAll(`[data-${lang}]`).forEach(el => {
+      const keys = ['en','ko','ja','zh'];
+      const val = el.getAttribute(`data-${lang}`);
+      if (val !== null) el.innerHTML = val;
+    });
+    // Update chat UI text
+    const l = LANGS[lang];
+    const subEl = document.getElementById('chatHeaderSub');
+    const inputEl = document.getElementById('chatInput');
+    const welcomeEl = document.getElementById('welcomeMsg');
+    if (subEl) subEl.textContent = l.chatSub;
+    if (inputEl) inputEl.placeholder = l.chatPlaceholder;
+    if (welcomeEl && welcomeEl.dataset.isDefault !== 'false') welcomeEl.textContent = l.welcomeMsg;
+  }
+
+  // ─── Copy ───
+  function copyText(text, btn) {
+    navigator.clipboard.writeText(text).then(() => {
+      btn.classList.add('copied');
+      const span = btn.querySelector('span');
+      const orig = span.textContent;
+      span.textContent = LANGS[currentLang].copied;
+      setTimeout(() => { btn.classList.remove('copied'); span.textContent = orig; }, 1500);
+    });
+  }
+
+  // ─── Scroll reveal ───
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // ─── Chat ───
+  let chatOpen = false;
+  let isTyping = false;
+
+  function toggleChat() {
+    chatOpen = !chatOpen;
+    document.getElementById('chatPanel').classList.toggle('open', chatOpen);
+    document.getElementById('fabIcon').textContent = chatOpen ? '✕' : '💬';
+    document.getElementById('fabBadge').style.display = 'none';
+    if (chatOpen) setTimeout(() => document.getElementById('chatInput').focus(), 100);
+  }
+
+  function autoResize(el) {
+    el.style.height = 'auto';
+    el.style.height = Math.min(el.scrollHeight, 90) + 'px';
+  }
+
+  function handleKey(e) {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+  }
+
+  function appendMsg(role, text) {
+    const msgs = document.getElementById('chatMessages');
+    const div = document.createElement('div');
+    div.className = `msg ${role}`;
+    if (role === 'bot') div.innerHTML = `<div class="msg-avatar">🏠</div><div class="msg-bubble"></div>`;
+    else div.innerHTML = `<div class="msg-bubble"></div>`;
+    const bubble = div.querySelector('.msg-bubble');
+    bubble.innerHTML = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    msgs.appendChild(div);
+    msgs.scrollTop = msgs.scrollHeight;
+    return bubble;
+  }
+
+  function showTyping() {
+    const msgs = document.getElementById('chatMessages');
+    const div = document.createElement('div');
+    div.className = 'msg bot'; div.id = 'typingIndicator';
+    div.innerHTML = `<div class="msg-avatar">🏠</div><div class="msg-bubble"><div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div>`;
+    msgs.appendChild(div);
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+
+  function hideTyping() {
+    const el = document.getElementById('typingIndicator');
+    if (el) el.remove();
+  }
+
+  async function sendMessage() {
+    const input = document.getElementById('chatInput');
+    const msg = input.value.trim();
+    if (!msg || isTyping) return;
+
+    input.value = '';
+    input.style.height = 'auto';
+    document.getElementById('welcomeMsg').dataset.isDefault = 'false';
+    document.getElementById('sendBtn').disabled = true;
+    isTyping = true;
+
+    appendMsg('user', msg);
+    showTyping();
+
+    try {
+      const res = await fetch('http://76.13.215.212:8091/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: msg })
+      });
+      const data = await res.json();
+      hideTyping();
+      appendMsg('bot', data.reply || 'Sorry, something went wrong.');
+    } catch (e) {
+      hideTyping();
+      const errMsgs = { en: 'Connection error. Please try again.', ko: '연결 오류. 다시 시도해 주세요.', ja: '接続エラーが発生しました。再試行してください。', zh: '连接错误，请重试。' };
+      appendMsg('bot', errMsgs[currentLang] || errMsgs.en);
+    }
+
+    isTyping = false;
+    document.getElementById('sendBtn').disabled = false;
+    document.getElementById('chatInput').focus();
+  }
+
+  // ─── Init ───
+  setLang('en');
+</script>
+
+</body>
+</html>
