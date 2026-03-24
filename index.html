@@ -19,6 +19,7 @@
       --accent-red: #c94a4a;
       --accent-green: #5cb85c;
       --radius: 12px;
+      --sidebar-w: 220px;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -29,13 +30,96 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    /* ════════════════════════════════════════
+       SIDEBAR
+    ════════════════════════════════════════ */
+    .sidebar-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 40;
+      background: rgba(0,0,0,0.6);
+    }
+    .sidebar-overlay.visible { display: block; }
+
+    .nav-sidebar {
+      position: fixed;
+      top: 0; left: 0;
+      width: var(--sidebar-w);
+      height: 100vh;
+      background: #111009;
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      z-index: 50;
+      transition: transform 0.3s ease;
+      display: flex; flex-direction: column;
+    }
+    .nav-sidebar::-webkit-scrollbar { width: 0; }
+
+    .sidebar-logo {
+      padding: 22px 20px 18px;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .sidebar-logo img { width: 130px; opacity: 0.9; display: block; }
+
+    .nav-section-label {
+      padding: 16px 20px 6px;
+      font-size: 0.68rem; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--text-muted); opacity: 0.5;
+    }
+
+    .nav-list { list-style: none; flex: 1; }
+    .nav-list a {
+      display: flex; align-items: center; gap: 9px;
+      padding: 9px 20px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.82rem;
+      transition: all 0.2s;
+      border-left: 2px solid transparent;
+      white-space: nowrap;
+    }
+    .nav-list a:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+    .nav-list a.active { color: var(--gold); background: rgba(197,162,101,0.08); border-left-color: var(--gold); }
+    .nav-list .nav-highlight > a { color: var(--gold-soft); }
+    .nav-list .nav-highlight > a:hover { color: var(--gold); }
+    .nav-icon { font-size: 0.88rem; width: 18px; text-align: center; flex-shrink: 0; }
+
+    /* ─── Page Wrap ─── */
+    .page-wrap { display: flex; }
+    .content-area {
+      flex: 1;
+      margin-left: var(--sidebar-w);
+      min-width: 0;
+    }
+
+    /* ─── Hamburger Toggle ─── */
+    .nav-toggle {
+      display: none;
+      position: fixed;
+      top: 13px; left: 13px; z-index: 60;
+      background: var(--card); border: 1px solid var(--border);
+      color: var(--text); width: 38px; height: 38px;
+      border-radius: 8px; cursor: pointer; font-size: 1.05rem;
+      align-items: center; justify-content: center;
+      transition: background 0.2s; box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    }
+    .nav-toggle:hover { background: var(--card-hover); }
+
+    @media (max-width: 820px) {
+      .nav-toggle { display: flex; }
+      .nav-sidebar { transform: translateX(-100%); }
+      .nav-sidebar.open { transform: translateX(0); }
+      .content-area { margin-left: 0; }
+      .lang-toggle { right: 12px; top: 12px; }
+    }
+
     /* ─── Hero ─── */
     .hero {
-      min-height: 54vh;
+      min-height: 50vh;
       display: flex; flex-direction: column;
       justify-content: center; align-items: center;
       text-align: center;
-      padding: 90px 24px 60px;
+      padding: 80px 24px 56px;
       background: linear-gradient(180deg, #1a1714 0%, var(--bg) 100%);
       position: relative;
     }
@@ -61,7 +145,7 @@
       max-width: 480px; line-height: 1.8; margin-bottom: 8px;
     }
     .hero-address { color: var(--text-muted); font-size: 0.8rem; font-weight: 300; opacity: 0.6; margin-top: 6px; }
-    .hero-logo { width: 180px; max-width: 60vw; margin-bottom: 28px; opacity: 0.92; filter: brightness(1.05); }
+    .hero-logo { width: 160px; max-width: 55vw; margin-bottom: 28px; opacity: 0.95; }
 
     /* ─── Language Toggle ─── */
     .lang-toggle {
@@ -79,10 +163,10 @@
     .lang-btn.active { background: var(--gold); color: var(--bg); font-weight: 600; }
 
     /* ─── Container ─── */
-    .container { max-width: 600px; margin: 0 auto; padding: 0 20px 140px; }
+    .container { max-width: 620px; margin: 0 auto; padding: 0 20px 140px; }
 
     /* ─── Section ─── */
-    .section { margin-bottom: 32px; }
+    .section { margin-bottom: 32px; scroll-margin-top: 24px; }
     .section-title {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.3rem; font-weight: 400; color: var(--gold);
@@ -226,6 +310,66 @@
     .fade-in.visible { opacity: 1; transform: translateY(0); }
 
     /* ════════════════════════════════════════
+       CHECKLIST
+    ════════════════════════════════════════ */
+    .checklist-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 4px 20px 16px; margin-bottom: 12px;
+    }
+    .checklist { list-style: none; }
+    .checklist-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 13px 0; border-bottom: 1px solid var(--border);
+      cursor: pointer; user-select: none;
+      transition: opacity 0.2s;
+    }
+    .checklist-item:last-child { border-bottom: none; }
+    .check-box {
+      flex-shrink: 0; width: 22px; height: 22px;
+      border: 2px solid #3a3835; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s; margin-top: 2px;
+    }
+    .checklist-item.done .check-box {
+      background: var(--gold); border-color: var(--gold);
+    }
+    .checklist-item.done .check-box::after {
+      content: '✓'; color: var(--bg); font-size: 0.72rem; font-weight: 800;
+    }
+    .checklist-item.done .check-label { opacity: 0.4; text-decoration: line-through; }
+    .check-label { flex: 1; }
+    .check-label-main { font-size: 0.88rem; line-height: 1.5; }
+    .check-label-sub { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+
+    .checklist-progress {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 14px; padding-top: 12px;
+    }
+    .progress-bar-wrap {
+      flex: 1; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden;
+    }
+    .progress-bar { height: 100%; background: var(--gold); border-radius: 2px; transition: width 0.3s; }
+    .progress-text { font-size: 0.78rem; color: var(--text-muted); white-space: nowrap; }
+
+    .checklist-actions {
+      display: flex; gap: 8px; margin-top: 14px;
+    }
+    .checklist-btn {
+      flex: 1; padding: 9px; border-radius: 8px;
+      font-size: 0.82rem; cursor: pointer; font-family: inherit;
+      transition: all 0.2s; border: 1px solid var(--border);
+    }
+    .btn-reset {
+      background: rgba(255,255,255,0.03); color: var(--text-muted);
+    }
+    .btn-reset:hover { background: rgba(255,255,255,0.07); color: var(--text); }
+    .btn-complete-all {
+      background: rgba(197,162,101,0.1); color: var(--gold);
+      border-color: rgba(197,162,101,0.2);
+    }
+    .btn-complete-all:hover { background: rgba(197,162,101,0.18); }
+
+    /* ════════════════════════════════════════
        CHAT WIDGET
     ════════════════════════════════════════ */
     .chat-fab {
@@ -258,7 +402,6 @@
       max-height: 520px;
     }
     .chat-panel.open { display: flex; }
-
     .chat-header {
       background: rgba(197,162,101,0.1);
       border-bottom: 1px solid var(--border);
@@ -269,80 +412,31 @@
     .chat-header-text { flex: 1; }
     .chat-header-title { font-weight: 600; font-size: 0.9rem; color: var(--gold); }
     .chat-header-sub { font-size: 0.75rem; color: var(--text-muted); }
-    .chat-close {
-      background: none; border: none; color: var(--text-muted);
-      cursor: pointer; font-size: 1.2rem; padding: 4px;
-      transition: color 0.2s;
-    }
+    .chat-close { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 1.2rem; padding: 4px; transition: color 0.2s; }
     .chat-close:hover { color: var(--text); }
-
     .chat-messages {
       flex: 1; overflow-y: auto; padding: 16px;
-      display: flex; flex-direction: column; gap: 12px;
-      scroll-behavior: smooth;
+      display: flex; flex-direction: column; gap: 12px; scroll-behavior: smooth;
     }
     .chat-messages::-webkit-scrollbar { width: 4px; }
     .chat-messages::-webkit-scrollbar-track { background: transparent; }
     .chat-messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
-
     .msg { display: flex; gap: 8px; align-items: flex-end; }
     .msg.user { flex-direction: row-reverse; }
-    .msg-bubble {
-      max-width: 80%; padding: 10px 14px; border-radius: 14px;
-      font-size: 0.86rem; line-height: 1.5;
-    }
-    .msg.bot .msg-bubble {
-      background: #252220; color: var(--text);
-      border-bottom-left-radius: 4px;
-    }
-    .msg.user .msg-bubble {
-      background: rgba(197,162,101,0.18); color: var(--text);
-      border-bottom-right-radius: 4px;
-    }
-    .msg-avatar {
-      width: 28px; height: 28px; border-radius: 50%;
-      background: rgba(197,162,101,0.2);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.85rem; flex-shrink: 0;
-    }
-
-    .typing-indicator {
-      display: flex; gap: 4px; align-items: center; padding: 4px 0;
-    }
-    .typing-dot {
-      width: 6px; height: 6px; background: var(--text-muted);
-      border-radius: 50%;
-      animation: typing-bounce 1.2s ease-in-out infinite;
-    }
+    .msg-bubble { max-width: 80%; padding: 10px 14px; border-radius: 14px; font-size: 0.86rem; line-height: 1.5; }
+    .msg.bot .msg-bubble { background: #252220; color: var(--text); border-bottom-left-radius: 4px; }
+    .msg.user .msg-bubble { background: rgba(197,162,101,0.18); color: var(--text); border-bottom-right-radius: 4px; }
+    .msg-avatar { width: 28px; height: 28px; border-radius: 50%; background: rgba(197,162,101,0.2); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
+    .typing-indicator { display: flex; gap: 4px; align-items: center; padding: 4px 0; }
+    .typing-dot { width: 6px; height: 6px; background: var(--text-muted); border-radius: 50%; animation: typing-bounce 1.2s ease-in-out infinite; }
     .typing-dot:nth-child(2) { animation-delay: 0.2s; }
     .typing-dot:nth-child(3) { animation-delay: 0.4s; }
-    @keyframes typing-bounce {
-      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-      30% { transform: translateY(-5px); opacity: 1; }
-    }
-
-    .chat-input-row {
-      padding: 12px;
-      border-top: 1px solid var(--border);
-      display: flex; gap: 8px; align-items: flex-end;
-    }
-    .chat-input {
-      flex: 1; background: #252220; border: 1px solid var(--border);
-      color: var(--text); border-radius: 10px;
-      padding: 9px 12px; font-size: 0.86rem; font-family: inherit;
-      resize: none; outline: none; min-height: 38px; max-height: 90px;
-      transition: border-color 0.2s;
-    }
+    @keyframes typing-bounce { 0%, 60%, 100% { transform: translateY(0); opacity: 0.4; } 30% { transform: translateY(-5px); opacity: 1; } }
+    .chat-input-row { padding: 12px; border-top: 1px solid var(--border); display: flex; gap: 8px; align-items: flex-end; }
+    .chat-input { flex: 1; background: #252220; border: 1px solid var(--border); color: var(--text); border-radius: 10px; padding: 9px 12px; font-size: 0.86rem; font-family: inherit; resize: none; outline: none; min-height: 38px; max-height: 90px; transition: border-color 0.2s; }
     .chat-input:focus { border-color: rgba(197,162,101,0.4); }
     .chat-input::placeholder { color: var(--text-muted); }
-    .chat-send {
-      width: 38px; height: 38px; flex-shrink: 0;
-      background: var(--gold); color: var(--bg);
-      border: none; border-radius: 10px;
-      cursor: pointer; font-size: 1rem;
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s, transform 0.1s;
-    }
+    .chat-send { width: 38px; height: 38px; flex-shrink: 0; background: var(--gold); color: var(--bg); border: none; border-radius: 10px; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: background 0.2s, transform 0.1s; }
     .chat-send:hover { background: var(--gold-soft); }
     .chat-send:active { transform: scale(0.93); }
     .chat-send:disabled { opacity: 0.4; cursor: not-allowed; }
@@ -358,6 +452,39 @@
 </head>
 <body>
 
+<!-- Sidebar Overlay -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+<!-- Sidebar Navigation -->
+<nav class="nav-sidebar" id="navSidebar">
+  <div class="sidebar-logo">
+    <img src="img/logo.png" alt="JoveStay Gangnam">
+  </div>
+  <ul class="nav-list">
+    <li class="nav-section-label">BASICS</li>
+    <li><a href="#section-property" onclick="closeSidebar()"><span class="nav-icon">📍</span><span data-en="Property Info" data-ko="숙소 정보" data-ja="施設情報" data-zh="房源信息">Property Info</span></a></li>
+    <li><a href="#section-checkin" onclick="closeSidebar()"><span class="nav-icon">🕐</span><span data-en="Check-in/out" data-ko="체크인/아웃" data-ja="チェックイン" data-zh="入退房">Check-in/out</span></a></li>
+    <li><a href="#section-entry" onclick="closeSidebar()"><span class="nav-icon">🔑</span><span data-en="How to Enter" data-ko="입실 방법" data-ja="入室方法" data-zh="如何进入">How to Enter</span></a></li>
+    <li><a href="#section-wifi" onclick="closeSidebar()"><span class="nav-icon">📶</span><span>Wi-Fi</span></a></li>
+    <li><a href="#section-rules" onclick="closeSidebar()"><span class="nav-icon">📋</span><span data-en="House Rules" data-ko="하우스룰" data-ja="ルール" data-zh="规则">House Rules</span></a></li>
+    <li><a href="#section-appliances" onclick="closeSidebar()"><span class="nav-icon">⚡</span><span data-en="Appliances" data-ko="가전 사용법" data-ja="家電" data-zh="家电">Appliances</span></a></li>
+    <li><a href="#section-recycling" onclick="closeSidebar()"><span class="nav-icon">♻️</span><span data-en="Recycling" data-ko="분리수거" data-ja="ゴミ" data-zh="垃圾分类">Recycling</span></a></li>
+    <li class="nav-section-label" style="margin-top:4px;">CHECKLISTS</li>
+    <li class="nav-highlight"><a href="#section-going-out" onclick="closeSidebar()"><span class="nav-icon">🚪</span><span data-en="Going Out" data-ko="외출 체크리스트" data-ja="外出チェック" data-zh="外出检查">Going Out</span></a></li>
+    <li class="nav-highlight"><a href="#section-checkout" onclick="closeSidebar()"><span class="nav-icon">🧳</span><span data-en="Check-out" data-ko="퇴실 체크리스트" data-ja="退室チェック" data-zh="退房检查">Check-out</span></a></li>
+    <li class="nav-section-label" style="margin-top:4px;">EXPLORE</li>
+    <li><a href="#section-restaurants" onclick="closeSidebar()"><span class="nav-icon">🍽️</span><span data-en="Restaurants" data-ko="맛집" data-ja="レストラン" data-zh="餐厅">Restaurants</span></a></li>
+    <li><a href="#section-attractions" onclick="closeSidebar()"><span class="nav-icon">🏛️</span><span data-en="Attractions" data-ko="관광지" data-ja="観光" data-zh="景点">Attractions</span></a></li>
+    <li><a href="#section-walks" onclick="closeSidebar()"><span class="nav-icon">🚶</span><span data-en="Walks" data-ko="산책로" data-ja="散歩" data-zh="散步">Walks</span></a></li>
+    <li class="nav-section-label" style="margin-top:4px;">SAFETY</li>
+    <li><a href="#section-emergency" onclick="closeSidebar()"><span class="nav-icon">🚨</span><span data-en="Emergency" data-ko="비상 연락처" data-ja="緊急" data-zh="紧急">Emergency</span></a></li>
+    <li><a href="#section-safety" onclick="closeSidebar()"><span class="nav-icon">🛡️</span><span data-en="Safety" data-ko="안전 안내" data-ja="安全" data-zh="安全">Safety</span></a></li>
+  </ul>
+</nav>
+
+<!-- Mobile Nav Toggle -->
+<button class="nav-toggle" id="navToggle" onclick="toggleSidebar()">☰</button>
+
 <!-- Language Toggle -->
 <div class="lang-toggle">
   <button class="lang-btn active" onclick="setLang('en')">🇺🇸 EN</button>
@@ -365,6 +492,10 @@
   <button class="lang-btn" onclick="setLang('ja')">🇯🇵 JP</button>
   <button class="lang-btn" onclick="setLang('zh')">🇨🇳 ZH</button>
 </div>
+
+<!-- Page Wrap -->
+<div class="page-wrap">
+<div class="content-area">
 
 <!-- Hero -->
 <div class="hero">
@@ -408,7 +539,7 @@
   </div>
 
   <!-- 숙소 기본 정보 -->
-  <div class="section fade-in">
+  <div class="section fade-in" id="section-property">
     <div class="section-title">
       <span>📍</span>
       <span data-en="Property Info" data-ko="숙소 기본 정보" data-ja="施設情報" data-zh="房源信息"></span>
@@ -434,7 +565,7 @@
   </div>
 
   <!-- 체크인/체크아웃 -->
-  <div class="section fade-in">
+  <div class="section fade-in" id="section-checkin">
     <div class="section-title">
       <span>🕐</span>
       <span data-en="Check-in / Check-out" data-ko="체크인 / 체크아웃" data-ja="チェックイン／チェックアウト" data-zh="入住 / 退房"></span>
@@ -452,7 +583,7 @@
   </div>
 
   <!-- 입실 방법 -->
-  <div class="section fade-in">
+  <div class="section fade-in" id="section-entry">
     <div class="section-title">
       <span>🔑</span>
       <span data-en="How to Enter" data-ko="입실 방법" data-ja="入室方法" data-zh="如何进入"></span>
@@ -489,7 +620,7 @@
   </div>
 
   <!-- Wi-Fi -->
-  <div class="section fade-in">
+  <div class="section fade-in" id="section-wifi">
     <div class="section-title"><span>📶</span><span>Wi-Fi</span></div>
     <div class="card">
       <div class="info-row">
@@ -507,7 +638,7 @@
   </div>
 
   <!-- 하우스 룰 -->
-  <div class="section fade-in">
+  <div class="section fade-in" id="section-rules">
     <div class="section-title">
       <span>📋</span>
       <span data-en="House Rules" data-ko="하우스 룰" data-ja="ハウスルール" data-zh="住宿规则"></span>
@@ -533,7 +664,7 @@
   </div>
 
   <!-- 가전 사용법 -->
-  <div class="section fade-in">
+  <div class="section fade-in" id="section-appliances">
     <div class="section-title">
       <span>⚡</span>
       <span data-en="Appliances" data-ko="가전 사용법" data-ja="家電の使い方" data-zh="家电使用说明"></span>
@@ -585,7 +716,7 @@
   </div>
 
   <!-- 분리수거 -->
-  <div class="section fade-in">
+  <div class="section fade-in" id="section-recycling">
     <div class="section-title">
       <span>♻️</span>
       <span data-en="Waste & Recycling" data-ko="쓰레기 분리수거" data-ja="ゴミ・リサイクル" data-zh="垃圾分类"></span>
@@ -630,36 +761,147 @@
     </div>
   </div>
 
-  <!-- 퇴실 -->
-  <div class="section fade-in">
+  <!-- ★ 외출 체크리스트 -->
+  <div class="section fade-in" id="section-going-out">
+    <div class="section-title">
+      <span>🚪</span>
+      <span data-en="Going Out Checklist" data-ko="외출 체크리스트" data-ja="外出チェックリスト" data-zh="外出检查清单"></span>
+    </div>
+    <div class="checklist-card">
+      <div class="checklist-progress">
+        <div class="progress-bar-wrap"><div class="progress-bar" id="goout-bar" style="width:0%"></div></div>
+        <div class="progress-text" id="goout-progress">0 / 6</div>
+      </div>
+      <ul class="checklist" id="goout-list">
+        <li class="checklist-item" onclick="toggleCheck(this,'goout')">
+          <div class="check-box"></div>
+          <div class="check-label">
+            <div class="check-label-main" data-en="Turn off all lights" data-ko="조명 모두 끄기" data-ja="照明をすべて消す" data-zh="关闭所有灯光"></div>
+          </div>
+        </li>
+        <li class="checklist-item" onclick="toggleCheck(this,'goout')">
+          <div class="check-box"></div>
+          <div class="check-label">
+            <div class="check-label-main" data-en="Turn off AC / heating" data-ko="에어컨 / 난방 끄기" data-ja="エアコン・暖房を切る" data-zh="关闭空调/暖气"></div>
+          </div>
+        </li>
+        <li class="checklist-item" onclick="toggleCheck(this,'goout')">
+          <div class="check-box"></div>
+          <div class="check-label">
+            <div class="check-label-main" data-en="Check door lock (401)" data-ko="도어락 잠금 확인 (401호)" data-ja="ドアロック確認（401号室）" data-zh="确认门锁已锁（401室）"></div>
+          </div>
+        </li>
+        <li class="checklist-item" onclick="toggleCheck(this,'goout')">
+          <div class="check-box"></div>
+          <div class="check-label">
+            <div class="check-label-main" data-en="Check windows are closed" data-ko="창문 잠금 확인" data-ja="窓の施錠を確認" data-zh="确认窗户已关闭"></div>
+          </div>
+        </li>
+        <li class="checklist-item" onclick="toggleCheck(this,'goout')">
+          <div class="check-box"></div>
+          <div class="check-label">
+            <div class="check-label-main" data-en="Turn off induction / gas" data-ko="인덕션 / 가스 잠금 확인" data-ja="IH・ガスの確認" data-zh="关闭电磁炉/气阀"></div>
+          </div>
+        </li>
+        <li class="checklist-item" onclick="toggleCheck(this,'goout')">
+          <div class="check-box"></div>
+          <div class="check-label">
+            <div class="check-label-main" data-en="Take valuables with you" data-ko="귀중품 지참" data-ja="貴重品を持参" data-zh="随身携带贵重物品"></div>
+          </div>
+        </li>
+      </ul>
+      <div class="checklist-actions">
+        <button class="checklist-btn btn-reset" onclick="resetChecklist('goout')">
+          <span data-en="Reset" data-ko="초기화" data-ja="リセット" data-zh="重置"></span>
+        </button>
+        <button class="checklist-btn btn-complete-all" onclick="completeAll('goout')">
+          <span data-en="All Done ✓" data-ko="모두 완료 ✓" data-ja="すべて完了 ✓" data-zh="全部完成 ✓"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ★ 퇴실 체크리스트 -->
+  <div class="section fade-in" id="section-checkout">
     <div class="section-title">
       <span>🧳</span>
-      <span data-en="Check-out" data-ko="퇴실 안내" data-ja="チェックアウト" data-zh="退房须知"></span>
+      <span data-en="Check-out Checklist" data-ko="퇴실 체크리스트" data-ja="チェックアウトリスト" data-zh="退房检查清单"></span>
     </div>
-    <div class="card">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-text"
-          data-en="Gather all your belongings."
-          data-ko="본인 짐 모두 챙기기."
-          data-ja="お荷物をすべてご確認ください。"
-          data-zh="请收好所有随身物品。"
-        ></div>
+    <div style="background:rgba(197,162,101,0.06);border:1px solid rgba(197,162,101,0.15);border-radius:10px;padding:12px 16px;margin-bottom:12px;font-size:0.83rem;color:var(--text-muted);">
+      <span data-en="⏰ Check-out by <strong style='color:var(--gold-soft)'>11:00 AM</strong>" data-ko="⏰ 체크아웃 시간: <strong style='color:var(--gold-soft)'>오전 11시</strong>까지" data-ja="⏰ チェックアウト：<strong style='color:var(--gold-soft)'>午前11時</strong>まで" data-zh="⏰ 退房时间：上午<strong style='color:var(--gold-soft)'>11:00</strong>前"></span>
+    </div>
+    <div class="checklist-card">
+      <div class="checklist-progress">
+        <div class="progress-bar-wrap"><div class="progress-bar" id="checkout-bar" style="width:0%"></div></div>
+        <div class="progress-text" id="checkout-progress">0 / 8</div>
       </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-text"
-          data-en="Turn off all appliances (<strong>except fridge</strong>) — heater, AC, TV, etc."
-          data-ko="모든 가전 전원 끄기 (<strong>냉장고 제외</strong>) — 난방, 에어컨, TV 등."
-          data-ja="冷蔵庫以外の家電をすべてオフに（暖房、エアコン、TVなど）。"
-          data-zh="关闭所有家电（<strong>冰箱除外</strong>）— 暖气、空调、电视等。"
-        ></div>
+      <ul class="checklist" id="checkout-list">
+        <li class="checklist-item" onclick="toggleCheck(this,'checkout')">
+          <div class="check-box"></div>
+          <div class="check-label">
+            <div class="check-label-main" data-en="Pack all personal belongings" data-ko="개인 짐 모두 챙기기" data-ja="個人の荷物をすべてまとめる" data-zh="收好所有个人物品"></div>
+            <div class="check-label-sub" data-en="Chargers, clothes, toiletries, passport" data-ko="충전기, 의류, 세면도구, 여권 등" data-ja="充電器、衣類、洗面用具、パスポートなど" data-zh="充电器、衣物、洗漱用品、护照等"></div>
+          </div>
+        </li>
+        <li class="checklist-item" onclick="toggleCheck(this,'checkout')">
+          <div class="check-box"></div>
+          <div class="check-label">
+            <div class="check-label-main" data-en="Clear the fridge" data-ko="냉장고 음식 모두 꺼내기" data-ja="冷蔵庫の中を空にする" data-zh="清空冰箱内食物"></div>
+          </div>
+        </li>
+        <li class="checklist-item" onclick="toggleCheck(this,'checkout')">
+          <div class="check-box"></div>
+          <div class="check-label">
+            <div class="check-label-main" data-en="Dispose all food waste" data-ko="음식물 쓰레기 처리" data-ja="食べ物のゴミを捨てる" data-zh="处理食物垃圾"></div>
+            <div class="check-label-sub" data-en="Use bags, dispose in kitchen balcony bin" data-ko="봉지에 담아 주방 베란다 쓰레기통에" data-ja="袋に入れ、キッチンバルコニーのゴミ箱へ" data-zh="装袋后丢入厨房阳台垃圾桶"></div>
+          </div>
+        </li>
+        <li class="checklist-item" onclick="toggleCheck(this,'checkout')">
+          <div class="check-box"></div>
+          <div class="check-label">
+            <div class="check-label-main" data-en="Turn off all appliances (except fridge)" data-ko="모든 가전 끄기 (냉장고 제외)" data-ja="冷蔵庫以外の家電をすべてオフ" data-zh="关闭所有家电（冰箱除外）"></div>
+            <div class="check-label-sub" data-en="TV, heating, AC, induction" data-ko="TV, 난방, 에어컨, 인덕션" data-ja="TV、暖房、エアコン、IH" data-zh="电视、暖气、空调、电磁炉"></div>
+          </div>
+        </li>
+        <li class="checklist-item" onclick="toggleCheck(this,'checkout')">
+          <div class="check-box"></div>
+          <div class="check-label">
+            <div class="check-label-main" data-en="Turn off all lights" data-ko="조명 모두 끄기" data-ja="照明をすべて消す" data-zh="关闭所有灯光"></div>
+          </div>
+        </li>
+        <li class="checklist-item" onclick="toggleCheck(this,'checkout')">
+          <div class="check-box"></div>
+          <div class="check-label">
+            <div class="check-label-main" data-en="Close and lock all windows" data-ko="창문 모두 잠그기" data-ja="すべての窓を閉めて施錠" data-zh="关好并锁上所有窗户"></div>
+          </div>
+        </li>
+        <li class="checklist-item" onclick="toggleCheck(this,'checkout')">
+          <div class="check-box"></div>
+          <div class="check-label">
+            <div class="check-label-main" data-en="Recycle / sort the trash" data-ko="분리수거 완료" data-ja="ゴミの分別を完了" data-zh="完成垃圾分类"></div>
+          </div>
+        </li>
+        <li class="checklist-item" onclick="toggleCheck(this,'checkout')">
+          <div class="check-box"></div>
+          <div class="check-label">
+            <div class="check-label-main" data-en="Lock the front door (401)" data-ko="현관문 잠금 확인 (401호)" data-ja="玄関ドアを施錠（401号室）" data-zh="锁好前门（401室）"></div>
+            <div class="check-label-sub" data-en="Enter code → press * → door locks automatically" data-ko="비번 입력 → * 버튼 → 자동 잠금" data-ja="暗証番号入力 → * → 自動施錠" data-zh="输入密码 → 按* → 自动上锁"></div>
+          </div>
+        </li>
+      </ul>
+      <div class="checklist-actions">
+        <button class="checklist-btn btn-reset" onclick="resetChecklist('checkout')">
+          <span data-en="Reset" data-ko="초기화" data-ja="リセット" data-zh="重置"></span>
+        </button>
+        <button class="checklist-btn btn-complete-all" onclick="completeAll('checkout')">
+          <span data-en="All Done ✓" data-ko="모두 완료 ✓" data-ja="すべて完了 ✓" data-zh="全部完成 ✓"></span>
+        </button>
       </div>
     </div>
   </div>
 
   <!-- 맛집 -->
-  <div class="section fade-in">
+  <div class="section fade-in" id="section-restaurants">
     <div class="section-title">
       <span>🍽️</span>
       <span data-en="Nearby Restaurants" data-ko="주변 맛집" data-ja="近くのレストラン" data-zh="附近餐厅"></span>
@@ -729,11 +971,10 @@
         ></div>
       </div>
     </div>
-
   </div>
 
   <!-- 관광지 -->
-  <div class="section fade-in">
+  <div class="section fade-in" id="section-attractions">
     <div class="section-title">
       <span>🏛️</span>
       <span data-en="Nearby Attractions" data-ko="주변 관광지" data-ja="近くの観光スポット" data-zh="附近景点"></span>
@@ -749,7 +990,7 @@
         ></div>
       </div>
       <div class="place-item">
-        <div class="place-name" data-en="2GIL29 Gallery" data-ko="이길이구 갤러리" data-ja="イギリイク ギャラリー" data-zh="2GIL29艺廊"></div>
+        <div class="place-name" data-en="2GIL29 Gallery" data-ko="이길이구 갤러리" data-ja="イギルイク ギャラリー" data-zh="2GIL29艺廊"></div>
         <div class="place-desc"
           data-en="Contemporary art gallery — compact, stylish, with thoughtful exhibitions."
           data-ko="현대미술 갤러리. 규모는 크지 않지만 세련되고 알찬 전시."
@@ -779,7 +1020,7 @@
   </div>
 
   <!-- 산책로 -->
-  <div class="section fade-in">
+  <div class="section fade-in" id="section-walks">
     <div class="section-title">
       <span>🚶</span>
       <span data-en="Recommended Walks" data-ko="추천 산책로" data-ja="おすすめ散歩コース" data-zh="推荐散步路线"></span>
@@ -807,7 +1048,7 @@
   </div>
 
   <!-- 비상 연락처 -->
-  <div class="section fade-in">
+  <div class="section fade-in" id="section-emergency">
     <div class="section-title">
       <span>🚨</span>
       <span data-en="Emergency Contacts" data-ko="비상 연락처" data-ja="緊急連絡先" data-zh="紧急联系方式"></span>
@@ -829,7 +1070,7 @@
   </div>
 
   <!-- 안전 -->
-  <div class="section fade-in">
+  <div class="section fade-in" id="section-safety">
     <div class="section-title">
       <span>🛡️</span>
       <span data-en="Safety" data-ko="안전 안내" data-ja="安全情報" data-zh="安全须知"></span>
@@ -865,7 +1106,7 @@
     </div>
   </div>
 
-</div>
+</div><!-- /container -->
 
 <!-- Footer -->
 <div class="footer">
@@ -874,17 +1115,17 @@
   <p style="margin-top:18px;font-size:0.7rem;opacity:0.5;">JoveStay Gangnam © 2026</p>
 </div>
 
+</div><!-- /content-area -->
+</div><!-- /page-wrap -->
+
 <!-- ═══════════════════════════════════
      CHAT WIDGET
 ════════════════════════════════════ -->
-
-<!-- FAB Button -->
 <button class="chat-fab" id="chatFab" onclick="toggleChat()">
   <span id="fabIcon">💬</span>
   <div class="fab-badge" id="fabBadge">1</div>
 </button>
 
-<!-- Chat Panel -->
 <div class="chat-panel" id="chatPanel">
   <div class="chat-header">
     <div class="chat-header-icon">🏠</div>
@@ -930,11 +1171,9 @@
       btn.classList.toggle('active', btn.textContent.trim() === map[lang]);
     });
     document.querySelectorAll(`[data-${lang}]`).forEach(el => {
-      const keys = ['en','ko','ja','zh'];
       const val = el.getAttribute(`data-${lang}`);
       if (val !== null) el.innerHTML = val;
     });
-    // Update chat UI text
     const l = LANGS[lang];
     const subEl = document.getElementById('chatHeaderSub');
     const inputEl = document.getElementById('chatInput');
@@ -955,11 +1194,68 @@
     });
   }
 
+  // ─── Sidebar ───
+  function toggleSidebar() {
+    const sidebar = document.getElementById('navSidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    const isOpen = sidebar.classList.toggle('open');
+    overlay.classList.toggle('visible', isOpen);
+    document.getElementById('navToggle').textContent = isOpen ? '✕' : '☰';
+  }
+  function closeSidebar() {
+    document.getElementById('navSidebar').classList.remove('open');
+    document.getElementById('sidebarOverlay').classList.remove('visible');
+    document.getElementById('navToggle').textContent = '☰';
+  }
+
+  // ─── Active Nav ───
+  function updateActiveNav() {
+    const sections = document.querySelectorAll('.section[id]');
+    const navLinks = document.querySelectorAll('.nav-list a');
+    let currentId = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 80) currentId = sec.id;
+    });
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
+    });
+  }
+  window.addEventListener('scroll', updateActiveNav, { passive: true });
+
   // ─── Scroll reveal ───
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // ─── Checklists ───
+  const checklistTotals = { goout: 6, checkout: 8 };
+
+  function toggleCheck(item, listId) {
+    item.classList.toggle('done');
+    updateProgress(listId);
+  }
+
+  function updateProgress(listId) {
+    const list = document.getElementById(listId + '-list');
+    const total = checklistTotals[listId];
+    const done = list.querySelectorAll('.done').length;
+    const pct = Math.round((done / total) * 100);
+    document.getElementById(listId + '-bar').style.width = pct + '%';
+    document.getElementById(listId + '-progress').textContent = done + ' / ' + total;
+  }
+
+  function resetChecklist(listId) {
+    const list = document.getElementById(listId + '-list');
+    list.querySelectorAll('.checklist-item').forEach(item => item.classList.remove('done'));
+    updateProgress(listId);
+  }
+
+  function completeAll(listId) {
+    const list = document.getElementById(listId + '-list');
+    list.querySelectorAll('.checklist-item').forEach(item => item.classList.add('done'));
+    updateProgress(listId);
+  }
 
   // ─── Chat ───
   let chatOpen = false;
