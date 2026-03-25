@@ -433,6 +433,11 @@
     .resto-card { cursor: pointer; }
     .resto-card:hover { transform: translateY(-3px); }
     .resto-img-wrap { overflow: hidden; }
+    .resto-featured {
+      border-color: rgba(197,162,101,0.35);
+      background: linear-gradient(135deg, #1c1a15, #201d14);
+    }
+    .resto-featured .resto-img { height: 240px; }
     .resto-more {
       margin-top: 8px; font-size: 0.78rem; color: var(--gold);
       opacity: 0.8; transition: opacity 0.2s;
@@ -1038,6 +1043,15 @@
       </div>
     </div>
 
+    <div class="resto-card resto-featured" onclick="openResto('bornyon')">
+      <div class="resto-img-wrap"><img class="resto-img" src="img/bornyon.webp" alt="본연 Bornyon" loading="lazy"></div>
+      <div class="resto-body">
+        <div class="resto-name"><span class="place-tag" style="background:rgba(197,162,101,0.2);color:var(--gold-soft);">★ Featured</span>본연 Bornyon</div>
+        <div class="resto-desc" data-en="Korean fine dining with wood-fire, fermentation & seasonality. Seasonal tasting courses using Korea's finest local ingredients." data-ko="우드파이어, 발효, 계절감을 담은 한식 파인다이닝. 전국 최상급 식재료로 완성하는 시즌 코스." data-ja="ウッドファイヤー、発酵、季節感を取り入れた韓国ファインダイニング。全国最高級食材を使ったシーズナルコース。" data-zh="以木火、发酵与时令为核心的韩国精品料理，以全国顶级食材呈现季节性套餐。"></div>
+        <div class="resto-more" data-en="View details →" data-ko="자세히 보기 →" data-ja="詳細を見る →" data-zh="查看详情 →">자세히 보기 →</div>
+      </div>
+    </div>
+
     <div class="resto-card" onclick="openResto('allaprima')">
       <div class="resto-img-wrap"><img class="resto-img" src="img/allaprima.webp" alt="Alla Prima" loading="lazy"></div>
       <div class="resto-body">
@@ -1424,6 +1438,24 @@
 
   // ─── Restaurant Modal ───
   const RESTOS = {
+    bornyon: {
+      img: 'img/bornyon.webp',
+      tag: '★ Featured',
+      name: { ko: '본연', en: 'Bornyon', ja: '本然', zh: '本然' },
+      cuisine: { ko: '한식 파인다이닝', en: 'Korean Fine Dining', ja: '韓国ファインダイニング', zh: '韩国精品料理' },
+      desc: {
+        ko: '우드파이어, 발효, 계절감을 담은 한식 파인다이닝. 전국 각지의 최상급 제철 식재료를 사용하며, 시즌마다 바뀌는 코스 메뉴가 한국의 맛과 자연을 깊이 있게 표현합니다. 현재 시즌 메뉴: 경칩 — 봄의 시작.',
+        en: 'Korean fine dining built around wood-fire, fermentation, and seasonality. Using the finest local ingredients from across Korea, Bornyon\'s seasonal tasting course captures the essence of Korean nature and flavors. Current menu: Gyeongchip — The Beginning of Spring.',
+        ja: 'ウッドファイヤー、発酵、季節感をテーマにした韓国ファインダイニング。全国各地の最高級旬食材を使い、季節ごとに変わるコースメニューで韓国の自然と味わいを深く表現。現在のシーズンメニュー：경칩 — 봄의 시작（春の始まり）。',
+        zh: '以木火、发酵与时令为核心的韩国精品料理。采用全国各地顶级当季食材，以随季节更换的套餐深刻诠释韩国自然与风味。当季菜单：경칩 — 春天的开始。'
+      },
+      addr: { ko: '서울 강남구 논현로 742 파티오나인 7층', en: '742 Nonhyeon-ro, Gangnam-gu, Seoul — Patio Nine, 7F', ja: 'ソウル江南区論峴路742 パティオナイン7階', zh: '首尔江南区论峴路742号 Patio Nine 7楼' },
+      mapUrl: 'https://naver.me/G58gegNk',
+      hours: { ko: '디너 17:30 – 23:00 / 매주 일·월 휴무', en: 'Dinner 17:30 – 23:00 / Closed Sun & Mon', ja: 'ディナー 17:30〜23:00 / 日・月曜定休', zh: '晚餐 17:30–23:00 / 周日周一休息' },
+      price: { ko: '₩₩₩₩₩ (코스 230,000원~ / 와인 페어링 별도)', en: '₩₩₩₩₩ (Course from ₩230,000 / Wine pairing extra)', ja: '₩₩₩₩₩（コース23万ウォン〜／ワインペアリング別）', zh: '₩₩₩₩₩（套餐23万韩元起 / 葡萄酒搭配另计）' },
+      must: { ko: '시즌 테이스팅 코스, 와인·논알콜 페어링', en: 'Seasonal tasting course, wine or non-alcoholic pairing', ja: '季節のテイスティングコース、ワイン／ノンアルコールペアリング', zh: '季节品鉴套餐，葡萄酒或无酒精饮品搭配' },
+      reserve: { ko: '예약 필수 — 네이버 예약 또는 공식 웹사이트', en: 'Reservation required — Naver or official website', ja: '予約必須 — Naverまたは公式サイト', zh: '必须预约 — Naver或官方网站' }
+    },
     allaprima: {
       img: 'img/allaprima.webp',
       tag: 'Michelin',
