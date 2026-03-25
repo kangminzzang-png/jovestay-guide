@@ -429,6 +429,48 @@
     .chat-send:active { transform: scale(0.93); }
     .chat-send:disabled { opacity: 0.4; cursor: not-allowed; }
 
+    /* ─── Dining Area Intro ─── */
+    .dining-intro {
+      background: linear-gradient(135deg, #1c1813 0%, #201a12 100%);
+      border: 1px solid rgba(197,162,101,0.2);
+      border-radius: var(--radius); padding: 24px 22px 20px;
+      margin-bottom: 20px; position: relative; overflow: hidden;
+    }
+    .dining-intro::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .dining-intro-header { margin-bottom: 14px; }
+    .dining-intro-eyebrow {
+      font-size: 0.68rem; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--gold); opacity: 0.8; margin-bottom: 6px;
+    }
+    .dining-intro-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem; font-weight: 300; color: var(--gold-soft);
+      letter-spacing: 1px; line-height: 1.2;
+    }
+    .dining-intro-text {
+      font-size: 0.86rem; color: var(--text-muted); line-height: 1.85;
+      margin-bottom: 18px;
+    }
+    .dining-stats {
+      display: flex; gap: 0; border-top: 1px solid rgba(197,162,101,0.15);
+      padding-top: 16px;
+    }
+    .dining-stat {
+      flex: 1; text-align: center; padding: 0 8px;
+      border-right: 1px solid rgba(197,162,101,0.12);
+    }
+    .dining-stat:last-child { border-right: none; }
+    .dining-stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; color: var(--gold); font-weight: 400;
+      margin-bottom: 4px;
+    }
+    .dining-stat-label { font-size: 0.7rem; color: var(--text-muted); }
+
     /* ─── Responsive ─── */
     @media (max-width: 400px) {
       .rules-grid { grid-template-columns: 1fr; }
@@ -893,6 +935,34 @@
     <div class="section-title">
       <span>🍽️</span>
       <span data-en="Nearby Restaurants" data-ko="주변 맛집" data-ja="近くのレストラン" data-zh="附近餐厅"></span>
+    </div>
+
+    <!-- Area Intro -->
+    <div class="dining-intro">
+      <div class="dining-intro-header">
+        <div class="dining-intro-eyebrow" data-en="The Neighborhood" data-ko="이 동네에 대해" data-ja="このエリアについて" data-zh="关于这一街区">The Neighborhood</div>
+        <div class="dining-intro-title" data-en="Gangnam's Finest Table" data-ko="강남 미식의 중심" data-ja="江南グルメの中心" data-zh="江南美食精华">강남 미식의 중심</div>
+      </div>
+      <p class="dining-intro-text"
+        data-en="JoveStay sits at the heart of one of Seoul's most celebrated dining neighborhoods. The streets of Nonhyeon-dong and Eonju-ro are lined with everything from Michelin-starred omakase and Italian fine dining to beloved Korean home cooking — all within a short walk."
+        data-ko="조브스테이는 서울 최고의 미식 동네 한복판에 위치해 있습니다. 논현동과 언주로 일대에는 미슐랭 오마카세, 이탈리안 파인다이닝, 정겨운 한식 가정식까지 — 도보 거리 안에 다양한 맛이 모여 있습니다."
+        data-ja="JoveStayは、ソウル有数のグルメエリアの中心に位置しています。論峴洞と言住路沿いには、ミシュラン掲載のオマカセ、イタリアンファインダイニング、韓国家庭料理まで、徒歩圏内に揃っています。"
+        data-zh="JoveStay坐落于首尔最负盛名的美食街区中心。论峴洞与言住路一带，从米其林推荐的怀石料理、意大利精品餐厅到朴实的韩式家常菜，步行即可一一品味。"
+      ></p>
+      <div class="dining-stats">
+        <div class="dining-stat">
+          <div class="dining-stat-num">3+</div>
+          <div class="dining-stat-label" data-en="Michelin spots" data-ko="미슐랭 맛집" data-ja="ミシュラン店" data-zh="米其林餐厅">미슐랭 맛집</div>
+        </div>
+        <div class="dining-stat">
+          <div class="dining-stat-num">5 min</div>
+          <div class="dining-stat-label" data-en="Walk radius" data-ko="도보 거리" data-ja="徒歩圏内" data-zh="步行范围">도보 거리</div>
+        </div>
+        <div class="dining-stat">
+          <div class="dining-stat-num">KR · IT · JP</div>
+          <div class="dining-stat-label" data-en="Cuisines" data-ko="다양한 요리" data-ja="各国料理" data-zh="多元美食">다양한 요리</div>
+        </div>
+      </div>
     </div>
 
     <div class="resto-card">
