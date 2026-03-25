@@ -429,6 +429,79 @@
     .chat-send:active { transform: scale(0.93); }
     .chat-send:disabled { opacity: 0.4; cursor: not-allowed; }
 
+    /* ─── Restaurant Card (clickable) ─── */
+    .resto-card { cursor: pointer; }
+    .resto-card:hover { transform: translateY(-3px); }
+    .resto-img-wrap { overflow: hidden; }
+    .resto-more {
+      margin-top: 8px; font-size: 0.78rem; color: var(--gold);
+      opacity: 0.8; transition: opacity 0.2s;
+    }
+    .resto-card:hover .resto-more { opacity: 1; }
+
+    /* ─── Restaurant Modal ─── */
+    .rmodal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 300;
+      background: rgba(0,0,0,0.75); backdrop-filter: blur(4px);
+    }
+    .rmodal-overlay.open { display: block; }
+    .rmodal {
+      position: fixed; bottom: 0; left: 50%; transform: translateX(-50%) translateY(100%);
+      width: 100%; max-width: 560px; z-index: 301;
+      background: #181614; border-radius: 20px 20px 0 0;
+      overflow: hidden; transition: transform 0.35s cubic-bezier(0.32,0.72,0,1);
+      max-height: 90vh; display: flex; flex-direction: column;
+    }
+    .rmodal.open { transform: translateX(-50%) translateY(0); }
+    .rmodal-close {
+      position: absolute; top: 14px; right: 16px; z-index: 10;
+      background: rgba(0,0,0,0.5); border: none; color: #fff;
+      width: 32px; height: 32px; border-radius: 50%;
+      cursor: pointer; font-size: 0.9rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .rmodal-close:hover { background: rgba(0,0,0,0.8); }
+    .rmodal-img-wrap { position: relative; flex-shrink: 0; }
+    .rmodal-img { width: 100%; height: 220px; object-fit: cover; display: block; }
+    .rmodal-img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.85) 100%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 16px 20px;
+    }
+    .rmodal-tag-wrap { margin-bottom: 6px; }
+    .rmodal-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; font-weight: 300; color: #fff; line-height: 1.2;
+    }
+    .rmodal-cuisine { font-size: 0.78rem; color: var(--gold); margin-top: 4px; }
+    .rmodal-body { overflow-y: auto; padding: 20px 20px 36px; flex: 1; }
+    .rmodal-body::-webkit-scrollbar { width: 0; }
+    .rmodal-desc {
+      font-size: 0.88rem; color: var(--text-muted); line-height: 1.8;
+      margin-bottom: 20px; padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .rmodal-grid { display: flex; flex-direction: column; gap: 0; }
+    .rmodal-item {
+      display: flex; gap: 14px; padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .rmodal-item:last-child { border-bottom: none; }
+    .rmodal-item-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 2px; }
+    .rmodal-item-body { flex: 1; }
+    .rmodal-item-label { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 3px; text-transform: uppercase; letter-spacing: 1px; }
+    .rmodal-item-val { font-size: 0.88rem; line-height: 1.5; }
+    .rmodal-map-btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      margin-top: 8px;
+      background: rgba(197,162,101,0.1); border: 1px solid rgba(197,162,101,0.3);
+      color: var(--gold); padding: 6px 12px; border-radius: 8px;
+      font-size: 0.8rem; text-decoration: none; transition: background 0.2s;
+    }
+    .rmodal-map-btn:hover { background: rgba(197,162,101,0.2); }
+
     /* ─── Dining Area Intro ─── */
     .dining-intro {
       background: linear-gradient(135deg, #1c1813 0%, #201a12 100%);
@@ -965,68 +1038,48 @@
       </div>
     </div>
 
-    <div class="resto-card">
-      <img class="resto-img" src="img/allaprima.webp" alt="Alla Prima" loading="lazy">
+    <div class="resto-card" onclick="openResto('allaprima')">
+      <div class="resto-img-wrap"><img class="resto-img" src="img/allaprima.webp" alt="Alla Prima" loading="lazy"></div>
       <div class="resto-body">
         <div class="resto-name"><span class="place-tag">Michelin</span>알라프리마 Alla Prima</div>
-        <div class="resto-desc"
-          data-en="Michelin-listed Italian fine dining. Creative pasta and refined main courses."
-          data-ko="미슐랭 선정 이탈리안 파인다이닝. 창의적인 파스타와 완성도 높은 메인 요리."
-          data-ja="ミシュラン掲載のイタリアンファインダイニング。創造的なパスタと洗練されたメイン料理。"
-          data-zh="米其林推荐意大利精品餐厅。富有创意的意面与精致主菜。"
-        ></div>
+        <div class="resto-desc" data-en="Michelin-listed Italian fine dining. Creative pasta and refined main courses." data-ko="미슐랭 선정 이탈리안 파인다이닝. 창의적인 파스타와 완성도 높은 메인 요리." data-ja="ミシュラン掲載のイタリアンファインダイニング。" data-zh="米其林推荐意大利精品餐厅。"></div>
+        <div class="resto-more" data-en="View details →" data-ko="자세히 보기 →" data-ja="詳細を見る →" data-zh="查看详情 →">자세히 보기 →</div>
       </div>
     </div>
 
-    <div class="resto-card">
-      <img class="resto-img" src="img/hyunudon.webp" alt="Hyun Udon" loading="lazy">
+    <div class="resto-card" onclick="openResto('hyunudon')">
+      <div class="resto-img-wrap"><img class="resto-img" src="img/hyunudon.webp" alt="Hyun Udon" loading="lazy"></div>
       <div class="resto-body">
         <div class="resto-name"><span class="place-tag">Bib Gourmand</span>현우동 Hyun Udon</div>
-        <div class="resto-desc"
-          data-en="Michelin Bib Gourmand udon spot. Chewy noodles and crispy tempura."
-          data-ko="미슐랭 빕 구르망 우동 전문점. 탱탱한 면발과 바삭한 튀김."
-          data-ja="ミシュランビブグルマン掲載のうどん専門店。もちもちの麺とサクサクの天ぷら。"
-          data-zh="米其林必比登推荐乌冬面专门店。筋道面条与酥脆天妇罗。"
-        ></div>
+        <div class="resto-desc" data-en="Michelin Bib Gourmand udon spot. Chewy noodles and crispy tempura." data-ko="미슐랭 빕 구르망 우동 전문점. 탱탱한 면발과 바삭한 튀김." data-ja="ミシュランビブグルマン掲載のうどん専門店。" data-zh="米其林必比登推荐乌冬面专门店。"></div>
+        <div class="resto-more" data-en="View details →" data-ko="자세히 보기 →" data-ja="詳細を見る →" data-zh="查看详情 →">자세히 보기 →</div>
       </div>
     </div>
 
-    <div class="resto-card">
-      <img class="resto-img" src="img/shim.webp" alt="Shim Restaurant" loading="lazy">
+    <div class="resto-card" onclick="openResto('shim')">
+      <div class="resto-img-wrap"><img class="resto-img" src="img/shim.webp" alt="Shim Restaurant" loading="lazy"></div>
       <div class="resto-body">
         <div class="resto-name">쉼 Shim Restaurant</div>
-        <div class="resto-desc"
-          data-en="Modern Western bistro with seasonal dishes and wine pairings. Casual yet refined."
-          data-ko="제철 요리와 와인 페어링 중심의 모던 웨스턴 비스트로. 캐주얼하면서도 세련된 분위기."
-          data-ja="旬の料理とワインペアリングが中心のモダンウエスタンビストロ。カジュアルで上品な雰囲気。"
-          data-zh="以当季食材和葡萄酒搭配为主的现代西式小馆。休闲而精致的氛围。"
-        ></div>
+        <div class="resto-desc" data-en="Modern Western bistro with seasonal dishes and wine pairings." data-ko="제철 요리와 와인 페어링 중심의 모던 웨스턴 비스트로." data-ja="旬の料理とワインペアリングのモダンビストロ。" data-zh="现代西式小馆，季节料理与葡萄酒搭配。"></div>
+        <div class="resto-more" data-en="View details →" data-ko="자세히 보기 →" data-ja="詳細を見る →" data-zh="查看详情 →">자세히 보기 →</div>
       </div>
     </div>
 
-    <div class="resto-card">
-      <img class="resto-img" src="img/hane.webp" alt="Hane" loading="lazy">
+    <div class="resto-card" onclick="openResto('hane')">
+      <div class="resto-img-wrap"><img class="resto-img" src="img/hane.webp" alt="Hane" loading="lazy"></div>
       <div class="resto-body">
         <div class="resto-name"><span class="place-tag">Michelin</span>하네 Hane</div>
-        <div class="resto-desc"
-          data-en="Michelin sushi omakase. Premium ingredients, refined Japanese dining."
-          data-ko="미슐랭 스시 오마카세. 최고급 식재료로 절제된 미식의 정수."
-          data-ja="ミシュラン掲載の寿司おまかせ。最高級食材による洗練された日本料理。"
-          data-zh="米其林推荐寿司怀石料理。顶级食材，精致日式美食。"
-        ></div>
+        <div class="resto-desc" data-en="Michelin sushi omakase. Premium ingredients, refined Japanese dining." data-ko="미슐랭 스시 오마카세. 최고급 식재료로 절제된 미식의 정수." data-ja="ミシュラン掲載の寿司おまかせ。" data-zh="米其林推荐寿司怀石料理。"></div>
+        <div class="resto-more" data-en="View details →" data-ko="자세히 보기 →" data-ja="詳細を見る →" data-zh="查看详情 →">자세히 보기 →</div>
       </div>
     </div>
 
-    <div class="resto-card">
-      <img class="resto-img" src="img/anshik.webp" alt="Anshik Myeongga" loading="lazy">
+    <div class="resto-card" onclick="openResto('anshik')">
+      <div class="resto-img-wrap"><img class="resto-img" src="img/anshik.webp" alt="Anshik Myeongga" loading="lazy"></div>
       <div class="resto-body">
         <div class="resto-name">안식명가 Anshik Myeongga</div>
-        <div class="resto-desc"
-          data-en="Korean home-style restaurant. Hearty stews, braised dishes, and grilled meats at great value."
-          data-ko="정갈한 한식 가정식. 찜·탕·구이 메뉴를 합리적인 가격에."
-          data-ja="家庭的な韓国料理の店。お手頃価格で煮込み・スープ・焼き料理を楽しめる。"
-          data-zh="韩式家常料理餐厅。价格实惠，提供炖菜、汤品与烤肉。"
-        ></div>
+        <div class="resto-desc" data-en="Korean home-style restaurant. Hearty stews, braised dishes, and grilled meats." data-ko="정갈한 한식 가정식. 찜·탕·구이 메뉴를 합리적인 가격에." data-ja="家庭的な韓国料理の店。" data-zh="韩式家常料理餐厅。"></div>
+        <div class="resto-more" data-en="View details →" data-ko="자세히 보기 →" data-ja="詳細を見る →" data-zh="查看详情 →">자세히 보기 →</div>
       </div>
     </div>
   </div>
@@ -1176,6 +1229,70 @@
 </div><!-- /content-area -->
 </div><!-- /page-wrap -->
 
+<!-- Restaurant Modal -->
+<div class="rmodal-overlay" id="restoOverlay" onclick="closeResto()"></div>
+<div class="rmodal" id="restoModal">
+  <button class="rmodal-close" onclick="closeResto()">✕</button>
+  <div class="rmodal-img-wrap">
+    <img class="rmodal-img" id="restoModalImg" src="" alt="">
+    <div class="rmodal-img-overlay">
+      <div class="rmodal-tag-wrap" id="restoModalTag"></div>
+      <div class="rmodal-title" id="restoModalTitle"></div>
+      <div class="rmodal-cuisine" id="restoModalCuisine"></div>
+    </div>
+  </div>
+  <div class="rmodal-body">
+    <p class="rmodal-desc" id="restoModalDesc"></p>
+    <div class="rmodal-grid">
+      <div class="rmodal-item" id="restoModalAddr">
+        <div class="rmodal-item-icon">📍</div>
+        <div class="rmodal-item-body">
+          <div class="rmodal-item-label" data-en="Address" data-ko="위치" data-ja="住所" data-zh="地址">Address</div>
+          <div class="rmodal-item-val" id="restoModalAddrVal"></div>
+          <a class="rmodal-map-btn" id="restoModalMap" href="#" target="_blank" rel="noopener">
+            <span data-en="Open in Maps" data-ko="지도에서 보기" data-ja="地図で見る" data-zh="在地图中查看">지도에서 보기</span> ↗
+          </a>
+        </div>
+      </div>
+      <div class="rmodal-item">
+        <div class="rmodal-item-icon">🕐</div>
+        <div class="rmodal-item-body">
+          <div class="rmodal-item-label" data-en="Hours" data-ko="영업시간" data-ja="営業時間" data-zh="营业时间">영업시간</div>
+          <div class="rmodal-item-val" id="restoModalHours"></div>
+        </div>
+      </div>
+      <div class="rmodal-item">
+        <div class="rmodal-item-icon">💰</div>
+        <div class="rmodal-item-body">
+          <div class="rmodal-item-label" data-en="Price" data-ko="가격대" data-ja="価格帯" data-zh="价格">가격대</div>
+          <div class="rmodal-item-val" id="restoModalPrice"></div>
+        </div>
+      </div>
+      <div class="rmodal-item">
+        <div class="rmodal-item-icon">🚶</div>
+        <div class="rmodal-item-body">
+          <div class="rmodal-item-label" data-en="From JoveStay" data-ko="JoveStay에서" data-ja="JoveStayから" data-zh="距JoveStay">JoveStay에서</div>
+          <div class="rmodal-item-val" id="restoModalWalk"></div>
+        </div>
+      </div>
+      <div class="rmodal-item">
+        <div class="rmodal-item-icon">🍽️</div>
+        <div class="rmodal-item-body">
+          <div class="rmodal-item-label" data-en="Must Try" data-ko="추천 메뉴" data-ja="おすすめ" data-zh="必点">추천 메뉴</div>
+          <div class="rmodal-item-val" id="restoModalMust"></div>
+        </div>
+      </div>
+      <div class="rmodal-item">
+        <div class="rmodal-item-icon">📞</div>
+        <div class="rmodal-item-body">
+          <div class="rmodal-item-label" data-en="Reservation" data-ko="예약" data-ja="予約" data-zh="预约">예약</div>
+          <div class="rmodal-item-val" id="restoModalReserve"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Chat Widget -->
 <button class="chat-fab" id="chatFab" onclick="toggleChat()">
   <span id="fabIcon">💬</span>
@@ -1303,6 +1420,131 @@
     const list = document.getElementById(listId + '-list');
     list.querySelectorAll('.checklist-item').forEach(item => item.classList.add('done'));
     updateProgress(listId);
+  }
+
+  // ─── Restaurant Modal ───
+  const RESTOS = {
+    allaprima: {
+      img: 'img/allaprima.webp',
+      tag: 'Michelin',
+      name: { ko: '알라프리마', en: 'Alla Prima', ja: 'アッラプリマ', zh: '阿拉普里马' },
+      cuisine: { ko: '이탈리안 파인다이닝', en: 'Italian Fine Dining', ja: 'イタリアンファインダイニング', zh: '意大利精品餐厅' },
+      desc: {
+        ko: '미슐랭 가이드 선정 이탈리안 레스토랑. 제철 식재료를 활용한 창의적인 파스타와 완성도 높은 메인 요리가 돋보이며, 편안하면서도 세련된 분위기에서 깊이 있는 이탈리안 다이닝을 즐길 수 있습니다.',
+        en: 'Michelin-listed Italian restaurant. Known for creative pasta using seasonal ingredients and refined main courses. A warm yet sophisticated dining experience that embodies the best of Italian culinary craft.',
+        ja: 'ミシュラン掲載のイタリアンレストラン。旬の食材を活かした創造的なパスタと洗練されたメイン料理が人気。温かみのある洗練された空間でイタリア料理の真髄を味わえます。',
+        zh: '米其林推荐意大利餐厅。以当季食材为灵感的创意意面和精致主菜著称，在温馨雅致的氛围中品味正宗意式美食。'
+      },
+      addr: { ko: '서울 강남구 논현로 (도보 약 10분)', en: 'Nonhyeon-ro, Gangnam-gu, Seoul (~10 min walk)', ja: '江南区論峴路（徒歩約10分）', zh: '首尔江南区论峴路（步行约10分钟）' },
+      mapUrl: 'https://maps.google.com/?q=알라프리마+서울',
+      hours: { ko: '화–일 18:00–22:00 / 월 휴무', en: 'Tue–Sun 18:00–22:00 / Closed Mon', ja: '火〜日 18:00〜22:00 / 月曜定休', zh: '周二至周日 18:00–22:00 / 周一休息' },
+      price: { ko: '₩₩₩₩ (1인 10만원+)', en: '₩₩₩₩ (100,000+ per person)', ja: '₩₩₩₩（1人10万ウォン以上）', zh: '₩₩₩₩（人均10万韩元以上）' },
+      must: { ko: '트러플 파스타, 시즌 코스 메뉴', en: 'Truffle pasta, seasonal tasting menu', ja: 'トリュフパスタ、季節のコースメニュー', zh: '松露意面、季节套餐' },
+      reserve: { ko: '예약 필수 (네이버 예약 또는 전화)', en: 'Reservation required (Naver or phone)', ja: '予約必須（Naverまたは電話）', zh: '须提前预约（Naver或电话）' }
+    },
+    hyunudon: {
+      img: 'img/hyunudon.webp',
+      tag: 'Bib Gourmand',
+      name: { ko: '현우동', en: 'Hyun Udon', ja: '現うどん', zh: '现乌冬' },
+      cuisine: { ko: '일본식 우동', en: 'Japanese Udon', ja: '日本式うどん', zh: '日式乌冬面' },
+      desc: {
+        ko: '미슐랭 빕 구르망에 선정된 우동 전문점. 직접 반죽한 쫄깃한 면발과 진한 육수가 일품이며, 바삭하게 튀긴 튀김을 곁들여 먹는 것이 이 집의 정석입니다. 합리적인 가격에 미슐랭 품질을 경험할 수 있어 현지인들에게도 인기가 높습니다.',
+        en: 'Michelin Bib Gourmand udon restaurant. Hand-made chewy noodles with rich broth and crispy tempura are the signature combo. Popular with locals for its exceptional quality at an affordable price.',
+        ja: 'ミシュランビブグルマン掲載のうどん専門店。手打ちのもちもち麺と濃厚な出汁、サクサクの天ぷらが定番の組み合わせ。リーズナブルな価格でミシュランクオリティを体験できます。',
+        zh: '米其林必比登推荐乌冬面专门店。手工制作的弹牙面条搭配浓郁汤头和酥脆天妇罗是招牌组合，以实惠价格提供米其林品质，深受当地人喜爱。'
+      },
+      addr: { ko: '서울 강남구 논현동 (도보 약 7분)', en: 'Nonhyeon-dong, Gangnam-gu (~7 min walk)', ja: '江南区論峴洞（徒歩約7分）', zh: '首尔江南区论峴洞（步行约7分钟）' },
+      mapUrl: 'https://maps.google.com/?q=현우동+강남',
+      hours: { ko: '매일 11:30–21:00 (브레이크타임 15:00–17:00)', en: 'Daily 11:30–21:00 (Break 15:00–17:00)', ja: '毎日 11:30〜21:00（休憩 15:00〜17:00）', zh: '每日 11:30–21:00（休息时间 15:00–17:00）' },
+      price: { ko: '₩₩ (1인 1.5–2만원)', en: '₩₩ (15,000–20,000 per person)', ja: '₩₩（1人1.5〜2万ウォン）', zh: '₩₩（人均1.5–2万韩元）' },
+      must: { ko: '가케우동, 새우튀김 우동', en: 'Kake udon, shrimp tempura udon', ja: 'かけうどん、海老天うどん', zh: '清汤乌冬、虾天妇罗乌冬' },
+      reserve: { ko: '예약 불가 (현장 대기)', en: 'Walk-in only', ja: '予約不可（当日並び）', zh: '仅接受现场等候' }
+    },
+    shim: {
+      img: 'img/shim.webp',
+      tag: null,
+      name: { ko: '쉼', en: 'Shim Restaurant', ja: 'シム', zh: '休憩餐厅' },
+      cuisine: { ko: '모던 웨스턴 비스트로', en: 'Modern Western Bistro', ja: 'モダンウエスタンビストロ', zh: '现代西式小馆' },
+      desc: {
+        ko: '제철 식재료와 와인 페어링을 중심으로 한 모던 웨스턴 비스트로. 캐주얼한 분위기 속에서도 정제된 요리를 선보이며, 셰프의 감각적인 플레이팅과 계절마다 바뀌는 메뉴가 매력입니다.',
+        en: 'Modern Western bistro centered on seasonal ingredients and wine pairings. Offers refined cuisine in a relaxed setting, with the chef\'s creative plating and a menu that changes with the seasons.',
+        ja: '旬の食材とワインペアリングを中心としたモダンウエスタンビストロ。カジュアルな雰囲気の中で洗練された料理を提供。シェフのセンス溢れるプレーティングと季節ごとに変わるメニューが魅力。',
+        zh: '以当季食材和葡萄酒搭配为核心的现代西式小馆。在轻松的氛围中提供精致料理，主厨富有创意的摆盘和随季节更替的菜单令人期待。'
+      },
+      addr: { ko: '서울 강남구 논현동 (도보 약 8분)', en: 'Nonhyeon-dong, Gangnam-gu (~8 min walk)', ja: '江南区論峴洞（徒歩約8分）', zh: '首尔江南区论峴洞（步行约8分钟）' },
+      mapUrl: 'https://maps.google.com/?q=쉼+레스토랑+강남',
+      hours: { ko: '화–일 18:00–22:00 / 월 휴무', en: 'Tue–Sun 18:00–22:00 / Closed Mon', ja: '火〜日 18:00〜22:00 / 月曜定休', zh: '周二至周日 18:00–22:00 / 周一休息' },
+      price: { ko: '₩₩₩ (1인 5–8만원)', en: '₩₩₩ (50,000–80,000 per person)', ja: '₩₩₩（1人5〜8万ウォン）', zh: '₩₩₩（人均5–8万韩元）' },
+      must: { ko: '시즌 파스타, 메인 코스, 추천 와인', en: 'Seasonal pasta, main course, wine pairing', ja: '季節のパスタ、メインコース、ワインペアリング', zh: '季节意面、主菜、配酒' },
+      reserve: { ko: '예약 권장', en: 'Reservation recommended', ja: '予約推奨', zh: '建议预约' }
+    },
+    hane: {
+      img: 'img/hane.webp',
+      tag: 'Michelin',
+      name: { ko: '하네', en: 'Hane', ja: '羽', zh: 'Hane' },
+      cuisine: { ko: '일식 스시 오마카세', en: 'Japanese Sushi Omakase', ja: '和食・寿司おまかせ', zh: '日式寿司怀石料理' },
+      desc: {
+        ko: '미슐랭 가이드에 선정된 스시 오마카세. 최고급 식재료와 장인의 손길로 완성된 한 점 한 점이 절제된 미식의 정수를 보여줍니다. 카운터에 앉아 셰프와 소통하며 즐기는 특별한 다이닝 경험을 선사합니다.',
+        ko: '미슐랭 가이드에 선정된 스시 오마카세. 최고급 식재료와 장인의 손길로 완성된 한 점 한 점이 절제된 미식의 정수를 보여줍니다. 카운터에 앉아 셰프와 소통하며 즐기는 특별한 다이닝 경험을 선사합니다.',
+        en: 'Michelin-listed sushi omakase. Each piece is crafted with premium ingredients and masterful technique, representing the essence of restrained, refined Japanese dining. Sit at the counter for an intimate chef\'s experience.',
+        ja: 'ミシュラン掲載の寿司おまかせ。最高級食材と職人の技で仕上げた一貫一貫が、洗練された和の美食の真髄を体現。カウンターでシェフとの対話を楽しむ特別な体験を提供。',
+        zh: '米其林推荐寿司怀石料理。每一贯均以顶级食材和匠人技艺精心呈现，彰显克制而精致的日式美食精髓。坐于吧台，与主厨近距离互动，体验独特的用餐乐趣。'
+      },
+      addr: { ko: '서울 강남구 청담동 (도보 약 15분 또는 택시 5분)', en: 'Cheongdam-dong, Gangnam-gu (~15 min walk or 5 min taxi)', ja: '江南区清潭洞（徒歩約15分またはタクシー5分）', zh: '首尔江南区清潭洞（步行约15分钟或打车5分钟）' },
+      mapUrl: 'https://maps.google.com/?q=하네+스시+청담',
+      hours: { ko: '화–일 점심 12:00, 저녁 18:00 / 월 휴무', en: 'Tue–Sun Lunch 12:00, Dinner 18:00 / Closed Mon', ja: '火〜日 昼12:00・夜18:00 / 月曜定休', zh: '周二至周日 午餐12:00，晚餐18:00 / 周一休息' },
+      price: { ko: '₩₩₩₩₩ (1인 20만원+)', en: '₩₩₩₩₩ (200,000+ per person)', ja: '₩₩₩₩₩（1人20万ウォン以上）', zh: '₩₩₩₩₩（人均20万韩元以上）' },
+      must: { ko: '오마카세 코스 (시즌별 구성)', en: 'Omakase course (seasonal)', ja: 'おまかせコース（季節構成）', zh: '怀石套餐（季节菜单）' },
+      reserve: { ko: '예약 필수 (수개월 전 예약 권장)', en: 'Reservation essential (book months ahead)', ja: '予約必須（数ヶ月前の予約推奨）', zh: '必须预约（建议提前数月预订）' }
+    },
+    anshik: {
+      img: 'img/anshik.webp',
+      tag: null,
+      name: { ko: '안식명가', en: 'Anshik Myeongga', ja: '安食名家', zh: '安食名家' },
+      cuisine: { ko: '한식 가정식', en: 'Korean Home-Style', ja: '韓国家庭料理', zh: '韩式家常料理' },
+      desc: {
+        ko: '정갈하고 푸짐한 한식 가정식을 합리적인 가격에 즐길 수 있는 곳. 진심이 담긴 찜·탕·구이 메뉴가 한국 엄마의 손맛을 연상케 합니다. 오랜 단골들이 즐겨 찾는 진짜 동네 맛집입니다.',
+        en: 'Enjoy wholesome Korean home-style cooking at great value. Hearty stews, braised dishes, and grilled meats made with genuine care — the kind of flavors that feel like home. A beloved neighborhood institution.',
+        ja: '手頃な価格で丁寧な韓国家庭料理を楽しめる店。煮込み・スープ・焼き物の料理には心がこもっており、韓国のお母さんの味を思わせます。地元の常連客に愛される本物の町の名店。',
+        zh: '以实惠价格提供精心制作的韩式家常料理。炖菜、汤品和烤肉充满诚意，让人感受到家的味道。深受当地老客喜爱的真正街坊名店。'
+      },
+      addr: { ko: '서울 강남구 논현동 (도보 약 5분)', en: 'Nonhyeon-dong, Gangnam-gu (~5 min walk)', ja: '江南区論峴洞（徒歩約5分）', zh: '首尔江南区论峴洞（步行约5分钟）' },
+      mapUrl: 'https://maps.google.com/?q=안식명가+논현',
+      hours: { ko: '매일 11:00–21:00', en: 'Daily 11:00–21:00', ja: '毎日 11:00〜21:00', zh: '每日 11:00–21:00' },
+      price: { ko: '₩₩ (1인 1–2만원)', en: '₩₩ (10,000–20,000 per person)', ja: '₩₩（1人1〜2万ウォン）', zh: '₩₩（人均1–2万韩元）' },
+      must: { ko: '갈비찜, 된장찌개, 제육볶음', en: 'Braised short ribs, doenjang jjigae, spicy pork', ja: 'カルビチム、テンジャンチゲ、チェユクポックム', zh: '炖排骨、大酱汤、辣炒猪肉' },
+      reserve: { ko: '예약 불가 (현장 방문)', en: 'Walk-in only', ja: '予約不可（当日来店）', zh: '仅接受现场就餐' }
+    }
+  };
+
+  function openResto(id) {
+    const r = RESTOS[id];
+    const l = currentLang;
+    document.getElementById('restoModalImg').src = r.img;
+    document.getElementById('restoModalImg').alt = r.name[l] || r.name.en;
+    document.getElementById('restoModalTag').innerHTML = r.tag ? `<span class="place-tag">${r.tag}</span>` : '';
+    document.getElementById('restoModalTitle').textContent = r.name[l] || r.name.en;
+    document.getElementById('restoModalCuisine').textContent = r.cuisine[l] || r.cuisine.en;
+    document.getElementById('restoModalDesc').textContent = r.desc[l] || r.desc.en;
+    document.getElementById('restoModalAddrVal').textContent = r.addr[l] || r.addr.en;
+    document.getElementById('restoModalMap').href = r.mapUrl;
+    document.getElementById('restoModalHours').textContent = r.hours[l] || r.hours.en;
+    document.getElementById('restoModalPrice').textContent = r.price[l] || r.price.en;
+    document.getElementById('restoModalMust').textContent = r.must[l] || r.must.en;
+    document.getElementById('restoModalReserve').textContent = r.reserve[l] || r.reserve.en;
+    document.getElementById('restoOverlay').classList.add('open');
+    document.getElementById('restoModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    // Update lang-aware labels
+    document.querySelectorAll('#restoModal [data-' + l + ']').forEach(el => {
+      el.textContent = el.getAttribute('data-' + l);
+    });
+  }
+
+  function closeResto() {
+    document.getElementById('restoOverlay').classList.remove('open');
+    document.getElementById('restoModal').classList.remove('open');
+    document.body.style.overflow = '';
   }
 
   // ─── Chat ───
