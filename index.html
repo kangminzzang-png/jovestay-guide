@@ -573,6 +573,7 @@
     <li><a href="#section-property" onclick="closeSidebar()"><span class="nav-icon">📍</span><span data-en="Property Info" data-ko="숙소 정보" data-ja="施設情報" data-zh="房源信息">Property Info</span></a></li>
     <li><a href="#section-checkin" onclick="closeSidebar()"><span class="nav-icon">🕐</span><span data-en="Check-in/out" data-ko="체크인/아웃" data-ja="チェックイン" data-zh="入退房">Check-in/out</span></a></li>
     <li><a href="#section-entry" onclick="closeSidebar()"><span class="nav-icon">🔑</span><span data-en="How to Enter" data-ko="입실 방법" data-ja="入室方法" data-zh="如何进入">How to Enter</span></a></li>
+    <li><a href="#section-checkin-verify" onclick="closeSidebar()"><span class="nav-icon">📸</span><span data-en="Check-in Verify" data-ko="입실 인증" data-ja="チェックイン確認" data-zh="入住确认">Check-in Verify</span></a></li>
     <li><a href="#section-wifi" onclick="closeSidebar()"><span class="nav-icon">📶</span><span>Wi-Fi</span></a></li>
     <li><a href="#section-rules" onclick="closeSidebar()"><span class="nav-icon">📋</span><span data-en="House Rules" data-ko="하우스룰" data-ja="ルール" data-zh="规则">House Rules</span></a></li>
     <li><a href="#section-appliances" onclick="closeSidebar()"><span class="nav-icon">⚡</span><span data-en="Appliances" data-ko="가전 사용법" data-ja="家電" data-zh="家电">Appliances</span></a></li>
@@ -724,6 +725,51 @@
           data-zh="上楼至<strong>401室</strong> → 触摸键盘 → 输入 <span class='code'>6549</span> → 按 <span class='code'>*</span> → 门打开"
         ></div>
       </div>
+    </div>
+  </div>
+
+  <!-- 체크인 인증 -->
+  <div class="section fade-in" id="section-checkin-verify">
+    <div class="section-title">
+      <span>📸</span>
+      <span data-en="Check-in Verification" data-ko="입실 인증" data-ja="チェックイン確認" data-zh="入住确认"></span>
+    </div>
+    <div class="card">
+      <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:16px;"
+        data-en="Please take a selfie or photo inside the room and submit it with your name to notify the host of your arrival."
+        data-ko="객실 내부에서 셀피 또는 사진을 찍어 이름과 함께 제출하시면 호스트에게 입실 알림이 전송됩니다."
+        data-ja="部屋の中でセルフィーまたは写真を撮り、お名前と一緒に送信してください。ホストに到着の通知が届きます。"
+        data-zh="请在房间内拍摄自拍或照片，连同姓名一起提交，即可通知房东您已入住。"
+      ></p>
+      <input id="checkin-guest-name" type="text" placeholder="Your name / 이름 / お名前 / 姓名" style="
+        width:100%; padding:12px 14px; background:#252220;
+        border:1px solid var(--border); border-radius:10px;
+        color:var(--text); font-size:0.9rem; font-family:inherit;
+        outline:none; box-sizing:border-box; margin-bottom:10px;
+        transition:border-color 0.2s;
+      " oninput="checkCheckinReady()" onfocus="this.style.borderColor='rgba(197,162,101,0.5)'" onblur="this.style.borderColor='var(--border)'">
+
+      <label for="checkin-photo" style="
+        display:flex; align-items:center; justify-content:center; gap:8px;
+        width:100%; padding:12px; box-sizing:border-box;
+        background:rgba(197,162,101,0.08); border:1px dashed rgba(197,162,101,0.4);
+        border-radius:10px; cursor:pointer; color:var(--gold);
+        font-size:0.88rem; transition:background 0.2s;
+      " onmouseover="this.style.background='rgba(197,162,101,0.15)'" onmouseout="this.style.background='rgba(197,162,101,0.08)'">
+        📷 <span data-en="Take / Upload Photo" data-ko="사진 촬영 / 업로드" data-ja="写真を撮る / アップロード" data-zh="拍照 / 上传照片"></span>
+      </label>
+      <input id="checkin-photo" type="file" accept="image/*" capture="environment" style="display:none;" onchange="onCheckinPhotoSelected(this)">
+      <div id="checkin-photo-preview" style="display:none;margin-top:10px;">
+        <img id="checkin-preview-img" style="width:100%;max-height:200px;object-fit:cover;border-radius:10px;display:block;">
+      </div>
+
+      <button id="checkin-submit-btn" onclick="submitCheckin()" style="
+        display:none; width:100%; margin-top:12px; padding:14px;
+        background:var(--gold); color:var(--bg); border:none;
+        border-radius:10px; font-size:0.95rem; font-weight:600;
+        cursor:pointer; font-family:inherit; transition:background 0.2s;
+      ">📤 <span data-en="Submit Check-in" data-ko="입실 인증 보내기" data-ja="チェックイン送信" data-zh="提交入住确认"></span></button>
+      <div id="checkin-result" style="display:none;margin-top:10px;padding:12px;border-radius:10px;font-size:0.85rem;text-align:center;"></div>
     </div>
   </div>
 
@@ -1524,6 +1570,73 @@
     list.querySelectorAll('.checklist-item').forEach(item => item.classList.add('done'));
     updateProgress(listId);
     if (listId === 'checkout') checkSubmitButton();
+  }
+
+  // ─── Check-in Verification ───
+  let checkinPhotoFile = null;
+
+  function onCheckinPhotoSelected(input) {
+    if (input.files && input.files[0]) {
+      checkinPhotoFile = input.files[0];
+      const reader = new FileReader();
+      reader.onload = e => {
+        document.getElementById('checkin-preview-img').src = e.target.result;
+        document.getElementById('checkin-photo-preview').style.display = 'block';
+      };
+      reader.readAsDataURL(checkinPhotoFile);
+      checkCheckinReady();
+    }
+  }
+
+  function checkCheckinReady() {
+    const name = document.getElementById('checkin-guest-name').value.trim();
+    const btn = document.getElementById('checkin-submit-btn');
+    btn.style.display = (name.length > 0 && checkinPhotoFile) ? 'block' : 'none';
+  }
+
+  async function submitCheckin() {
+    const btn = document.getElementById('checkin-submit-btn');
+    const result = document.getElementById('checkin-result');
+    const name = document.getElementById('checkin-guest-name').value.trim();
+    const now = new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
+
+    btn.disabled = true;
+    btn.innerHTML = '⏳ 전송 중...';
+
+    try {
+      const caption = `🏠 입실 인증\n👤 ${name}\n🏠 JoveStay Gangnam — Room 401\n🕐 ${now}`;
+      const formData = new FormData();
+      formData.append('chat_id', '-5249702388');
+      formData.append('caption', caption);
+      formData.append('photo', checkinPhotoFile);
+
+      const res = await fetch(`https://api.telegram.org/bot7819037919:AAFIBAUm7XNTy_F0QV8ef7I0guLfFvSD2zA/sendPhoto`, {
+        method: 'POST',
+        body: formData
+      });
+      const data = await res.json();
+      if (data.ok) {
+        result.style.display = 'block';
+        result.style.background = 'rgba(92,184,92,0.15)';
+        result.style.color = 'var(--accent-green)';
+        result.style.border = '1px solid rgba(92,184,92,0.3)';
+        result.innerHTML = '✅ <span data-en="Check-in notification sent!" data-ko="입실 인증이 전송되었습니다!" data-ja="チェックイン通知を送信しました！" data-zh="入住通知已发送！"></span>';
+        applyLang(currentLang);
+        btn.style.display = 'none';
+        document.getElementById('checkin-photo-preview').style.display = 'none';
+      } else {
+        throw new Error('API error');
+      }
+    } catch(e) {
+      result.style.display = 'block';
+      result.style.background = 'rgba(201,74,74,0.1)';
+      result.style.color = 'var(--accent-red)';
+      result.style.border = '1px solid rgba(201,74,74,0.2)';
+      result.textContent = '전송 실패. 호스트에게 직접 연락해 주세요. (+82-10-5346-7704)';
+      btn.disabled = false;
+      btn.innerHTML = '📤 <span data-en="Submit Check-in" data-ko="입실 인증 보내기" data-ja="チェックイン送信" data-zh="提交入住确认"></span>';
+      applyLang(currentLang);
+    }
   }
 
   function checkSubmitButton() {
