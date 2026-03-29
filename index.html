@@ -1077,15 +1077,21 @@
           <span data-en="All Done ✓" data-ko="모두 완료 ✓" data-ja="すべて完了 ✓" data-zh="全部完成 ✓"></span>
         </button>
       </div>
+      <div id="checkout-name-wrap" style="display:none;margin-top:12px;">
+        <input id="checkout-guest-name" type="text" placeholder="Your name / 이름 / お名前 / 姓名" style="
+          width:100%; padding:12px 14px; background:#252220;
+          border:1px solid var(--border); border-radius:10px;
+          color:var(--text); font-size:0.9rem; font-family:inherit;
+          outline:none; box-sizing:border-box; transition:border-color 0.2s;
+        " oninput="checkNameInput()" onfocus="this.style.borderColor='rgba(197,162,101,0.5)'" onblur="this.style.borderColor='var(--border)'">
+      </div>
       <button id="submit-checkout-btn" onclick="submitCheckout()" style="
-        display:none; width:100%; margin-top:12px; padding:14px;
+        display:none; width:100%; margin-top:8px; padding:14px;
         background:var(--gold); color:var(--bg); border:none;
         border-radius:10px; font-size:0.95rem; font-weight:600;
         cursor:pointer; font-family:inherit; transition:background 0.2s;
         letter-spacing:0.5px;
-      ">
-        <span data-en="📤 Submit Checkout" data-ko="📤 퇴실 완료 알림 보내기" data-ja="📤 チェックアウト完了を送信" data-zh="📤 提交退房通知"></span>
-      </button>
+      ">📤 <span data-en="Submit Checkout" data-ko="퇴실 완료 알림 보내기" data-ja="チェックアウト完了を送信" data-zh="提交退房通知"></span></button>
       <div id="submit-checkout-result" style="display:none;margin-top:10px;padding:12px;border-radius:10px;font-size:0.85rem;text-align:center;"></div>
     </div>
   </div>
@@ -1524,23 +1530,34 @@
     const list = document.getElementById('checkout-list');
     const total = checklistTotals['checkout'];
     const done = list.querySelectorAll('.done').length;
+    const wrap = document.getElementById('checkout-name-wrap');
     const btn = document.getElementById('submit-checkout-btn');
+    const result = document.getElementById('submit-checkout-result');
     if (done === total) {
-      btn.style.display = 'block';
+      wrap.style.display = 'block';
+      checkNameInput();
     } else {
+      wrap.style.display = 'none';
       btn.style.display = 'none';
-      document.getElementById('submit-checkout-result').style.display = 'none';
+      result.style.display = 'none';
     }
+  }
+
+  function checkNameInput() {
+    const name = document.getElementById('checkout-guest-name').value.trim();
+    const btn = document.getElementById('submit-checkout-btn');
+    btn.style.display = name.length > 0 ? 'block' : 'none';
   }
 
   async function submitCheckout() {
     const btn = document.getElementById('submit-checkout-btn');
     const result = document.getElementById('submit-checkout-result');
+    const name = document.getElementById('checkout-guest-name').value.trim();
     const now = new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
-    const msg = `✅ 퇴실 체크리스트 완료\n🏠 JoveStay Gangnam — Room 401\n🕐 ${now}`;
+    const msg = `✅ 퇴실 체크리스트 완료\n👤 ${name}\n🏠 JoveStay Gangnam — Room 401\n🕐 ${now}`;
 
     btn.disabled = true;
-    btn.textContent = '전송 중...';
+    btn.innerHTML = '⏳ 전송 중...';
 
     try {
       const res = await fetch(`https://api.telegram.org/bot7819037919:AAFIBAUm7XNTy_F0QV8ef7I0guLfFvSD2zA/sendMessage`, {
@@ -1554,9 +1571,10 @@
         result.style.background = 'rgba(92,184,92,0.15)';
         result.style.color = 'var(--accent-green)';
         result.style.border = '1px solid rgba(92,184,92,0.3)';
-        result.innerHTML = '<span data-en="✅ Notification sent to host!" data-ko="✅ 호스트에게 알림이 전송되었습니다!" data-ja="✅ ホストに通知を送信しました！" data-zh="✅ 已通知房东！"></span>';
+        result.innerHTML = '✅ <span data-en="Notification sent to host!" data-ko="호스트에게 알림이 전송되었습니다!" data-ja="ホストに通知を送信しました！" data-zh="已通知房东！"></span>';
         applyLang(currentLang);
         btn.style.display = 'none';
+        document.getElementById('checkout-name-wrap').style.display = 'none';
       } else {
         throw new Error('API error');
       }
@@ -1565,9 +1583,9 @@
       result.style.background = 'rgba(201,74,74,0.1)';
       result.style.color = 'var(--accent-red)';
       result.style.border = '1px solid rgba(201,74,74,0.2)';
-      result.textContent = '전송 실패. 호스트에게 직접 연락해 주세요.';
+      result.textContent = '전송 실패. 호스트에게 직접 연락해 주세요. (+82-10-5346-7704)';
       btn.disabled = false;
-      btn.innerHTML = '<span data-en="📤 Submit Checkout" data-ko="📤 퇴실 완료 알림 보내기" data-ja="📤 チェックアウト完了を送信" data-zh="📤 提交退房通知"></span>';
+      btn.innerHTML = '📤 <span data-en="Submit Checkout" data-ko="퇴실 완료 알림 보내기" data-ja="チェックアウト完了を送信" data-zh="提交退房通知"></span>';
       applyLang(currentLang);
     }
   }
