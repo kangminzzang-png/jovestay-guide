@@ -1077,6 +1077,16 @@
           <span data-en="All Done ✓" data-ko="모두 완료 ✓" data-ja="すべて完了 ✓" data-zh="全部完成 ✓"></span>
         </button>
       </div>
+      <button id="submit-checkout-btn" onclick="submitCheckout()" style="
+        display:none; width:100%; margin-top:12px; padding:14px;
+        background:var(--gold); color:var(--bg); border:none;
+        border-radius:10px; font-size:0.95rem; font-weight:600;
+        cursor:pointer; font-family:inherit; transition:background 0.2s;
+        letter-spacing:0.5px;
+      ">
+        <span data-en="📤 Submit Checkout" data-ko="📤 퇴실 완료 알림 보내기" data-ja="📤 チェックアウト完了を送信" data-zh="📤 提交退房通知"></span>
+      </button>
+      <div id="submit-checkout-result" style="display:none;margin-top:10px;padding:12px;border-radius:10px;font-size:0.85rem;text-align:center;"></div>
     </div>
   </div>
 
@@ -1485,6 +1495,7 @@
   function toggleCheck(item, listId) {
     item.classList.toggle('done');
     updateProgress(listId);
+    if (listId === 'checkout') checkSubmitButton();
   }
 
   function updateProgress(listId) {
@@ -1506,6 +1517,59 @@
     const list = document.getElementById(listId + '-list');
     list.querySelectorAll('.checklist-item').forEach(item => item.classList.add('done'));
     updateProgress(listId);
+    if (listId === 'checkout') checkSubmitButton();
+  }
+
+  function checkSubmitButton() {
+    const list = document.getElementById('checkout-list');
+    const total = checklistTotals['checkout'];
+    const done = list.querySelectorAll('.done').length;
+    const btn = document.getElementById('submit-checkout-btn');
+    if (done === total) {
+      btn.style.display = 'block';
+    } else {
+      btn.style.display = 'none';
+      document.getElementById('submit-checkout-result').style.display = 'none';
+    }
+  }
+
+  async function submitCheckout() {
+    const btn = document.getElementById('submit-checkout-btn');
+    const result = document.getElementById('submit-checkout-result');
+    const now = new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
+    const msg = `✅ 퇴실 체크리스트 완료\n🏠 JoveStay Gangnam — Room 401\n🕐 ${now}`;
+
+    btn.disabled = true;
+    btn.textContent = '전송 중...';
+
+    try {
+      const res = await fetch(`https://api.telegram.org/bot7819037919:AAFIBAUm7XNTy_F0QV8ef7I0guLfFvSD2zA/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: '-5249702388', text: msg })
+      });
+      const data = await res.json();
+      if (data.ok) {
+        result.style.display = 'block';
+        result.style.background = 'rgba(92,184,92,0.15)';
+        result.style.color = 'var(--accent-green)';
+        result.style.border = '1px solid rgba(92,184,92,0.3)';
+        result.innerHTML = '<span data-en="✅ Notification sent to host!" data-ko="✅ 호스트에게 알림이 전송되었습니다!" data-ja="✅ ホストに通知を送信しました！" data-zh="✅ 已通知房东！"></span>';
+        applyLang(currentLang);
+        btn.style.display = 'none';
+      } else {
+        throw new Error('API error');
+      }
+    } catch(e) {
+      result.style.display = 'block';
+      result.style.background = 'rgba(201,74,74,0.1)';
+      result.style.color = 'var(--accent-red)';
+      result.style.border = '1px solid rgba(201,74,74,0.2)';
+      result.textContent = '전송 실패. 호스트에게 직접 연락해 주세요.';
+      btn.disabled = false;
+      btn.innerHTML = '<span data-en="📤 Submit Checkout" data-ko="📤 퇴실 완료 알림 보내기" data-ja="📤 チェックアウト完了を送信" data-zh="📤 提交退房通知"></span>';
+      applyLang(currentLang);
+    }
   }
 
   // ─── Restaurant Modal ───
