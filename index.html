@@ -557,6 +557,7 @@
       .host-banner { flex-wrap: wrap; }
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
 
@@ -742,6 +743,13 @@
         data-zh="请在房间内拍摄自拍或照片，连同姓名一起提交，即可通知房东您已入住。"
       ></p>
       <input id="checkin-guest-name" type="text" placeholder="Your name / 이름 / お名前 / 姓名" style="
+        width:100%; padding:12px 14px; background:#252220;
+        border:1px solid var(--border); border-radius:10px;
+        color:var(--text); font-size:0.9rem; font-family:inherit;
+        outline:none; box-sizing:border-box; margin-bottom:10px;
+        transition:border-color 0.2s;
+      " oninput="checkCheckinReady()" onfocus="this.style.borderColor='rgba(197,162,101,0.5)'" onblur="this.style.borderColor='var(--border)'">
+      <input id="checkin-guest-email" type="email" placeholder="Email / 이메일" style="
         width:100%; padding:12px 14px; background:#252220;
         border:1px solid var(--border); border-radius:10px;
         color:var(--text); font-size:0.9rem; font-family:inherit;
@@ -1125,6 +1133,13 @@
       </div>
       <div id="checkout-name-wrap" style="display:none;margin-top:12px;">
         <input id="checkout-guest-name" type="text" placeholder="Your name / 이름 / お名前 / 姓名" style="
+          width:100%; padding:12px 14px; background:#252220;
+          border:1px solid var(--border); border-radius:10px;
+          color:var(--text); font-size:0.9rem; font-family:inherit;
+          outline:none; box-sizing:border-box; margin-bottom:10px;
+          transition:border-color 0.2s;
+        " oninput="checkNameInput()" onfocus="this.style.borderColor='rgba(197,162,101,0.5)'" onblur="this.style.borderColor='var(--border)'">
+        <input id="checkout-guest-email" type="email" placeholder="Email / 이메일" style="
           width:100%; padding:12px 14px; background:#252220;
           border:1px solid var(--border); border-radius:10px;
           color:var(--text); font-size:0.9rem; font-family:inherit;
@@ -1588,45 +1603,59 @@
     }
   }
 
+  // EmailJS config — fill in after EmailJS setup
+  const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
+  const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
+  const EMAILJS_CHECKIN_TPL = 'template_checkin';
+  const EMAILJS_CHECKOUT_TPL= 'template_checkout';
+
   function checkCheckinReady() {
-    const name = document.getElementById('checkin-guest-name').value.trim();
-    const btn = document.getElementById('checkin-submit-btn');
-    btn.style.display = (name.length > 0 && checkinPhotoFile) ? 'block' : 'none';
+    const name  = document.getElementById('checkin-guest-name').value.trim();
+    const email = document.getElementById('checkin-guest-email').value.trim();
+    const btn   = document.getElementById('checkin-submit-btn');
+    btn.style.display = (name.length > 0 && email.length > 0 && checkinPhotoFile) ? 'block' : 'none';
   }
 
   async function submitCheckin() {
-    const btn = document.getElementById('checkin-submit-btn');
+    const btn    = document.getElementById('checkin-submit-btn');
     const result = document.getElementById('checkin-result');
-    const name = document.getElementById('checkin-guest-name').value.trim();
-    const now = new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
+    const name   = document.getElementById('checkin-guest-name').value.trim();
+    const email  = document.getElementById('checkin-guest-email').value.trim();
+    const now    = new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
 
     btn.disabled = true;
     btn.innerHTML = '⏳ 전송 중...';
 
     try {
-      const caption = `🏠 입실 인증\n👤 ${name}\n🏠 JoveStay Gangnam — Room 401\n🕐 ${now}`;
+      // 1) Telegram photo + caption
+      const caption = `🏠 입실 인증\n👤 ${name}\n📧 ${email}\n🏠 JoveStay Gangnam — Room 401\n🕐 ${now}`;
       const formData = new FormData();
       formData.append('chat_id', '-5249702388');
       formData.append('caption', caption);
       formData.append('photo', checkinPhotoFile);
+      const res = await fetch(`https://api.telegram.org/bot7819037919:AAFIBAUm7XNTy_F0QV8ef7I0guLfFvSD2zA/sendPhoto`, { method:'POST', body:formData });
+      const tgData = await res.json();
+      if (!tgData.ok) throw new Error('Telegram error');
 
-      const res = await fetch(`https://api.telegram.org/bot7819037919:AAFIBAUm7XNTy_F0QV8ef7I0guLfFvSD2zA/sendPhoto`, {
-        method: 'POST',
-        body: formData
-      });
-      const data = await res.json();
-      if (data.ok) {
-        result.style.display = 'block';
-        result.style.background = 'rgba(92,184,92,0.15)';
-        result.style.color = 'var(--accent-green)';
-        result.style.border = '1px solid rgba(92,184,92,0.3)';
-        result.innerHTML = '✅ <span data-en="Check-in notification sent!" data-ko="입실 인증이 전송되었습니다!" data-ja="チェックイン通知を送信しました！" data-zh="入住通知已发送！"></span>';
-        applyLang(currentLang);
-        btn.style.display = 'none';
-        document.getElementById('checkin-photo-preview').style.display = 'none';
-      } else {
-        throw new Error('API error');
+      // 2) EmailJS — confirmation to guest
+      if (EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+        emailjs.init(EMAILJS_PUBLIC_KEY);
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_CHECKIN_TPL, {
+          guest_name:  name,
+          guest_email: email,
+          room:        'JoveStay Gangnam — Room 401',
+          time:        now,
+        });
       }
+
+      result.style.display = 'block';
+      result.style.background = 'rgba(92,184,92,0.15)';
+      result.style.color = 'var(--accent-green)';
+      result.style.border = '1px solid rgba(92,184,92,0.3)';
+      result.innerHTML = '✅ <span data-en="Check-in confirmed! A confirmation email has been sent." data-ko="입실 인증 완료! 확인 이메일이 발송되었습니다." data-ja="チェックイン完了！確認メールを送信しました。" data-zh="入住确认！确认邮件已发送。"></span>';
+      applyLang(currentLang);
+      btn.style.display = 'none';
+      document.getElementById('checkin-photo-preview').style.display = 'none';
     } catch(e) {
       result.style.display = 'block';
       result.style.background = 'rgba(201,74,74,0.1)';
@@ -1657,40 +1686,52 @@
   }
 
   function checkNameInput() {
-    const name = document.getElementById('checkout-guest-name').value.trim();
-    const btn = document.getElementById('submit-checkout-btn');
-    btn.style.display = name.length > 0 ? 'block' : 'none';
+    const name  = document.getElementById('checkout-guest-name').value.trim();
+    const email = document.getElementById('checkout-guest-email').value.trim();
+    const btn   = document.getElementById('submit-checkout-btn');
+    btn.style.display = (name.length > 0 && email.length > 0) ? 'block' : 'none';
   }
 
   async function submitCheckout() {
-    const btn = document.getElementById('submit-checkout-btn');
+    const btn    = document.getElementById('submit-checkout-btn');
     const result = document.getElementById('submit-checkout-result');
-    const name = document.getElementById('checkout-guest-name').value.trim();
-    const now = new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
-    const msg = `✅ 퇴실 체크리스트 완료\n👤 ${name}\n🏠 JoveStay Gangnam — Room 401\n🕐 ${now}`;
+    const name   = document.getElementById('checkout-guest-name').value.trim();
+    const email  = document.getElementById('checkout-guest-email').value.trim();
+    const now    = new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
+    const msg    = `✅ 퇴실 체크리스트 완료\n👤 ${name}\n📧 ${email}\n🏠 JoveStay Gangnam — Room 401\n🕐 ${now}`;
 
     btn.disabled = true;
     btn.innerHTML = '⏳ 전송 중...';
 
     try {
+      // 1) Telegram
       const res = await fetch(`https://api.telegram.org/bot7819037919:AAFIBAUm7XNTy_F0QV8ef7I0guLfFvSD2zA/sendMessage`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ chat_id: '-5249702388', text: msg })
       });
       const data = await res.json();
-      if (data.ok) {
-        result.style.display = 'block';
-        result.style.background = 'rgba(92,184,92,0.15)';
-        result.style.color = 'var(--accent-green)';
-        result.style.border = '1px solid rgba(92,184,92,0.3)';
-        result.innerHTML = '✅ <span data-en="Notification sent to host!" data-ko="호스트에게 알림이 전송되었습니다!" data-ja="ホストに通知を送信しました！" data-zh="已通知房东！"></span>';
-        applyLang(currentLang);
-        btn.style.display = 'none';
-        document.getElementById('checkout-name-wrap').style.display = 'none';
-      } else {
-        throw new Error('API error');
+      if (!data.ok) throw new Error('Telegram error');
+
+      // 2) EmailJS — confirmation to guest
+      if (EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+        emailjs.init(EMAILJS_PUBLIC_KEY);
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_CHECKOUT_TPL, {
+          guest_name:  name,
+          guest_email: email,
+          room:        'JoveStay Gangnam — Room 401',
+          time:        now,
+        });
       }
+
+      result.style.display = 'block';
+      result.style.background = 'rgba(92,184,92,0.15)';
+      result.style.color = 'var(--accent-green)';
+      result.style.border = '1px solid rgba(92,184,92,0.3)';
+      result.innerHTML = '✅ <span data-en="Checkout complete! A confirmation email has been sent." data-ko="퇴실 완료! 확인 이메일이 발송되었습니다." data-ja="チェックアウト完了！確認メールを送信しました。" data-zh="退房完成！确认邮件已发送。"></span>';
+      applyLang(currentLang);
+      btn.style.display = 'none';
+      document.getElementById('checkout-name-wrap').style.display = 'none';
     } catch(e) {
       result.style.display = 'block';
       result.style.background = 'rgba(201,74,74,0.1)';
