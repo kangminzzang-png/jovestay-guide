@@ -558,6 +558,11 @@
     }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      emailjs.init('raY7o3GdbX7VNW6Go');
+    });
+  </script>
 </head>
 <body>
 
@@ -1638,15 +1643,15 @@
       if (!tgData.ok) throw new Error('Telegram error');
 
       // 2) EmailJS — confirmation to guest
-      if (EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
-        emailjs.init(EMAILJS_PUBLIC_KEY);
-        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_CHECKIN_TPL, {
-          guest_name:  name,
-          guest_email: email,
-          room:        'JoveStay Gangnam — Room 401',
-          time:        now,
-        });
-      }
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_CHECKIN_TPL, {
+        guest_name:  name,
+        email:       email,
+        guest_email: email,
+        room:        'JoveStay Gangnam — Room 401',
+        time:        now,
+        to_name:     name,
+        to_email:    email,
+      });
 
       result.style.display = 'block';
       result.style.background = 'rgba(92,184,92,0.15)';
@@ -1714,15 +1719,15 @@
       if (!data.ok) throw new Error('Telegram error');
 
       // 2) EmailJS — confirmation to guest
-      if (EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
-        emailjs.init(EMAILJS_PUBLIC_KEY);
-        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_CHECKOUT_TPL, {
-          guest_name:  name,
-          guest_email: email,
-          room:        'JoveStay Gangnam — Room 401',
-          time:        now,
-        });
-      }
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_CHECKOUT_TPL, {
+        guest_name:  name,
+        email:       email,
+        guest_email: email,
+        room:        'JoveStay Gangnam — Room 401',
+        time:        now,
+        to_name:     name,
+        to_email:    email,
+      });
 
       result.style.display = 'block';
       result.style.background = 'rgba(92,184,92,0.15)';
