@@ -1,12 +1,13 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JoveStay Gangnam — Guest Guide</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Noto+Sans+KR:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JoveStay Gangnam — Guest Guide</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&amp;family=Noto+Sans+KR:wght@300;400;500;600&amp;family=Noto+Sans+JP:wght@300;400;500&amp;family=Noto+Sans+SC:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<style>
     :root {
       --bg: #0f0f0f;
       --card: #1a1a1a;
@@ -557,940 +558,743 @@
       .host-banner { flex-wrap: wrap; }
     }
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
     document.addEventListener('DOMContentLoaded', function() {
       emailjs.init('raY7o3GdbX7VNW6Go');
     });
   </script>
 </head>
 <body>
-
 <!-- Sidebar Overlay -->
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
-
 <!-- Sidebar Navigation -->
 <nav class="nav-sidebar" id="navSidebar">
-  <div class="sidebar-logo">
-    <img src="img/logo.png" alt="JoveStay Gangnam">
-  </div>
-  <ul class="nav-list">
-    <li class="nav-section-label">BASICS</li>
-    <li><a href="#section-property" onclick="closeSidebar()"><span class="nav-icon">📍</span><span data-en="Property Info" data-ko="숙소 정보" data-ja="施設情報" data-zh="房源信息">Property Info</span></a></li>
-    <li><a href="#section-checkin" onclick="closeSidebar()"><span class="nav-icon">🕐</span><span data-en="Check-in/out" data-ko="체크인/아웃" data-ja="チェックイン" data-zh="入退房">Check-in/out</span></a></li>
-    <li><a href="#section-entry" onclick="closeSidebar()"><span class="nav-icon">🔑</span><span data-en="How to Enter" data-ko="입실 방법" data-ja="入室方法" data-zh="如何进入">How to Enter</span></a></li>
-    <li><a href="#section-checkin-verify" onclick="closeSidebar()"><span class="nav-icon">📸</span><span data-en="Check-in Verify" data-ko="입실 인증" data-ja="チェックイン確認" data-zh="入住确认">Check-in Verify</span></a></li>
-    <li><a href="#section-wifi" onclick="closeSidebar()"><span class="nav-icon">📶</span><span>Wi-Fi</span></a></li>
-    <li><a href="#section-rules" onclick="closeSidebar()"><span class="nav-icon">📋</span><span data-en="House Rules" data-ko="하우스룰" data-ja="ルール" data-zh="规则">House Rules</span></a></li>
-    <li><a href="#section-appliances" onclick="closeSidebar()"><span class="nav-icon">⚡</span><span data-en="Appliances" data-ko="가전 사용법" data-ja="家電" data-zh="家电">Appliances</span></a></li>
-    <li><a href="#section-recycling" onclick="closeSidebar()"><span class="nav-icon">♻️</span><span data-en="Recycling" data-ko="분리수거" data-ja="ゴミ" data-zh="垃圾分类">Recycling</span></a></li>
-    <li class="nav-section-label" style="margin-top:4px;">CHECKLISTS</li>
-    <li class="nav-highlight"><a href="#section-going-out" onclick="closeSidebar()"><span class="nav-icon">🚪</span><span data-en="Going Out" data-ko="외출 체크리스트" data-ja="外出チェック" data-zh="外出检查">Going Out</span></a></li>
-    <li class="nav-highlight"><a href="#section-checkout" onclick="closeSidebar()"><span class="nav-icon">🧳</span><span data-en="Check-out" data-ko="퇴실 체크리스트" data-ja="退室チェック" data-zh="退房检查">Check-out</span></a></li>
-    <li class="nav-section-label" style="margin-top:4px;">EXPLORE</li>
-    <li><a href="#section-restaurants" onclick="closeSidebar()"><span class="nav-icon">🍽️</span><span data-en="Restaurants" data-ko="맛집" data-ja="レストラン" data-zh="餐厅">Restaurants</span></a></li>
-    <li><a href="#section-attractions" onclick="closeSidebar()"><span class="nav-icon">🏛️</span><span data-en="Attractions" data-ko="관광지" data-ja="観光" data-zh="景点">Attractions</span></a></li>
-    <li><a href="#section-walks" onclick="closeSidebar()"><span class="nav-icon">🚶</span><span data-en="Walks" data-ko="산책로" data-ja="散歩" data-zh="散步">Walks</span></a></li>
-    <li class="nav-section-label" style="margin-top:4px;">SAFETY</li>
-    <li><a href="#section-emergency" onclick="closeSidebar()"><span class="nav-icon">🚨</span><span data-en="Emergency" data-ko="비상 연락처" data-ja="緊急" data-zh="紧急">Emergency</span></a></li>
-    <li><a href="#section-safety" onclick="closeSidebar()"><span class="nav-icon">🛡️</span><span data-en="Safety" data-ko="안전 안내" data-ja="安全" data-zh="安全">Safety</span></a></li>
-  </ul>
+<div class="sidebar-logo">
+<img alt="JoveStay Gangnam" src="img/logo.png"/>
+</div>
+<ul class="nav-list">
+<li class="nav-section-label">BASICS</li>
+<li><a href="#section-property" onclick="closeSidebar()"><span class="nav-icon">📍</span><span data-en="Property Info" data-ja="施設情報" data-ko="숙소 정보" data-ru="Информация об объекте" data-zh="房源信息">Property Info</span></a></li>
+<li><a href="#section-checkin" onclick="closeSidebar()"><span class="nav-icon">🕐</span><span data-en="Check-in/out" data-ja="チェックイン" data-ko="체크인/아웃" data-ru="Заезд/Выезд" data-zh="入退房">Check-in/out</span></a></li>
+<li><a href="#section-entry" onclick="closeSidebar()"><span class="nav-icon">🔑</span><span data-en="How to Enter" data-ja="入室方法" data-ko="입실 방법" data-ru="Как войти" data-zh="如何进入">How to Enter</span></a></li>
+<li><a href="#section-checkin-verify" onclick="closeSidebar()"><span class="nav-icon">📸</span><span data-en="Check-in Verify" data-ja="チェックイン確認" data-ko="입실 인증" data-ru="Подтвердить заезд" data-zh="入住确认">Check-in Verify</span></a></li>
+<li><a href="#section-wifi" onclick="closeSidebar()"><span class="nav-icon">📶</span><span>Wi-Fi</span></a></li>
+<li><a href="#section-rules" onclick="closeSidebar()"><span class="nav-icon">📋</span><span data-en="House Rules" data-ja="ルール" data-ko="하우스룰" data-ru="Правила дома" data-zh="规则">House Rules</span></a></li>
+<li><a href="#section-appliances" onclick="closeSidebar()"><span class="nav-icon">⚡</span><span data-en="Appliances" data-ja="家電" data-ko="가전 사용법" data-ru="Бытовая техника" data-zh="家电">Appliances</span></a></li>
+<li><a href="#section-recycling" onclick="closeSidebar()"><span class="nav-icon">♻️</span><span data-en="Recycling" data-ja="ゴミ" data-ko="분리수거" data-ru="Сортировка мусора" data-zh="垃圾分类">Recycling</span></a></li>
+<li class="nav-section-label" style="margin-top:4px;">CHECKLISTS</li>
+<li class="nav-highlight"><a href="#section-going-out" onclick="closeSidebar()"><span class="nav-icon">🚪</span><span data-en="Going Out" data-ja="外出チェック" data-ko="외출 체크리스트" data-ru="Выход из номера" data-zh="外出检查">Going Out</span></a></li>
+<li class="nav-highlight"><a href="#section-checkout" onclick="closeSidebar()"><span class="nav-icon">🧳</span><span data-en="Check-out" data-ja="退室チェック" data-ko="퇴실 체크리스트" data-ru="Выезд" data-zh="退房检查">Check-out</span></a></li>
+<li class="nav-section-label" style="margin-top:4px;">EXPLORE</li>
+<li><a href="#section-restaurants" onclick="closeSidebar()"><span class="nav-icon">🍽️</span><span data-en="Restaurants" data-ja="レストラン" data-ko="맛집" data-ru="Рестораны" data-zh="餐厅">Restaurants</span></a></li>
+<li><a href="#section-attractions" onclick="closeSidebar()"><span class="nav-icon">🏛️</span><span data-en="Attractions" data-ja="観光" data-ko="관광지" data-ru="Достопримечательности" data-zh="景点">Attractions</span></a></li>
+<li><a href="#section-walks" onclick="closeSidebar()"><span class="nav-icon">🚶</span><span data-en="Walks" data-ja="散歩" data-ko="산책로" data-ru="Прогулки" data-zh="散步">Walks</span></a></li>
+<li class="nav-section-label" style="margin-top:4px;">SAFETY</li>
+<li><a href="#section-emergency" onclick="closeSidebar()"><span class="nav-icon">🚨</span><span data-en="Emergency" data-ja="緊急" data-ko="비상 연락처" data-ru="Экстренная помощь" data-zh="紧急">Emergency</span></a></li>
+<li><a href="#section-safety" onclick="closeSidebar()"><span class="nav-icon">🛡️</span><span data-en="Safety" data-ja="安全" data-ko="안전 안내" data-ru="Безопасность" data-zh="安全">Safety</span></a></li>
+</ul>
 </nav>
-
 <!-- Mobile Nav Toggle -->
 <button class="nav-toggle" id="navToggle" onclick="toggleSidebar()">☰</button>
-
 <!-- Language Toggle -->
 <div class="lang-toggle">
-  <button class="lang-btn active" onclick="setLang('en')">🇺🇸 EN</button>
-  <button class="lang-btn" onclick="setLang('ko')">🇰🇷 KR</button>
-  <button class="lang-btn" onclick="setLang('ja')">🇯🇵 JP</button>
-  <button class="lang-btn" onclick="setLang('zh')">🇨🇳 ZH</button>
+<button class="lang-btn active" onclick="setLang('en')">🇺🇸 EN</button>
+<button class="lang-btn" onclick="setLang('ko')">🇰🇷 KR</button>
+<button class="lang-btn" onclick="setLang('ja')">🇯🇵 JP</button>
+<button class="lang-btn" onclick="setLang('zh')">🇨🇳 ZH</button>
+<button class="lang-btn" onclick="setLang('ru')">🇷🇺 RU</button>
 </div>
-
 <!-- Page Wrap -->
 <div class="page-wrap">
 <div class="content-area">
-
 <!-- Hero -->
 <div class="hero">
-  <img class="hero-logo" src="img/logo.png" alt="JoveStay Gangnam">
-  <div class="hero-badge">Guest Guide</div>
-  <h1>JoveStay Gangnam</h1>
-  <p class="hero-welcome"
-    data-en="Welcome to JoveStay!<br>We hope you have a wonderful stay."
-    data-ko="조브스테이에 오신 것을 환영합니다.<br>머무시는 동안 즐거운 시간 보내시길 바랍니다."
-    data-ja="JoveStayへようこそ。<br>素晴らしい滞在になりますように。"
-    data-zh="欢迎入住JoveStay！<br>祝您在此度过愉快的时光。"
-  ></p>
-  <p class="hero-address"
-    data-en="22 Eonju-ro 121-gil, Gangnam-gu, Seoul #401"
-    data-ko="서울 강남구 언주로121길 22, 401호"
-    data-ja="ソウル江南区言住路121ギル22、401号"
-    data-zh="首尔江南区言住路121街22号，401室"
-  ></p>
+<img alt="JoveStay Gangnam" class="hero-logo" src="img/logo.png"/>
+<div class="hero-badge">Guest Guide</div>
+<h1>JoveStay Gangnam</h1>
+<p class="hero-welcome" data-en="Welcome to JoveStay!&lt;br&gt;We hope you have a wonderful stay." data-ja="JoveStayへようこそ。&lt;br&gt;素晴らしい滞在になりますように。" data-ko="조브스테이에 오신 것을 환영합니다.&lt;br&gt;머무시는 동안 즐거운 시간 보내시길 바랍니다." data-ru="Добро пожаловать в JoveStay!&lt;br&gt;Желаем вам чудесного пребывания." data-zh="欢迎入住JoveStay！&lt;br&gt;祝您在此度过愉快的时光。"></p>
+<p class="hero-address" data-en="22 Eonju-ro 121-gil, Gangnam-gu, Seoul #401" data-ja="ソウル江南区言住路121ギル22、401号" data-ko="서울 강남구 언주로121길 22, 401호" data-ru="22 Eonju-ro 121-gil, Gangnam-gu, Сеул #401" data-zh="首尔江南区言住路121街22号，401室"></p>
 </div>
-
 <div class="container">
-
-  <!-- Host Banner -->
-  <div class="host-banner fade-in">
-    <div class="host-avatar">🏠</div>
-    <div class="host-info">
-      <div class="host-name"
-        data-en="Host: Lee Kang Min (이강민)"
-        data-ko="호스트: 이강민 (Lee Kang Min)"
-        data-ja="ホスト：イ・ガンミン (Lee Kang Min)"
-        data-zh="房东：李强民 (Lee Kang Min)"
-      ></div>
-      <div class="host-phone">010-5346-7704</div>
-    </div>
-    <a class="host-call" href="tel:+821053467704">📞 <span
-      data-en="Call Host"
-      data-ko="전화하기"
-      data-ja="電話する"
-      data-zh="联系房东"
-    ></span></a>
-  </div>
-
-  <!-- 숙소 기본 정보 -->
-  <div class="section fade-in" id="section-property">
-    <div class="section-title">
-      <span>📍</span>
-      <span data-en="Property Info" data-ko="숙소 기본 정보" data-ja="施設情報" data-zh="房源信息"></span>
-    </div>
-    <div class="card">
-      <div class="info-row">
-        <span class="info-label" data-en="Address (KR)" data-ko="주소 (한국어)" data-ja="住所（韓国語）" data-zh="地址（韩语）"></span>
-        <span class="info-value" style="font-size:0.85rem;">서울 강남구 언주로121길 22</span>
-      </div>
-      <div class="info-row">
-        <span class="info-label" data-en="Address (EN)" data-ko="주소 (영어)" data-ja="住所（英語）" data-zh="地址（英语）"></span>
-        <span class="info-value" style="font-size:0.82rem;">22, Eonju-ro 121-gil, Gangnam-gu</span>
-      </div>
-      <div class="info-row">
-        <span class="info-label" data-en="Unit" data-ko="호실" data-ja="部屋番号" data-zh="房间号"></span>
-        <span class="info-value" style="color:var(--gold);">401</span>
-      </div>
-      <div class="info-row">
-        <span class="info-label" data-en="Host Contact" data-ko="호스트 연락처" data-ja="ホスト連絡先" data-zh="房东联系方式"></span>
-        <span class="info-value"><a href="tel:+821053467704" style="color:var(--gold);text-decoration:none;">010-5346-7704</a></span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 체크인/체크아웃 -->
-  <div class="section fade-in" id="section-checkin">
-    <div class="section-title">
-      <span>🕐</span>
-      <span data-en="Check-in / Check-out" data-ko="체크인 / 체크아웃" data-ja="チェックイン／チェックアウト" data-zh="入住 / 退房"></span>
-    </div>
-    <div class="card">
-      <div class="info-row">
-        <span class="info-label" data-en="Check-in" data-ko="체크인" data-ja="チェックイン" data-zh="入住时间"></span>
-        <span class="info-value large">16:00 ~</span>
-      </div>
-      <div class="info-row">
-        <span class="info-label" data-en="Check-out" data-ko="체크아웃" data-ja="チェックアウト" data-zh="退房时间"></span>
-        <span class="info-value large">~ 11:00</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 입실 방법 -->
-  <div class="section fade-in" id="section-entry">
-    <div class="section-title">
-      <span>🔑</span>
-      <span data-en="How to Enter" data-ko="입실 방법" data-ja="入室方法" data-zh="如何进入"></span>
-    </div>
-    <div class="card">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-text"
-          data-en="The entrance gate is <strong>inside the building</strong>, not at the front."
-          data-ko="정문은 건물 앞이 아닌 <strong>건물 안쪽</strong>에 있습니다."
-          data-ja="入口ゲートは建物の前ではなく、<strong>建物の内側</strong>にあります。"
-          data-zh="入口大门在<strong>建筑内侧</strong>，不在建筑正面。"
-        ></div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-text"
-          data-en="Press 🔔 at entrance → type <span class='code'>5879</span> → press 🔔 → gate opens"
-          data-ko="정문에서 🔔 버튼 → <span class='code'>5879</span> 입력 → 🔔 버튼 → 정문 열림"
-          data-ja="🔔 を押す → <span class='code'>5879</span> を入力 → 🔔 を押す → ゲート開錠"
-          data-zh="按 🔔 → 输入 <span class='code'>5879</span> → 按 🔔 → 大门打开"
-        ></div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-text"
-          data-en="Walk up to <strong>#401</strong> → tap keypad → type <span class='code'>6549</span> → press <span class='code'>*</span> → door opens"
-          data-ko="계단으로 올라가 <strong>401호</strong> → 터치패드 탭 → <span class='code'>6549</span> 입력 → <span class='code'>*</span> 버튼 → 문 열림"
-          data-ja="階段で<strong>401号室</strong>へ → キーパッドをタップ → <span class='code'>6549</span> を入力 → <span class='code'>*</span> を押す → ドア開錠"
-          data-zh="上楼至<strong>401室</strong> → 触摸键盘 → 输入 <span class='code'>6549</span> → 按 <span class='code'>*</span> → 门打开"
-        ></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 체크인 인증 -->
-  <div class="section fade-in" id="section-checkin-verify">
-    <div class="section-title">
-      <span>📸</span>
-      <span data-en="Check-in Verification" data-ko="입실 인증" data-ja="チェックイン確認" data-zh="入住确认"></span>
-    </div>
-    <div class="card">
-      <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:16px;"
-        data-en="Please take a selfie or photo inside the room and submit it with your name to notify the host of your arrival."
-        data-ko="객실 내부에서 셀피 또는 사진을 찍어 이름과 함께 제출하시면 호스트에게 입실 알림이 전송됩니다."
-        data-ja="部屋の中でセルフィーまたは写真を撮り、お名前と一緒に送信してください。ホストに到着の通知が届きます。"
-        data-zh="请在房间内拍摄自拍或照片，连同姓名一起提交，即可通知房东您已入住。"
-      ></p>
-      <input id="checkin-guest-name" type="text" placeholder="Your name / 이름 / お名前 / 姓名" style="
+<!-- Host Banner -->
+<div class="host-banner fade-in">
+<div class="host-avatar">🏠</div>
+<div class="host-info">
+<div class="host-name" data-en="Host: Lee Kang Min (이강민)" data-ja="ホスト：イ・ガンミン (Lee Kang Min)" data-ko="호스트: 이강민 (Lee Kang Min)" data-ru="Хозяин: Ли Кан Мин (이강민)" data-zh="房东：李强民 (Lee Kang Min)"></div>
+<div class="host-phone">010-5346-7704</div>
+</div>
+<a class="host-call" href="tel:+821053467704">📞 <span data-en="Call Host" data-ja="電話する" data-ko="전화하기" data-ru="Позвонить хозяину" data-zh="联系房东"></span></a>
+</div>
+<!-- 숙소 기본 정보 -->
+<div class="section fade-in" id="section-property">
+<div class="section-title">
+<span>📍</span>
+<span data-en="Property Info" data-ja="施設情報" data-ko="숙소 기본 정보" data-ru="Информация об объекте" data-zh="房源信息"></span>
+</div>
+<div class="card">
+<div class="info-row">
+<span class="info-label" data-en="Address (KR)" data-ja="住所（韓国語）" data-ko="주소 (한국어)" data-ru="Адрес (KR)" data-zh="地址（韩语）"></span>
+<span class="info-value" style="font-size:0.85rem;">서울 강남구 언주로121길 22</span>
+</div>
+<div class="info-row">
+<span class="info-label" data-en="Address (EN)" data-ja="住所（英語）" data-ko="주소 (영어)" data-ru="Адрес (EN)" data-zh="地址（英语）"></span>
+<span class="info-value" style="font-size:0.82rem;">22, Eonju-ro 121-gil, Gangnam-gu</span>
+</div>
+<div class="info-row">
+<span class="info-label" data-en="Unit" data-ja="部屋番号" data-ko="호실" data-ru="Юнит" data-zh="房间号"></span>
+<span class="info-value" style="color:var(--gold);">401</span>
+</div>
+<div class="info-row">
+<span class="info-label" data-en="Host Contact" data-ja="ホスト連絡先" data-ko="호스트 연락처" data-ru="Контакт хозяина" data-zh="房东联系方式"></span>
+<span class="info-value"><a href="tel:+821053467704" style="color:var(--gold);text-decoration:none;">010-5346-7704</a></span>
+</div>
+</div>
+</div>
+<!-- 체크인/체크아웃 -->
+<div class="section fade-in" id="section-checkin">
+<div class="section-title">
+<span>🕐</span>
+<span data-en="Check-in / Check-out" data-ja="チェックイン／チェックアウト" data-ko="체크인 / 체크아웃" data-ru="Заезд / Выезд" data-zh="入住 / 退房"></span>
+</div>
+<div class="card">
+<div class="info-row">
+<span class="info-label" data-en="Check-in" data-ja="チェックイン" data-ko="체크인" data-ru="Заезд" data-zh="入住时间"></span>
+<span class="info-value large">16:00 ~</span>
+</div>
+<div class="info-row">
+<span class="info-label" data-en="Check-out" data-ja="チェックアウト" data-ko="체크아웃" data-ru="Выезд" data-zh="退房时间"></span>
+<span class="info-value large">~ 11:00</span>
+</div>
+</div>
+</div>
+<!-- 입실 방법 -->
+<div class="section fade-in" id="section-entry">
+<div class="section-title">
+<span>🔑</span>
+<span data-en="How to Enter" data-ja="入室方法" data-ko="입실 방법" data-ru="Как войти" data-zh="如何进入"></span>
+</div>
+<div class="card">
+<div class="step">
+<div class="step-num">1</div>
+<div class="step-text" data-en="The entrance gate is &lt;strong&gt;inside the building&lt;/strong&gt;, not at the front." data-ja="入口ゲートは建物の前ではなく、&lt;strong&gt;建物の内側&lt;/strong&gt;にあります。" data-ko="정문은 건물 앞이 아닌 &lt;strong&gt;건물 안쪽&lt;/strong&gt;에 있습니다." data-ru="Входные ворота находятся &lt;strong&gt;внутри здания&lt;/strong&gt;, а не у фасада." data-zh="入口大门在&lt;strong&gt;建筑内侧&lt;/strong&gt;，不在建筑正面。"></div>
+</div>
+<div class="step">
+<div class="step-num">2</div>
+<div class="step-text" data-en="Press 🔔 at entrance → type &lt;span class='code'&gt;5879&lt;/span&gt; → press 🔔 → gate opens" data-ja="🔔 を押す → &lt;span class='code'&gt;5879&lt;/span&gt; を入力 → 🔔 を押す → ゲート開錠" data-ko="정문에서 🔔 버튼 → &lt;span class='code'&gt;5879&lt;/span&gt; 입력 → 🔔 버튼 → 정문 열림" data-ru="Нажмите 🔔 у входа → введите &lt;span class='code'&gt;5879&lt;/span&gt; → нажмите 🔔 → ворота откроются" data-zh="按 🔔 → 输入 &lt;span class='code'&gt;5879&lt;/span&gt; → 按 🔔 → 大门打开"></div>
+</div>
+<div class="step">
+<div class="step-num">3</div>
+<div class="step-text" data-en="Walk up to &lt;strong&gt;#401&lt;/strong&gt; → tap keypad → type &lt;span class='code'&gt;6549&lt;/span&gt; → press &lt;span class='code'&gt;*&lt;/span&gt; → door opens" data-ja="階段で&lt;strong&gt;401号室&lt;/strong&gt;へ → キーパッドをタップ → &lt;span class='code'&gt;6549&lt;/span&gt; を入力 → &lt;span class='code'&gt;*&lt;/span&gt; を押す → ドア開錠" data-ko="계단으로 올라가 &lt;strong&gt;401호&lt;/strong&gt; → 터치패드 탭 → &lt;span class='code'&gt;6549&lt;/span&gt; 입력 → &lt;span class='code'&gt;*&lt;/span&gt; 버튼 → 문 열림" data-ru="Подойдите к &lt;strong&gt;#401&lt;/strong&gt; → нажмите на клавиатуру → введите &lt;span class='code'&gt;6549&lt;/span&gt; → нажмите &lt;span class='code'&gt;*&lt;/span&gt; → дверь откроется" data-zh="上楼至&lt;strong&gt;401室&lt;/strong&gt; → 触摸键盘 → 输入 &lt;span class='code'&gt;6549&lt;/span&gt; → 按 &lt;span class='code'&gt;*&lt;/span&gt; → 门打开"></div>
+</div>
+</div>
+</div>
+<!-- 체크인 인증 -->
+<div class="section fade-in" id="section-checkin-verify">
+<div class="section-title">
+<span>📸</span>
+<span data-en="Check-in Verification" data-ja="チェックイン確認" data-ko="입실 인증" data-ru="Подтверждение заезда" data-zh="入住确认"></span>
+</div>
+<div class="card">
+<p data-en="Please take a selfie or photo inside the room and submit it with your name to notify the host of your arrival." data-ja="部屋の中でセルフィーまたは写真を撮り、お名前と一緒に送信してください。ホストに到着の通知が届きます。" data-ko="객실 내부에서 셀피 또는 사진을 찍어 이름과 함께 제출하시면 호스트에게 입실 알림이 전송됩니다." data-ru="Сделайте селфи или фото внутри номера и отправьте его вместе со своим именем, чтобы уведомить хозяина о вашем прибытии." data-zh="请在房间内拍摄自拍或照片，连同姓名一起提交，即可通知房东您已入住。" style="font-size:0.85rem;color:var(--text-muted);margin-bottom:16px;"></p>
+<input id="checkin-guest-name" onblur="this.style.borderColor='var(--border)'" onfocus="this.style.borderColor='rgba(197,162,101,0.5)'" oninput="checkCheckinReady()" placeholder="Your name / 이름 / お名前 / 姓名" style="
         width:100%; padding:12px 14px; background:#252220;
         border:1px solid var(--border); border-radius:10px;
         color:var(--text); font-size:0.9rem; font-family:inherit;
         outline:none; box-sizing:border-box; margin-bottom:10px;
         transition:border-color 0.2s;
-      " oninput="checkCheckinReady()" onfocus="this.style.borderColor='rgba(197,162,101,0.5)'" onblur="this.style.borderColor='var(--border)'">
-      <input id="checkin-guest-email" type="email" placeholder="Email / 이메일" style="
+      " type="text"/>
+<input id="checkin-guest-email" onblur="this.style.borderColor='var(--border)'" onfocus="this.style.borderColor='rgba(197,162,101,0.5)'" oninput="checkCheckinReady()" placeholder="Email / 이메일" style="
         width:100%; padding:12px 14px; background:#252220;
         border:1px solid var(--border); border-radius:10px;
         color:var(--text); font-size:0.9rem; font-family:inherit;
         outline:none; box-sizing:border-box; margin-bottom:10px;
         transition:border-color 0.2s;
-      " oninput="checkCheckinReady()" onfocus="this.style.borderColor='rgba(197,162,101,0.5)'" onblur="this.style.borderColor='var(--border)'">
-
-      <label for="checkin-photo" style="
+      " type="email"/>
+<label for="checkin-photo" onmouseout="this.style.background='rgba(197,162,101,0.08)'" onmouseover="this.style.background='rgba(197,162,101,0.15)'" style="
         display:flex; align-items:center; justify-content:center; gap:8px;
         width:100%; padding:12px; box-sizing:border-box;
         background:rgba(197,162,101,0.08); border:1px dashed rgba(197,162,101,0.4);
         border-radius:10px; cursor:pointer; color:var(--gold);
         font-size:0.88rem; transition:background 0.2s;
-      " onmouseover="this.style.background='rgba(197,162,101,0.15)'" onmouseout="this.style.background='rgba(197,162,101,0.08)'">
-        📷 <span data-en="Take / Upload Photo" data-ko="사진 촬영 / 업로드" data-ja="写真を撮る / アップロード" data-zh="拍照 / 上传照片"></span>
-      </label>
-      <input id="checkin-photo" type="file" accept="image/*" capture="environment" style="display:none;" onchange="onCheckinPhotoSelected(this)">
-      <div id="checkin-photo-preview" style="display:none;margin-top:10px;">
-        <img id="checkin-preview-img" style="width:100%;max-height:200px;object-fit:cover;border-radius:10px;display:block;">
-      </div>
-
-      <button id="checkin-submit-btn" onclick="submitCheckin()" style="
+      ">
+        📷 <span data-en="Take / Upload Photo" data-ja="写真を撮る / アップロード" data-ko="사진 촬영 / 업로드" data-ru="Сделать / загрузить фото" data-zh="拍照 / 上传照片"></span>
+</label>
+<input accept="image/*" capture="environment" id="checkin-photo" onchange="onCheckinPhotoSelected(this)" style="display:none;" type="file"/>
+<div id="checkin-photo-preview" style="display:none;margin-top:10px;">
+<img id="checkin-preview-img" style="width:100%;max-height:200px;object-fit:cover;border-radius:10px;display:block;"/>
+</div>
+<button id="checkin-submit-btn" onclick="submitCheckin()" style="
         display:none; width:100%; margin-top:12px; padding:14px;
         background:var(--gold); color:var(--bg); border:none;
         border-radius:10px; font-size:0.95rem; font-weight:600;
         cursor:pointer; font-family:inherit; transition:background 0.2s;
-      ">📤 <span data-en="Submit Check-in" data-ko="입실 인증 보내기" data-ja="チェックイン送信" data-zh="提交入住确认"></span></button>
-      <div id="checkin-result" style="display:none;margin-top:10px;padding:12px;border-radius:10px;font-size:0.85rem;text-align:center;"></div>
-    </div>
-  </div>
-
-  <!-- Wi-Fi -->
-  <div class="section fade-in" id="section-wifi">
-    <div class="section-title"><span>📶</span><span>Wi-Fi</span></div>
-    <div class="card">
-      <div class="info-row">
-        <span class="info-label" data-en="Network" data-ko="네트워크" data-ja="ネットワーク" data-zh="网络名称"></span>
-        <span class="info-value">KT_GiGA_36FE</span>
-      </div>
-      <div class="info-row">
-        <span class="info-label" data-en="Password" data-ko="비밀번호" data-ja="パスワード" data-zh="密码"></span>
-        <button class="copy-btn" onclick="copyText('ebb8ec8990', this)">
-          <span>ebb8ec8990</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- 하우스 룰 -->
-  <div class="section fade-in" id="section-rules">
-    <div class="section-title">
-      <span>📋</span>
-      <span data-en="House Rules" data-ko="하우스 룰" data-ja="ハウスルール" data-zh="住宿规则"></span>
-    </div>
-    <div class="rules-grid">
-      <div class="rule-item">
-        <div class="rule-icon">🚭</div>
-        <div class="rule-text" data-en="No Smoking" data-ko="금연" data-ja="禁煙" data-zh="禁止吸烟"></div>
-      </div>
-      <div class="rule-item">
-        <div class="rule-icon">🐾</div>
-        <div class="rule-text" data-en="No Pets" data-ko="반려동물 금지" data-ja="ペット禁止" data-zh="禁止携带宠物"></div>
-      </div>
-      <div class="rule-item">
-        <div class="rule-icon">🔇</div>
-        <div class="rule-text" data-en="Quiet: 10PM–7AM" data-ko="소음 07–22시" data-ja="静粛：22時〜7時" data-zh="安静：22时至7时"></div>
-      </div>
-      <div class="rule-item">
-        <div class="rule-icon">🗑️</div>
-        <div class="rule-text" data-en="Recycle Required" data-ko="분리수거 필수" data-ja="分別ゴミ必須" data-zh="必须垃圾分类"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 가전 사용법 -->
-  <div class="section fade-in" id="section-appliances">
-    <div class="section-title">
-      <span>⚡</span>
-      <span data-en="Appliances" data-ko="가전 사용법" data-ja="家電の使い方" data-zh="家电使用说明"></span>
-    </div>
-    <div class="card">
-      <div class="appliance">
-        <div class="appliance-name">🍳 <span data-en="Induction Cooktop" data-ko="인덕션" data-ja="IHクッキングヒーター" data-zh="电磁炉"></span></div>
-        <div class="appliance-sub"><span class="btn-dot" style="background:#e05555;"></span><span data-en="Power On: Hold red button 3 sec." data-ko="전원: 빨간 버튼 3초 길게." data-ja="電源ON：赤ボタン3秒長押し。" data-zh="开机：长按红色按钮3秒。"></span></div>
-        <div class="appliance-sub"><span class="btn-dot" style="background:#c5a265;"></span><span data-en="Temp: +/− buttons. Arrow shows active burner." data-ko="온도: +/− 버튼. 화살표로 활성 화구 확인." data-ja="温度：+/−ボタン。矢印で使用バーナー確認。" data-zh="温度：±按钮。箭头指示激活炉头。"></span></div>
-        <div class="appliance-sub"><span class="btn-dot" style="background:#5cb85c;"></span><span data-en="Lock: Hold green button 3 sec." data-ko="잠금: 초록 버튼 3초 길게." data-ja="ロック：緑ボタン3秒長押し。" data-zh="锁定：长按绿色按钮3秒。"></span></div>
-        <div style="margin-top:10px;"><img src="images/induction.png" alt="Induction Cooktop" style="width:100%;max-width:420px;border-radius:10px;display:block;"></div>
-      </div>
-      <div class="appliance">
-        <div class="appliance-name">👕 <span data-en="Washing Machine" data-ko="세탁기" data-ja="洗濯機" data-zh="洗衣机"></span></div>
-        <div class="appliance-desc"
-          data-en="Located on the right side of the kitchen balcony."
-          data-ko="주방 베란다 오른쪽에 있습니다."
-          data-ja="キッチンバルコニーの右側にあります。"
-          data-zh="位于厨房阳台右侧。"
-        ></div>
-        <div class="appliance-desc" style="margin-top:6px;"
-          data-en="1. Follow the image to turn on the washing machine, select &quot;Normal&quot;, then press &quot;Start&quot; to begin."
-          data-ko="1. 이미지를 참고하여 세탁기를 켜고, &quot;표준&quot; 코스를 선택한 후 &quot;시작&quot; 버튼을 눌러 작동해 주세요."
-          data-ja="1. 画像に従って洗濯機を起動し、「標準」を選択して「スタート」を押してください。"
-          data-zh="1. 请参照图片开启洗衣机，选择「标准」程序，然后按「开始」键启动。"
-        ></div>
-        <div style="margin-top:10px;margin-bottom:10px;"><img src="images/washer-panel.png" alt="Washing Machine Panel" style="width:100%;max-width:420px;border-radius:10px;display:block;"></div>
-        <div class="appliance-desc" style="margin-top:6px;"
-          data-en="2. For detergent: open the red-marked compartment and place detergent or capsule in the drawer."
-          data-ko="2. 세제는 빨간색으로 표시된 부분을 열어 투입구에 넣어주세요."
-          data-ja="2. 洗剤は赤いマークの部分を開けて、投入口に入れてください。"
-          data-zh="2. 洗涤剂：打开红色标记处，将洗涤剂或胶囊放入投放口。"
-        ></div>
-        <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
-          <img src="images/washer-detergent-closed.png" alt="Detergent Compartment" style="width:calc(50% - 4px);max-width:200px;border-radius:10px;display:block;">
-          <img src="images/washer-detergent-open.png" alt="Detergent Compartment Open" style="width:calc(50% - 4px);max-width:200px;border-radius:10px;display:block;">
-        </div>
-      </div>
-      <div class="appliance">
-        <div class="appliance-name">☀️ <span data-en="Dryer" data-ko="건조기" data-ja="乾燥機" data-zh="烘干机"></span></div>
-        <div class="appliance-desc"
-          data-en="Located on the right side of the kitchen balcony."
-          data-ko="주방 베란다 오른쪽에 있습니다."
-          data-ja="キッチンバルコニーの右側にあります。"
-          data-zh="位于厨房阳台右侧。"
-        ></div>
-        <div class="appliance-desc" style="margin-top:6px;"
-          data-en="1. Pull the handle in the arrow direction to open the door."
-          data-ko="1. 건조기 문은 화살표 방향에서 손잡이를 당기면 열립니다."
-          data-ja="1. 矢印の方向にハンドルを引くとドアが開きます。"
-          data-zh="1. 按箭头方向拉动把手即可打开门。"
-        ></div>
-        <div style="margin-top:10px;margin-bottom:10px;"><img src="images/dryer-door.jpg" alt="Dryer Door" style="width:100%;max-width:420px;border-radius:10px;display:block;"></div>
-        <div class="appliance-desc"
-          data-en="2. Please refer to the photo and set the mode to &quot;Standard/Normal&quot; within the dryer options. Press the &quot;Start&quot; button to begin."
-          data-ko="2. 사진을 참고하여 건조기 옵션에서 &quot;표준&quot; 모드로 설정하세요. &quot;시작&quot; 버튼을 눌러 작동해 주세요."
-          data-ja="2. 写真を参考に、乾燥機のオプションで「標準」モードに設定してください。「スタート」ボタンを押して開始してください。"
-          data-zh="2. 请参照图片，在烘干机选项中选择「标准」模式，然后按「开始」键启动。"
-        ></div>
-        <div style="margin-top:10px;"><img src="images/dryer-panel.png" alt="Dryer Panel" style="width:100%;max-width:420px;border-radius:10px;display:block;"></div>
-      </div>
-      <div class="appliance">
-        <div class="appliance-name">❄️ <span data-en="Air Conditioner" data-ko="에어컨" data-ja="エアコン" data-zh="空调"></span></div>
-        <div class="appliance-desc"
-          data-en="1. The remote control is located behind the red-marked panel — slide it open to access."
-          data-ko="1. 에어컨 리모컨은 빨간색 동그라미로 표시된 부분을 밀어 열면 확인하실 수 있습니다."
-          data-ja="1. リモコンは赤い丸で示されたパネルをスライドして開けると取り出せます。"
-          data-zh="1. 遥控器位于红色圆圈标示的面板内，推开即可取出。"
-        ></div>
-        <div style="margin-top:10px;margin-bottom:10px;display:flex;gap:8px;flex-wrap:wrap;">
-          <img src="images/ac-3.jpg" alt="AC 3" style="width:calc(50% - 4px);max-width:200px;border-radius:10px;display:block;">
-          <img src="images/ac-1.jpg" alt="AC 1" style="width:calc(50% - 4px);max-width:200px;border-radius:10px;display:block;">
-        </div>
-        <div class="appliance-desc"
-          data-en="2. The remote has the functions shown below — press the button for what you need."
-          data-ko="2. 리모컨에는 아래와 같은 기능이 있으며, 원하시는 기능을 눌러 사용해 주세요."
-          data-ja="2. リモコンには以下の機能があります。使いたい機能のボタンを押してください。"
-          data-zh="2. 遥控器具有以下功能，按下所需功能按钮即可使用。"
-        ></div>
-        <div style="margin-top:10px;"><img src="images/ac-2.jpg" alt="AC 2" style="width:100%;max-width:420px;border-radius:10px;display:block;"></div>
-      </div>
-      <div class="appliance">
-        <div class="appliance-name">🪟 <span data-en="Balcony Safety" data-ko="발코니 주의" data-ja="バルコニー注意" data-zh="阳台注意事项"></span></div>
-        <div class="appliance-desc"
-          data-en="Do not lean on railings. Do not climb over the balcony."
-          data-ko="난간에 기대지 마세요. 발코니에서 넘어가지 마세요."
-          data-ja="手すりに寄りかからないでください。バルコニーから乗り越えないでください。"
-          data-zh="请勿倚靠栏杆。请勿攀爬阳台。"
-        ></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 분리수거 -->
-  <div class="section fade-in" id="section-recycling">
-    <div class="section-title">
-      <span>♻️</span>
-      <span data-en="Waste & Recycling" data-ko="쓰레기 분리수거" data-ja="ゴミ・リサイクル" data-zh="垃圾分类"></span>
-    </div>
-    <div class="card">
-      <div class="appliance-desc"
-        data-en="Please use the small trash bins in each room and the main bin on the right side of the kitchen veranda. (Food waste must be disposed of separately.)"
-        data-ko="각 객실의 소형 쓰레기통과 주방 베란다 오른쪽에 있는 메인 쓰레기통을 이용해 주세요. (음식물 쓰레기는 반드시 별도로 분리 배출해 주세요.)"
-        data-ja="各客室の小型ゴミ箱と、キッチンベランダ右側のメインゴミ箱をご利用ください。（生ゴミは必ず別途分別してください。）"
-        data-zh="请使用各房间的小型垃圾桶以及厨房阳台右侧的主垃圾桶。（厨余垃圾必须单独分类处理。）"
-      ></div>
-      <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:nowrap;overflow-x:auto;">
-        <img src="images/recycling-1.jpg" alt="Recycling 1" style="flex:1;min-width:0;border-radius:10px;object-fit:cover;">
-        <img src="images/recycling-2.jpg" alt="Recycling 2" style="flex:1;min-width:0;border-radius:10px;object-fit:cover;">
-        <img src="images/recycling-3.jpg" alt="Recycling 3" style="flex:1;min-width:0;border-radius:10px;object-fit:cover;">
-      </div>
-      <div class="appliance-desc" style="margin-top:14px;"
-        data-en="Before check-out, please dispose of all trash in the designated area marked in red in the photo. (Food waste must be disposed of separately.)"
-        data-ko="체크아웃 전, 사진에 빨간색으로 표시된 지정 구역에 모든 쓰레기를 버려 주세요. (음식물 쓰레기는 반드시 별도로 분리 배출해 주세요.)"
-        data-ja="チェックアウト前に、写真の赤く示された指定エリアにすべてのゴミを捨ててください。（生ゴミは必ず別途分別して捨ててください。）"
-        data-zh="退房前，请将所有垃圾丢放至照片中红色标示的指定区域。（厨余垃圾必须单独分类处理。）"
-      ></div>
-      <div style="margin-top:10px;">
-        <img src="images/recycling-4.jpg" alt="Trash Disposal Area" style="width:100%;max-width:420px;border-radius:10px;display:block;">
-      </div>
-      <div class="appliance-desc" style="margin-top:14px;"
-        data-en="Please place food waste in the yellow bag shown in the photo."
-        data-ko="사진에 표시된 노란색 봉투에 음식물 쓰레기를 넣어 주세요."
-        data-ja="写真に示された黄色い袋に生ゴミを入れてください。"
-        data-zh="请将厨余垃圾放入照片中所示的黄色袋子中。"
-      ></div>
-      <div style="margin-top:10px;">
-        <img src="images/recycling-5.jpg" alt="Food Waste Bag" style="width:100%;max-width:420px;border-radius:10px;display:block;">
-      </div>
-      <div class="appliance-desc" style="margin-top:14px;"
-        data-en="Before check-out, dispose of the food waste bag in the orange-lid food waste bin located next to the utility pole (as shown in the photo)."
-        data-ko="체크아웃 전, 사진과 같이 전봇대 옆에 위치한 주황색 뚜껑의 음식물 쓰레기통에 음식물 쓰레기 봉투를 버려 주세요."
-        data-ja="チェックアウト前に、写真のように電柱の隣にあるオレンジ色の蓋の生ゴミ箱に生ゴミ袋を捨ててください。"
-        data-zh="退房前，请将厨余垃圾袋丢入照片中电线杆旁边橙色盖子的厨余垃圾桶中。"
-      ></div>
-      <div style="margin-top:10px;display:flex;flex-direction:column;gap:8px;">
-        <img src="images/recycling-6.jpg" alt="Food Waste Bin Location" style="width:100%;max-width:420px;border-radius:10px;display:block;">
-        <img src="images/recycling-7.jpg" alt="Food Waste Bin" style="width:100%;max-width:420px;border-radius:10px;display:block;">
-      </div>
-    </div>
-  </div>
-
-  <!-- ★ 외출 체크리스트 -->
-  <div class="section fade-in" id="section-going-out">
-    <div class="section-title">
-      <span>🚪</span>
-      <span data-en="Going Out Checklist" data-ko="외출 체크리스트" data-ja="外出チェックリスト" data-zh="外出检查清单"></span>
-    </div>
-    <div class="checklist-card">
-      <div class="checklist-progress">
-        <div class="progress-bar-wrap"><div class="progress-bar" id="goout-bar" style="width:0%"></div></div>
-        <div class="progress-text" id="goout-progress">0 / 6</div>
-      </div>
-      <ul class="checklist" id="goout-list">
-        <li class="checklist-item" onclick="toggleCheck(this,'goout')">
-          <div class="check-box"></div>
-          <div class="check-label">
-            <div class="check-label-main" data-en="Turn off all lights" data-ko="조명 모두 끄기" data-ja="照明をすべて消す" data-zh="关闭所有灯光"></div>
-          </div>
-        </li>
-        <li class="checklist-item" onclick="toggleCheck(this,'goout')">
-          <div class="check-box"></div>
-          <div class="check-label">
-            <div class="check-label-main" data-en="Turn off AC / heating" data-ko="에어컨 / 난방 끄기" data-ja="エアコン・暖房を切る" data-zh="关闭空调/暖气"></div>
-          </div>
-        </li>
-        <li class="checklist-item" onclick="toggleCheck(this,'goout')">
-          <div class="check-box"></div>
-          <div class="check-label">
-            <div class="check-label-main" data-en="Check door lock (401)" data-ko="도어락 잠금 확인 (401호)" data-ja="ドアロック確認（401号室）" data-zh="确认门锁已锁（401室）"></div>
-          </div>
-        </li>
-        <li class="checklist-item" onclick="toggleCheck(this,'goout')">
-          <div class="check-box"></div>
-          <div class="check-label">
-            <div class="check-label-main" data-en="Check windows are closed" data-ko="창문 잠금 확인" data-ja="窓の施錠を確認" data-zh="确认窗户已关闭"></div>
-          </div>
-        </li>
-        <li class="checklist-item" onclick="toggleCheck(this,'goout')">
-          <div class="check-box"></div>
-          <div class="check-label">
-            <div class="check-label-main" data-en="Turn off induction / gas" data-ko="인덕션 / 가스 잠금 확인" data-ja="IH・ガスの確認" data-zh="关闭电磁炉/气阀"></div>
-          </div>
-        </li>
-        <li class="checklist-item" onclick="toggleCheck(this,'goout')">
-          <div class="check-box"></div>
-          <div class="check-label">
-            <div class="check-label-main" data-en="Take valuables with you" data-ko="귀중품 지참" data-ja="貴重品を持参" data-zh="随身携带贵重物品"></div>
-          </div>
-        </li>
-      </ul>
-      <div class="checklist-actions">
-        <button class="checklist-btn btn-reset" onclick="resetChecklist('goout')">
-          <span data-en="Reset" data-ko="초기화" data-ja="リセット" data-zh="重置"></span>
-        </button>
-        <button class="checklist-btn btn-complete-all" onclick="completeAll('goout')">
-          <span data-en="All Done ✓" data-ko="모두 완료 ✓" data-ja="すべて完了 ✓" data-zh="全部完成 ✓"></span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Do Not 섹션 -->
-    <div class="card" style="margin-top:12px;border-color:rgba(201,74,74,0.3);background:rgba(201,74,74,0.05);">
-      <div style="font-size:0.85rem;font-weight:600;color:var(--accent-red);margin-bottom:12px;display:flex;align-items:center;gap:6px;">
-        ⛔ <span data-en="Please Do Not Leave Like This" data-ko="이런 상태로 두고 나가지 말아주세요" data-ja="このような状態で外出しないでください" data-zh="请勿以这种状态外出"></span>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-        <img src="images/donot-1.jpg" alt="Do Not 1" style="width:100%;border-radius:10px;display:block;">
-        <img src="images/donot-2.jpg" alt="Do Not 2" style="width:100%;border-radius:10px;display:block;">
-        <img src="images/donot-3.jpg" alt="Do Not 3" style="width:100%;border-radius:10px;display:block;">
-        <img src="images/donot-4.jpg" alt="Do Not 4" style="width:100%;border-radius:10px;display:block;">
-        <img src="images/donot-5.jpg" alt="Do Not 5" style="width:100%;border-radius:10px;display:block;">
-        <img src="images/donot-6.jpg" alt="Do Not 6" style="width:100%;border-radius:10px;display:block;">
-        <img src="images/donot-7.jpg" alt="Do Not 7" style="width:100%;border-radius:10px;display:block;">
-        <img src="images/donot-8.jpg" alt="Do Not 8" style="width:100%;border-radius:10px;display:block;">
-      </div>
-    </div>
-  </div>
-
-  <!-- ★ 퇴실 체크리스트 -->
-  <div class="section fade-in" id="section-checkout">
-    <div class="section-title">
-      <span>🧳</span>
-      <span data-en="Check-out Checklist" data-ko="퇴실 체크리스트" data-ja="チェックアウトリスト" data-zh="退房检查清单"></span>
-    </div>
-    <div style="background:rgba(197,162,101,0.06);border:1px solid rgba(197,162,101,0.15);border-radius:10px;padding:12px 16px;margin-bottom:12px;font-size:0.83rem;color:var(--text-muted);">
-      <span data-en="⏰ Check-out by <strong style='color:var(--gold-soft)'>11:00 AM</strong>" data-ko="⏰ 체크아웃 시간: <strong style='color:var(--gold-soft)'>오전 11시</strong>까지" data-ja="⏰ チェックアウト：<strong style='color:var(--gold-soft)'>午前11時</strong>まで" data-zh="⏰ 退房时间：上午<strong style='color:var(--gold-soft)'>11:00</strong>前"></span>
-    </div>
-    <div class="checklist-card">
-      <div class="checklist-progress">
-        <div class="progress-bar-wrap"><div class="progress-bar" id="checkout-bar" style="width:0%"></div></div>
-        <div class="progress-text" id="checkout-progress">0 / 8</div>
-      </div>
-      <ul class="checklist" id="checkout-list">
-        <li class="checklist-item" onclick="toggleCheck(this,'checkout')">
-          <div class="check-box"></div>
-          <div class="check-label">
-            <div class="check-label-main" data-en="Pack all personal belongings" data-ko="개인 짐 모두 챙기기" data-ja="個人の荷物をすべてまとめる" data-zh="收好所有个人物品"></div>
-            <div class="check-label-sub" data-en="Chargers, clothes, toiletries, passport" data-ko="충전기, 의류, 세면도구, 여권 등" data-ja="充電器、衣類、洗面用具、パスポートなど" data-zh="充电器、衣物、洗漱用品、护照等"></div>
-          </div>
-        </li>
-        <li class="checklist-item" onclick="toggleCheck(this,'checkout')">
-          <div class="check-box"></div>
-          <div class="check-label">
-            <div class="check-label-main" data-en="Clear the fridge" data-ko="냉장고 음식 모두 꺼내기" data-ja="冷蔵庫の中を空にする" data-zh="清空冰箱内食物"></div>
-          </div>
-        </li>
-        <li class="checklist-item" onclick="toggleCheck(this,'checkout')">
-          <div class="check-box"></div>
-          <div class="check-label">
-            <div class="check-label-main" data-en="Dispose all food waste" data-ko="음식물 쓰레기 처리" data-ja="食べ物のゴミを捨てる" data-zh="处理食物垃圾"></div>
-            <div class="check-label-sub" data-en="Use bags, dispose in kitchen balcony bin" data-ko="봉지에 담아 주방 베란다 쓰레기통에" data-ja="袋に入れ、キッチンバルコニーのゴミ箱へ" data-zh="装袋后丢入厨房阳台垃圾桶"></div>
-          </div>
-        </li>
-        <li class="checklist-item" onclick="toggleCheck(this,'checkout')">
-          <div class="check-box"></div>
-          <div class="check-label">
-            <div class="check-label-main" data-en="Turn off all appliances (except fridge)" data-ko="모든 가전 끄기 (냉장고 제외)" data-ja="冷蔵庫以外の家電をすべてオフ" data-zh="关闭所有家电（冰箱除外）"></div>
-            <div class="check-label-sub" data-en="TV, heating, AC, induction" data-ko="TV, 난방, 에어컨, 인덕션" data-ja="TV、暖房、エアコン、IH" data-zh="电视、暖气、空调、电磁炉"></div>
-          </div>
-        </li>
-        <li class="checklist-item" onclick="toggleCheck(this,'checkout')">
-          <div class="check-box"></div>
-          <div class="check-label">
-            <div class="check-label-main" data-en="Turn off all lights" data-ko="조명 모두 끄기" data-ja="照明をすべて消す" data-zh="关闭所有灯光"></div>
-          </div>
-        </li>
-        <li class="checklist-item" onclick="toggleCheck(this,'checkout')">
-          <div class="check-box"></div>
-          <div class="check-label">
-            <div class="check-label-main" data-en="Close and lock all windows" data-ko="창문 모두 잠그기" data-ja="すべての窓を閉めて施錠" data-zh="关好并锁上所有窗户"></div>
-          </div>
-        </li>
-        <li class="checklist-item" onclick="toggleCheck(this,'checkout')">
-          <div class="check-box"></div>
-          <div class="check-label">
-            <div class="check-label-main" data-en="Recycle / sort the trash" data-ko="분리수거 완료" data-ja="ゴミの分別を完了" data-zh="完成垃圾分类"></div>
-          </div>
-        </li>
-        <li class="checklist-item" onclick="toggleCheck(this,'checkout')">
-          <div class="check-box"></div>
-          <div class="check-label">
-            <div class="check-label-main" data-en="Lock the front door (401)" data-ko="현관문 잠금 확인 (401호)" data-ja="玄関ドアを施錠（401号室）" data-zh="锁好前门（401室）"></div>
-            <div class="check-label-sub" data-en="Enter code → press * → door locks automatically" data-ko="비번 입력 → * 버튼 → 자동 잠금" data-ja="暗証番号入力 → * → 自動施錠" data-zh="输入密码 → 按* → 自动上锁"></div>
-          </div>
-        </li>
-      </ul>
-      <div class="checklist-actions">
-        <button class="checklist-btn btn-reset" onclick="resetChecklist('checkout')">
-          <span data-en="Reset" data-ko="초기화" data-ja="リセット" data-zh="重置"></span>
-        </button>
-        <button class="checklist-btn btn-complete-all" onclick="completeAll('checkout')">
-          <span data-en="All Done ✓" data-ko="모두 완료 ✓" data-ja="すべて完了 ✓" data-zh="全部完成 ✓"></span>
-        </button>
-      </div>
-      <div id="checkout-name-wrap" style="display:none;margin-top:12px;">
-        <input id="checkout-guest-name" type="text" placeholder="Your name / 이름 / お名前 / 姓名" style="
+      ">📤 <span data-en="Submit Check-in" data-ja="チェックイン送信" data-ko="입실 인증 보내기" data-ru="Подтвердить заезд" data-zh="提交入住确认"></span></button>
+<div id="checkin-result" style="display:none;margin-top:10px;padding:12px;border-radius:10px;font-size:0.85rem;text-align:center;"></div>
+</div>
+</div>
+<!-- Wi-Fi -->
+<div class="section fade-in" id="section-wifi">
+<div class="section-title"><span>📶</span><span>Wi-Fi</span></div>
+<div class="card">
+<div class="info-row">
+<span class="info-label" data-en="Network" data-ja="ネットワーク" data-ko="네트워크" data-ru="Сеть Wi-Fi" data-zh="网络名称"></span>
+<span class="info-value">KT_GiGA_36FE</span>
+</div>
+<div class="info-row">
+<span class="info-label" data-en="Password" data-ja="パスワード" data-ko="비밀번호" data-ru="Пароль" data-zh="密码"></span>
+<button class="copy-btn" onclick="copyText('ebb8ec8990', this)">
+<span>ebb8ec8990</span>
+<svg fill="none" height="14" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="14"><rect height="13" rx="2" width="13" x="9" y="9"></rect><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path></svg>
+</button>
+</div>
+</div>
+</div>
+<!-- 하우스 룰 -->
+<div class="section fade-in" id="section-rules">
+<div class="section-title">
+<span>📋</span>
+<span data-en="House Rules" data-ja="ハウスルール" data-ko="하우스 룰" data-ru="Правила дома" data-zh="住宿规则"></span>
+</div>
+<div class="rules-grid">
+<div class="rule-item">
+<div class="rule-icon">🚭</div>
+<div class="rule-text" data-en="No Smoking" data-ja="禁煙" data-ko="금연" data-ru="Не курить" data-zh="禁止吸烟"></div>
+</div>
+<div class="rule-item">
+<div class="rule-icon">🐾</div>
+<div class="rule-text" data-en="No Pets" data-ja="ペット禁止" data-ko="반려동물 금지" data-ru="Без животных" data-zh="禁止携带宠物"></div>
+</div>
+<div class="rule-item">
+<div class="rule-icon">🔇</div>
+<div class="rule-text" data-en="Quiet: 10PM–7AM" data-ja="静粛：22時〜7時" data-ko="소음 07–22시" data-ru="Тишина: с 22:00 до 7:00" data-zh="安静：22时至7时"></div>
+</div>
+<div class="rule-item">
+<div class="rule-icon">🗑️</div>
+<div class="rule-text" data-en="Recycle Required" data-ja="分別ゴミ必須" data-ko="분리수거 필수" data-ru="Сортировка мусора обязательна" data-zh="必须垃圾分类"></div>
+</div>
+</div>
+</div>
+<!-- 가전 사용법 -->
+<div class="section fade-in" id="section-appliances">
+<div class="section-title">
+<span>⚡</span>
+<span data-en="Appliances" data-ja="家電の使い方" data-ko="가전 사용법" data-ru="Бытовая техника" data-zh="家电使用说明"></span>
+</div>
+<div class="card">
+<div class="appliance">
+<div class="appliance-name">🍳 <span data-en="Induction Cooktop" data-ja="IHクッキングヒーター" data-ko="인덕션" data-ru="Индукционная плита" data-zh="电磁炉"></span></div>
+<div class="appliance-sub"><span class="btn-dot" style="background:#e05555;"></span><span data-en="Power On: Hold red button 3 sec." data-ja="電源ON：赤ボタン3秒長押し。" data-ko="전원: 빨간 버튼 3초 길게." data-ru="Включение: удерживайте красную кнопку 3 сек." data-zh="开机：长按红色按钮3秒。"></span></div>
+<div class="appliance-sub"><span class="btn-dot" style="background:#c5a265;"></span><span data-en="Temp: +/− buttons. Arrow shows active burner." data-ja="温度：+/−ボタン。矢印で使用バーナー確認。" data-ko="온도: +/− 버튼. 화살표로 활성 화구 확인." data-ru="Температура: кнопки +/−. Стрелка показывает активную конфорку." data-zh="温度：±按钮。箭头指示激活炉头。"></span></div>
+<div class="appliance-sub"><span class="btn-dot" style="background:#5cb85c;"></span><span data-en="Lock: Hold green button 3 sec." data-ja="ロック：緑ボタン3秒長押し。" data-ko="잠금: 초록 버튼 3초 길게." data-ru="Блокировка: удерживайте зелёную кнопку 3 сек." data-zh="锁定：长按绿色按钮3秒。"></span></div>
+<div style="margin-top:10px;"><img alt="Induction Cooktop" src="images/induction.png" style="width:100%;max-width:420px;border-radius:10px;display:block;"/></div>
+</div>
+<div class="appliance">
+<div class="appliance-name">👕 <span data-en="Washing Machine" data-ja="洗濯機" data-ko="세탁기" data-ru="Стиральная машина" data-zh="洗衣机"></span></div>
+<div class="appliance-desc" data-en="Located on the right side of the kitchen balcony." data-ja="キッチンバルコニーの右側にあります。" data-ko="주방 베란다 오른쪽에 있습니다." data-ru="Расположен с правой стороны кухонного балкона." data-zh="位于厨房阳台右侧。"></div>
+<div class="appliance-desc" data-en='1. Follow the image to turn on the washing machine, select "Normal", then press "Start" to begin.' data-ja="1. 画像に従って洗濯機を起動し、「標準」を選択して「スタート」を押してください。" data-ko='1. 이미지를 참고하여 세탁기를 켜고, "표준" 코스를 선택한 후 "시작" 버튼을 눌러 작동해 주세요.' data-ru='1. Следуйте инструкции на фото: включите стиральную машину, выберите "Стандарт", затем нажмите "Старт".' data-zh="1. 请参照图片开启洗衣机，选择「标准」程序，然后按「开始」键启动。" style="margin-top:6px;"></div>
+<div style="margin-top:10px;margin-bottom:10px;"><img alt="Washing Machine Panel" src="images/washer-panel.png" style="width:100%;max-width:420px;border-radius:10px;display:block;"/></div>
+<div class="appliance-desc" data-en="2. For detergent: open the red-marked compartment and place detergent or capsule in the drawer." data-ja="2. 洗剤は赤いマークの部分を開けて、投入口に入れてください。" data-ko="2. 세제는 빨간색으로 표시된 부분을 열어 투입구에 넣어주세요." data-ru="2. Для стирального средства: откройте отсек, отмеченный красным, и поместите порошок или капсулу в лоток." data-zh="2. 洗涤剂：打开红色标记处，将洗涤剂或胶囊放入投放口。" style="margin-top:6px;"></div>
+<div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
+<img alt="Detergent Compartment" src="images/washer-detergent-closed.png" style="width:calc(50% - 4px);max-width:200px;border-radius:10px;display:block;"/>
+<img alt="Detergent Compartment Open" src="images/washer-detergent-open.png" style="width:calc(50% - 4px);max-width:200px;border-radius:10px;display:block;"/>
+</div>
+</div>
+<div class="appliance">
+<div class="appliance-name">☀️ <span data-en="Dryer" data-ja="乾燥機" data-ko="건조기" data-ru="Сушилка" data-zh="烘干机"></span></div>
+<div class="appliance-desc" data-en="Located on the right side of the kitchen balcony." data-ja="キッチンバルコニーの右側にあります。" data-ko="주방 베란다 오른쪽에 있습니다." data-ru="Расположен с правой стороны кухонного балкона." data-zh="位于厨房阳台右侧。"></div>
+<div class="appliance-desc" data-en="1. Pull the handle in the arrow direction to open the door." data-ja="1. 矢印の方向にハンドルを引くとドアが開きます。" data-ko="1. 건조기 문은 화살표 방향에서 손잡이를 당기면 열립니다." data-ru="1. Потяните ручку в направлении стрелки, чтобы открыть дверцу." data-zh="1. 按箭头方向拉动把手即可打开门。" style="margin-top:6px;"></div>
+<div style="margin-top:10px;margin-bottom:10px;"><img alt="Dryer Door" src="images/dryer-door.jpg" style="width:100%;max-width:420px;border-radius:10px;display:block;"/></div>
+<div class="appliance-desc" data-en='2. Please refer to the photo and set the mode to "Standard/Normal" within the dryer options. Press the "Start" button to begin.' data-ja="2. 写真を参考に、乾燥機のオプションで「標準」モードに設定してください。「スタート」ボタンを押して開始してください。" data-ko='2. 사진을 참고하여 건조기 옵션에서 "표준" 모드로 설정하세요. "시작" 버튼을 눌러 작동해 주세요.' data-ru='2. Ориентируйтесь по фото: установите режим "Стандарт" в настройках сушилки. Нажмите кнопку "Старт" для запуска.' data-zh="2. 请参照图片，在烘干机选项中选择「标准」模式，然后按「开始」键启动。"></div>
+<div style="margin-top:10px;"><img alt="Dryer Panel" src="images/dryer-panel.png" style="width:100%;max-width:420px;border-radius:10px;display:block;"/></div>
+</div>
+<div class="appliance">
+<div class="appliance-name">❄️ <span data-en="Air Conditioner" data-ja="エアコン" data-ko="에어컨" data-ru="Кондиционер" data-zh="空调"></span></div>
+<div class="appliance-desc" data-en="1. The remote control is located behind the red-marked panel — slide it open to access." data-ja="1. リモコンは赤い丸で示されたパネルをスライドして開けると取り出せます。" data-ko="1. 에어컨 리모컨은 빨간색 동그라미로 표시된 부분을 밀어 열면 확인하실 수 있습니다." data-ru="1. Пульт управления находится за панелью, отмеченной красным — сдвиньте её, чтобы достать пульт." data-zh="1. 遥控器位于红色圆圈标示的面板内，推开即可取出。"></div>
+<div style="margin-top:10px;margin-bottom:10px;display:flex;gap:8px;flex-wrap:wrap;">
+<img alt="AC 3" src="images/ac-3.jpg" style="width:calc(50% - 4px);max-width:200px;border-radius:10px;display:block;"/>
+<img alt="AC 1" src="images/ac-1.jpg" style="width:calc(50% - 4px);max-width:200px;border-radius:10px;display:block;"/>
+</div>
+<div class="appliance-desc" data-en="2. The remote has the functions shown below — press the button for what you need." data-ja="2. リモコンには以下の機能があります。使いたい機能のボタンを押してください。" data-ko="2. 리모컨에는 아래와 같은 기능이 있으며, 원하시는 기능을 눌러 사용해 주세요." data-ru="2. На пульте есть функции, показанные ниже — нажмите нужную кнопку." data-zh="2. 遥控器具有以下功能，按下所需功能按钮即可使用。"></div>
+<div style="margin-top:10px;"><img alt="AC 2" src="images/ac-2.jpg" style="width:100%;max-width:420px;border-radius:10px;display:block;"/></div>
+</div>
+<div class="appliance">
+<div class="appliance-name">🪟 <span data-en="Balcony Safety" data-ja="バルコニー注意" data-ko="발코니 주의" data-ru="Безопасность на балконе" data-zh="阳台注意事项"></span></div>
+<div class="appliance-desc" data-en="Do not lean on railings. Do not climb over the balcony." data-ja="手すりに寄りかからないでください。バルコニーから乗り越えないでください。" data-ko="난간에 기대지 마세요. 발코니에서 넘어가지 마세요." data-ru="Не облокачивайтесь на перила. Не перелезайте через балкон." data-zh="请勿倚靠栏杆。请勿攀爬阳台。"></div>
+</div>
+</div>
+</div>
+<!-- 분리수거 -->
+<div class="section fade-in" id="section-recycling">
+<div class="section-title">
+<span>♻️</span>
+<span data-en="Waste &amp; Recycling" data-ja="ゴミ・リサイクル" data-ko="쓰레기 분리수거" data-ru="Мусор и сортировка" data-zh="垃圾分类"></span>
+</div>
+<div class="card">
+<div class="appliance-desc" data-en="Please use the small trash bins in each room and the main bin on the right side of the kitchen veranda. (Food waste must be disposed of separately.)" data-ja="各客室の小型ゴミ箱と、キッチンベランダ右側のメインゴミ箱をご利用ください。（生ゴミは必ず別途分別してください。）" data-ko="각 객실의 소형 쓰레기통과 주방 베란다 오른쪽에 있는 메인 쓰레기통을 이용해 주세요. (음식물 쓰레기는 반드시 별도로 분리 배출해 주세요.)" data-ru="Пожалуйста, используйте маленькие мусорные вёдра в каждой комнате и главный контейнер с правой стороны кухонной веранды. (Пищевые отходы необходимо выбрасывать отдельно.)" data-zh="请使用各房间的小型垃圾桶以及厨房阳台右侧的主垃圾桶。（厨余垃圾必须单独分类处理。）"></div>
+<div style="margin-top:12px;display:flex;gap:8px;flex-wrap:nowrap;overflow-x:auto;">
+<img alt="Recycling 1" src="images/recycling-1.jpg" style="flex:1;min-width:0;border-radius:10px;object-fit:cover;"/>
+<img alt="Recycling 2" src="images/recycling-2.jpg" style="flex:1;min-width:0;border-radius:10px;object-fit:cover;"/>
+<img alt="Recycling 3" src="images/recycling-3.jpg" style="flex:1;min-width:0;border-radius:10px;object-fit:cover;"/>
+</div>
+<div class="appliance-desc" data-en="Before check-out, please dispose of all trash in the designated area marked in red in the photo. (Food waste must be disposed of separately.)" data-ja="チェックアウト前に、写真の赤く示された指定エリアにすべてのゴミを捨ててください。（生ゴミは必ず別途分別して捨ててください。）" data-ko="체크아웃 전, 사진에 빨간색으로 표시된 지정 구역에 모든 쓰레기를 버려 주세요. (음식물 쓰레기는 반드시 별도로 분리 배출해 주세요.)" data-ru="Перед выездом выбросьте весь мусор в обозначенное место, отмеченное красным на фото. (Пищевые отходы необходимо выбрасывать отдельно.)" data-zh="退房前，请将所有垃圾丢放至照片中红色标示的指定区域。（厨余垃圾必须单独分类处理。）" style="margin-top:14px;"></div>
+<div style="margin-top:10px;">
+<img alt="Trash Disposal Area" src="images/recycling-4.jpg" style="width:100%;max-width:420px;border-radius:10px;display:block;"/>
+</div>
+<div class="appliance-desc" data-en="Please place food waste in the yellow bag shown in the photo." data-ja="写真に示された黄色い袋に生ゴミを入れてください。" data-ko="사진에 표시된 노란색 봉투에 음식물 쓰레기를 넣어 주세요." data-ru="Пожалуйста, поместите пищевые отходы в жёлтый пакет, показанный на фото." data-zh="请将厨余垃圾放入照片中所示的黄色袋子中。" style="margin-top:14px;"></div>
+<div style="margin-top:10px;">
+<img alt="Food Waste Bag" src="images/recycling-5.jpg" style="width:100%;max-width:420px;border-radius:10px;display:block;"/>
+</div>
+<div class="appliance-desc" data-en="Before check-out, dispose of the food waste bag in the orange-lid food waste bin located next to the utility pole (as shown in the photo)." data-ja="チェックアウト前に、写真のように電柱の隣にあるオレンジ色の蓋の生ゴミ箱に生ゴミ袋を捨ててください。" data-ko="체크아웃 전, 사진과 같이 전봇대 옆에 위치한 주황색 뚜껑의 음식물 쓰레기통에 음식물 쓰레기 봉투를 버려 주세요." data-ru="Перед выездом выбросьте пакет с пищевыми отходами в контейнер с оранжевой крышкой у столба (как показано на фото)." data-zh="退房前，请将厨余垃圾袋丢入照片中电线杆旁边橙色盖子的厨余垃圾桶中。" style="margin-top:14px;"></div>
+<div style="margin-top:10px;display:flex;flex-direction:column;gap:8px;">
+<img alt="Food Waste Bin Location" src="images/recycling-6.jpg" style="width:100%;max-width:420px;border-radius:10px;display:block;"/>
+<img alt="Food Waste Bin" src="images/recycling-7.jpg" style="width:100%;max-width:420px;border-radius:10px;display:block;"/>
+</div>
+</div>
+</div>
+<!-- ★ 외출 체크리스트 -->
+<div class="section fade-in" id="section-going-out">
+<div class="section-title">
+<span>🚪</span>
+<span data-en="Going Out Checklist" data-ja="外出チェックリスト" data-ko="외출 체크리스트" data-ru="Чеклист при выходе" data-zh="外出检查清单"></span>
+</div>
+<div class="checklist-card">
+<div class="checklist-progress">
+<div class="progress-bar-wrap"><div class="progress-bar" id="goout-bar" style="width:0%"></div></div>
+<div class="progress-text" id="goout-progress">0 / 6</div>
+</div>
+<ul class="checklist" id="goout-list">
+<li class="checklist-item" onclick="toggleCheck(this,'goout')">
+<div class="check-box"></div>
+<div class="check-label">
+<div class="check-label-main" data-en="Turn off all lights" data-ja="照明をすべて消す" data-ko="조명 모두 끄기" data-ru="Выключить весь свет" data-zh="关闭所有灯光"></div>
+</div>
+</li>
+<li class="checklist-item" onclick="toggleCheck(this,'goout')">
+<div class="check-box"></div>
+<div class="check-label">
+<div class="check-label-main" data-en="Turn off AC / heating" data-ja="エアコン・暖房を切る" data-ko="에어컨 / 난방 끄기" data-ru="Выключить кондиционер / отопление" data-zh="关闭空调/暖气"></div>
+</div>
+</li>
+<li class="checklist-item" onclick="toggleCheck(this,'goout')">
+<div class="check-box"></div>
+<div class="check-label">
+<div class="check-label-main" data-en="Check door lock (401)" data-ja="ドアロック確認（401号室）" data-ko="도어락 잠금 확인 (401호)" data-ru="Проверить замок двери (401)" data-zh="确认门锁已锁（401室）"></div>
+</div>
+</li>
+<li class="checklist-item" onclick="toggleCheck(this,'goout')">
+<div class="check-box"></div>
+<div class="check-label">
+<div class="check-label-main" data-en="Check windows are closed" data-ja="窓の施錠を確認" data-ko="창문 잠금 확인" data-ru="Проверить, закрыты ли окна" data-zh="确认窗户已关闭"></div>
+</div>
+</li>
+<li class="checklist-item" onclick="toggleCheck(this,'goout')">
+<div class="check-box"></div>
+<div class="check-label">
+<div class="check-label-main" data-en="Turn off induction / gas" data-ja="IH・ガスの確認" data-ko="인덕션 / 가스 잠금 확인" data-ru="Выключить индукцию / газ" data-zh="关闭电磁炉/气阀"></div>
+</div>
+</li>
+<li class="checklist-item" onclick="toggleCheck(this,'goout')">
+<div class="check-box"></div>
+<div class="check-label">
+<div class="check-label-main" data-en="Take valuables with you" data-ja="貴重品を持参" data-ko="귀중품 지참" data-ru="Взять ценности с собой" data-zh="随身携带贵重物品"></div>
+</div>
+</li>
+</ul>
+<div class="checklist-actions">
+<button class="checklist-btn btn-reset" onclick="resetChecklist('goout')">
+<span data-en="Reset" data-ja="リセット" data-ko="초기화" data-ru="Сбросить" data-zh="重置"></span>
+</button>
+<button class="checklist-btn btn-complete-all" onclick="completeAll('goout')">
+<span data-en="All Done ✓" data-ja="すべて完了 ✓" data-ko="모두 완료 ✓" data-ru="Всё готово ✓" data-zh="全部完成 ✓"></span>
+</button>
+</div>
+</div>
+<!-- Do Not 섹션 -->
+<div class="card" style="margin-top:12px;border-color:rgba(201,74,74,0.3);background:rgba(201,74,74,0.05);">
+<div style="font-size:0.85rem;font-weight:600;color:var(--accent-red);margin-bottom:12px;display:flex;align-items:center;gap:6px;">
+        ⛔ <span data-en="Please Do Not Leave Like This" data-ja="このような状態で外出しないでください" data-ko="이런 상태로 두고 나가지 말아주세요" data-ru="Пожалуйста, не оставляйте так" data-zh="请勿以这种状态外出"></span>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+<img alt="Do Not 1" src="images/donot-1.jpg" style="width:100%;border-radius:10px;display:block;"/>
+<img alt="Do Not 2" src="images/donot-2.jpg" style="width:100%;border-radius:10px;display:block;"/>
+<img alt="Do Not 3" src="images/donot-3.jpg" style="width:100%;border-radius:10px;display:block;"/>
+<img alt="Do Not 4" src="images/donot-4.jpg" style="width:100%;border-radius:10px;display:block;"/>
+<img alt="Do Not 5" src="images/donot-5.jpg" style="width:100%;border-radius:10px;display:block;"/>
+<img alt="Do Not 6" src="images/donot-6.jpg" style="width:100%;border-radius:10px;display:block;"/>
+<img alt="Do Not 7" src="images/donot-7.jpg" style="width:100%;border-radius:10px;display:block;"/>
+<img alt="Do Not 8" src="images/donot-8.jpg" style="width:100%;border-radius:10px;display:block;"/>
+</div>
+</div>
+</div>
+<!-- ★ 퇴실 체크리스트 -->
+<div class="section fade-in" id="section-checkout">
+<div class="section-title">
+<span>🧳</span>
+<span data-en="Check-out Checklist" data-ja="チェックアウトリスト" data-ko="퇴실 체크리스트" data-ru="Чеклист выезда" data-zh="退房检查清单"></span>
+</div>
+<div style="background:rgba(197,162,101,0.06);border:1px solid rgba(197,162,101,0.15);border-radius:10px;padding:12px 16px;margin-bottom:12px;font-size:0.83rem;color:var(--text-muted);">
+<span data-en="⏰ Check-out by &lt;strong style='color:var(--gold-soft)'&gt;11:00 AM&lt;/strong&gt;" data-ja="⏰ チェックアウト：&lt;strong style='color:var(--gold-soft)'&gt;午前11時&lt;/strong&gt;まで" data-ko="⏰ 체크아웃 시간: &lt;strong style='color:var(--gold-soft)'&gt;오전 11시&lt;/strong&gt;까지" data-ru="⏰ Выезд до &lt;strong style='color:var(--gold-soft)'&gt;11:00&lt;/strong&gt;" data-zh="⏰ 退房时间：上午&lt;strong style='color:var(--gold-soft)'&gt;11:00&lt;/strong&gt;前"></span>
+</div>
+<div class="checklist-card">
+<div class="checklist-progress">
+<div class="progress-bar-wrap"><div class="progress-bar" id="checkout-bar" style="width:0%"></div></div>
+<div class="progress-text" id="checkout-progress">0 / 8</div>
+</div>
+<ul class="checklist" id="checkout-list">
+<li class="checklist-item" onclick="toggleCheck(this,'checkout')">
+<div class="check-box"></div>
+<div class="check-label">
+<div class="check-label-main" data-en="Pack all personal belongings" data-ja="個人の荷物をすべてまとめる" data-ko="개인 짐 모두 챙기기" data-ru="Собрать все личные вещи" data-zh="收好所有个人物品"></div>
+<div class="check-label-sub" data-en="Chargers, clothes, toiletries, passport" data-ja="充電器、衣類、洗面用具、パスポートなど" data-ko="충전기, 의류, 세면도구, 여권 등" data-ru="Зарядные устройства, одежда, туалетные принадлежности, паспорт" data-zh="充电器、衣物、洗漱用品、护照等"></div>
+</div>
+</li>
+<li class="checklist-item" onclick="toggleCheck(this,'checkout')">
+<div class="check-box"></div>
+<div class="check-label">
+<div class="check-label-main" data-en="Clear the fridge" data-ja="冷蔵庫の中を空にする" data-ko="냉장고 음식 모두 꺼내기" data-ru="Очистить холодильник" data-zh="清空冰箱内食物"></div>
+</div>
+</li>
+<li class="checklist-item" onclick="toggleCheck(this,'checkout')">
+<div class="check-box"></div>
+<div class="check-label">
+<div class="check-label-main" data-en="Dispose all food waste" data-ja="食べ物のゴミを捨てる" data-ko="음식물 쓰레기 처리" data-ru="Выбросить все пищевые отходы" data-zh="处理食物垃圾"></div>
+<div class="check-label-sub" data-en="Use bags, dispose in kitchen balcony bin" data-ja="袋に入れ、キッチンバルコニーのゴミ箱へ" data-ko="봉지에 담아 주방 베란다 쓰레기통에" data-ru="Используйте пакеты, выбрасывайте в контейнер на кухонном балконе" data-zh="装袋后丢入厨房阳台垃圾桶"></div>
+</div>
+</li>
+<li class="checklist-item" onclick="toggleCheck(this,'checkout')">
+<div class="check-box"></div>
+<div class="check-label">
+<div class="check-label-main" data-en="Turn off all appliances (except fridge)" data-ja="冷蔵庫以外の家電をすべてオフ" data-ko="모든 가전 끄기 (냉장고 제외)" data-ru="Выключить всю технику (кроме холодильника)" data-zh="关闭所有家电（冰箱除外）"></div>
+<div class="check-label-sub" data-en="TV, heating, AC, induction" data-ja="TV、暖房、エアコン、IH" data-ko="TV, 난방, 에어컨, 인덕션" data-ru="Телевизор, отопление, кондиционер, индукция" data-zh="电视、暖气、空调、电磁炉"></div>
+</div>
+</li>
+<li class="checklist-item" onclick="toggleCheck(this,'checkout')">
+<div class="check-box"></div>
+<div class="check-label">
+<div class="check-label-main" data-en="Turn off all lights" data-ja="照明をすべて消す" data-ko="조명 모두 끄기" data-ru="Выключить весь свет" data-zh="关闭所有灯光"></div>
+</div>
+</li>
+<li class="checklist-item" onclick="toggleCheck(this,'checkout')">
+<div class="check-box"></div>
+<div class="check-label">
+<div class="check-label-main" data-en="Close and lock all windows" data-ja="すべての窓を閉めて施錠" data-ko="창문 모두 잠그기" data-ru="Закрыть и заблокировать все окна" data-zh="关好并锁上所有窗户"></div>
+</div>
+</li>
+<li class="checklist-item" onclick="toggleCheck(this,'checkout')">
+<div class="check-box"></div>
+<div class="check-label">
+<div class="check-label-main" data-en="Recycle / sort the trash" data-ja="ゴミの分別を完了" data-ko="분리수거 완료" data-ru="Сортировать мусор" data-zh="完成垃圾分类"></div>
+</div>
+</li>
+<li class="checklist-item" onclick="toggleCheck(this,'checkout')">
+<div class="check-box"></div>
+<div class="check-label">
+<div class="check-label-main" data-en="Lock the front door (401)" data-ja="玄関ドアを施錠（401号室）" data-ko="현관문 잠금 확인 (401호)" data-ru="Закрыть входную дверь (401)" data-zh="锁好前门（401室）"></div>
+<div class="check-label-sub" data-en="Enter code → press * → door locks automatically" data-ja="暗証番号入力 → * → 自動施錠" data-ko="비번 입력 → * 버튼 → 자동 잠금" data-ru="Введите код → нажмите * → дверь заблокируется автоматически" data-zh="输入密码 → 按* → 自动上锁"></div>
+</div>
+</li>
+</ul>
+<div class="checklist-actions">
+<button class="checklist-btn btn-reset" onclick="resetChecklist('checkout')">
+<span data-en="Reset" data-ja="リセット" data-ko="초기화" data-ru="Сбросить" data-zh="重置"></span>
+</button>
+<button class="checklist-btn btn-complete-all" onclick="completeAll('checkout')">
+<span data-en="All Done ✓" data-ja="すべて完了 ✓" data-ko="모두 완료 ✓" data-ru="Всё готово ✓" data-zh="全部完成 ✓"></span>
+</button>
+</div>
+<div id="checkout-name-wrap" style="display:none;margin-top:12px;">
+<input id="checkout-guest-name" onblur="this.style.borderColor='var(--border)'" onfocus="this.style.borderColor='rgba(197,162,101,0.5)'" oninput="checkNameInput()" placeholder="Your name / 이름 / お名前 / 姓名" style="
           width:100%; padding:12px 14px; background:#252220;
           border:1px solid var(--border); border-radius:10px;
           color:var(--text); font-size:0.9rem; font-family:inherit;
           outline:none; box-sizing:border-box; margin-bottom:10px;
           transition:border-color 0.2s;
-        " oninput="checkNameInput()" onfocus="this.style.borderColor='rgba(197,162,101,0.5)'" onblur="this.style.borderColor='var(--border)'">
-        <input id="checkout-guest-email" type="email" placeholder="Email / 이메일" style="
+        " type="text"/>
+<input id="checkout-guest-email" onblur="this.style.borderColor='var(--border)'" onfocus="this.style.borderColor='rgba(197,162,101,0.5)'" oninput="checkNameInput()" placeholder="Email / 이메일" style="
           width:100%; padding:12px 14px; background:#252220;
           border:1px solid var(--border); border-radius:10px;
           color:var(--text); font-size:0.9rem; font-family:inherit;
           outline:none; box-sizing:border-box; transition:border-color 0.2s;
-        " oninput="checkNameInput()" onfocus="this.style.borderColor='rgba(197,162,101,0.5)'" onblur="this.style.borderColor='var(--border)'">
-      </div>
-      <button id="submit-checkout-btn" onclick="submitCheckout()" style="
+        " type="email"/>
+</div>
+<button id="submit-checkout-btn" onclick="submitCheckout()" style="
         display:none; width:100%; margin-top:8px; padding:14px;
         background:var(--gold); color:var(--bg); border:none;
         border-radius:10px; font-size:0.95rem; font-weight:600;
         cursor:pointer; font-family:inherit; transition:background 0.2s;
         letter-spacing:0.5px;
-      ">📤 <span data-en="Submit Checkout" data-ko="퇴실 완료 알림 보내기" data-ja="チェックアウト完了を送信" data-zh="提交退房通知"></span></button>
-      <div id="submit-checkout-result" style="display:none;margin-top:10px;padding:12px;border-radius:10px;font-size:0.85rem;text-align:center;"></div>
-    </div>
-  </div>
-
-  <!-- 맛집 -->
-  <div class="section fade-in" id="section-restaurants">
-    <div class="section-title">
-      <span>🍽️</span>
-      <span data-en="Nearby Restaurants" data-ko="주변 맛집" data-ja="近くのレストラン" data-zh="附近餐厅"></span>
-    </div>
-
-    <!-- Area Intro -->
-    <div class="dining-intro">
-      <div class="dining-intro-header">
-        <div class="dining-intro-eyebrow" data-en="The Neighborhood" data-ko="이 동네에 대해" data-ja="このエリアについて" data-zh="关于这一街区">The Neighborhood</div>
-        <div class="dining-intro-title" data-en="Gangnam's Finest Table" data-ko="강남 미식의 중심" data-ja="江南グルメの中心" data-zh="江南美食精华">강남 미식의 중심</div>
-      </div>
-      <p class="dining-intro-text"
-        data-en="JoveStay sits at the heart of one of Seoul's most celebrated dining neighborhoods. The streets of Nonhyeon-dong and Eonju-ro are lined with everything from Michelin-starred omakase and Italian fine dining to beloved Korean home cooking — all within a short walk."
-        data-ko="조브스테이는 서울 최고의 미식 동네 한복판에 위치해 있습니다. 논현동과 언주로 일대에는 미슐랭 오마카세, 이탈리안 파인다이닝, 정겨운 한식 가정식까지 — 도보 거리 안에 다양한 맛이 모여 있습니다."
-        data-ja="JoveStayは、ソウル有数のグルメエリアの中心に位置しています。論峴洞と言住路沿いには、ミシュラン掲載のオマカセ、イタリアンファインダイニング、韓国家庭料理まで、徒歩圏内に揃っています。"
-        data-zh="JoveStay坐落于首尔最负盛名的美食街区中心。论峴洞与言住路一带，从米其林推荐的怀石料理、意大利精品餐厅到朴实的韩式家常菜，步行即可一一品味。"
-      ></p>
-      <div class="dining-stats">
-        <div class="dining-stat">
-          <div class="dining-stat-num">3+</div>
-          <div class="dining-stat-label" data-en="Michelin spots" data-ko="미슐랭 맛집" data-ja="ミシュラン店" data-zh="米其林餐厅">미슐랭 맛집</div>
-        </div>
-        <div class="dining-stat">
-          <div class="dining-stat-num">5 min</div>
-          <div class="dining-stat-label" data-en="Walk radius" data-ko="도보 거리" data-ja="徒歩圏内" data-zh="步行范围">도보 거리</div>
-        </div>
-        <div class="dining-stat">
-          <div class="dining-stat-num">KR · IT · JP</div>
-          <div class="dining-stat-label" data-en="Cuisines" data-ko="다양한 요리" data-ja="各国料理" data-zh="多元美食">다양한 요리</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="resto-card resto-featured" onclick="openResto('bornyon')">
-      <div class="resto-img-wrap"><img class="resto-img" src="img/bornyon.webp" alt="본연 Bornyon" loading="lazy"></div>
-      <div class="resto-body">
-        <div class="resto-name"><span class="place-tag" style="background:rgba(197,162,101,0.2);color:var(--gold-soft);">★ Featured</span>본연 Bornyon</div>
-        <div class="resto-desc" data-en="Korean fine dining with wood-fire, fermentation & seasonality. Seasonal tasting courses using Korea's finest local ingredients." data-ko="우드파이어, 발효, 계절감을 담은 한식 파인다이닝. 전국 최상급 식재료로 완성하는 시즌 코스." data-ja="ウッドファイヤー、発酵、季節感を取り入れた韓国ファインダイニング。全国最高級食材を使ったシーズナルコース。" data-zh="以木火、发酵与时令为核心的韩国精品料理，以全国顶级食材呈现季节性套餐。"></div>
-        <div class="resto-more" data-en="View details →" data-ko="자세히 보기 →" data-ja="詳細を見る →" data-zh="查看详情 →">자세히 보기 →</div>
-      </div>
-    </div>
-
-    <div class="resto-card" onclick="openResto('allaprima')">
-      <div class="resto-img-wrap"><img class="resto-img" src="img/allaprima.webp" alt="Alla Prima" loading="lazy"></div>
-      <div class="resto-body">
-        <div class="resto-name"><span class="place-tag">Michelin</span>알라프리마 Alla Prima</div>
-        <div class="resto-desc" data-en="Michelin-listed Italian fine dining. Creative pasta and refined main courses." data-ko="미슐랭 선정 이탈리안 파인다이닝. 창의적인 파스타와 완성도 높은 메인 요리." data-ja="ミシュラン掲載のイタリアンファインダイニング。" data-zh="米其林推荐意大利精品餐厅。"></div>
-        <div class="resto-more" data-en="View details →" data-ko="자세히 보기 →" data-ja="詳細を見る →" data-zh="查看详情 →">자세히 보기 →</div>
-      </div>
-    </div>
-
-    <div class="resto-card" onclick="openResto('hyunudon')">
-      <div class="resto-img-wrap"><img class="resto-img" src="img/hyunudon.webp" alt="Hyun Udon" loading="lazy"></div>
-      <div class="resto-body">
-        <div class="resto-name"><span class="place-tag">Bib Gourmand</span>현우동 Hyun Udon</div>
-        <div class="resto-desc" data-en="Michelin Bib Gourmand udon spot. Chewy noodles and crispy tempura." data-ko="미슐랭 빕 구르망 우동 전문점. 탱탱한 면발과 바삭한 튀김." data-ja="ミシュランビブグルマン掲載のうどん専門店。" data-zh="米其林必比登推荐乌冬面专门店。"></div>
-        <div class="resto-more" data-en="View details →" data-ko="자세히 보기 →" data-ja="詳細を見る →" data-zh="查看详情 →">자세히 보기 →</div>
-      </div>
-    </div>
-
-    <div class="resto-card" onclick="openResto('shim')">
-      <div class="resto-img-wrap"><img class="resto-img" src="img/shim.webp" alt="Shim Restaurant" loading="lazy"></div>
-      <div class="resto-body">
-        <div class="resto-name">쉼 Shim Restaurant</div>
-        <div class="resto-desc" data-en="Modern Western bistro with seasonal dishes and wine pairings." data-ko="제철 요리와 와인 페어링 중심의 모던 웨스턴 비스트로." data-ja="旬の料理とワインペアリングのモダンビストロ。" data-zh="现代西式小馆，季节料理与葡萄酒搭配。"></div>
-        <div class="resto-more" data-en="View details →" data-ko="자세히 보기 →" data-ja="詳細を見る →" data-zh="查看详情 →">자세히 보기 →</div>
-      </div>
-    </div>
-
-    <div class="resto-card" onclick="openResto('hane')">
-      <div class="resto-img-wrap"><img class="resto-img" src="img/hane.webp" alt="Hane" loading="lazy"></div>
-      <div class="resto-body">
-        <div class="resto-name"><span class="place-tag">Michelin</span>하네 Hane</div>
-        <div class="resto-desc" data-en="Michelin sushi omakase. Premium ingredients, refined Japanese dining." data-ko="미슐랭 스시 오마카세. 최고급 식재료로 절제된 미식의 정수." data-ja="ミシュラン掲載の寿司おまかせ。" data-zh="米其林推荐寿司怀石料理。"></div>
-        <div class="resto-more" data-en="View details →" data-ko="자세히 보기 →" data-ja="詳細を見る →" data-zh="查看详情 →">자세히 보기 →</div>
-      </div>
-    </div>
-
-    <div class="resto-card" onclick="openResto('anshik')">
-      <div class="resto-img-wrap"><img class="resto-img" src="img/anshik.webp" alt="Anshik Myeongga" loading="lazy"></div>
-      <div class="resto-body">
-        <div class="resto-name">안식명가 Anshik Myeongga</div>
-        <div class="resto-desc" data-en="Korean home-style restaurant. Hearty stews, braised dishes, and grilled meats." data-ko="정갈한 한식 가정식. 찜·탕·구이 메뉴를 합리적인 가격에." data-ja="家庭的な韓国料理の店。" data-zh="韩式家常料理餐厅。"></div>
-        <div class="resto-more" data-en="View details →" data-ko="자세히 보기 →" data-ja="詳細を見る →" data-zh="查看详情 →">자세히 보기 →</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 관광지 -->
-  <div class="section fade-in" id="section-attractions">
-    <div class="section-title">
-      <span>🏛️</span>
-      <span data-en="Nearby Attractions" data-ko="주변 관광지" data-ja="近くの観光スポット" data-zh="附近景点"></span>
-    </div>
-    <div class="card">
-      <div class="place-item">
-        <div class="place-name" data-en="My Art Museum" data-ko="마이아트뮤지엄" data-ja="マイアートミュージアム" data-zh="My Art Museum"></div>
-        <div class="place-desc"
-          data-en="Private museum with rotating exhibitions. Comfortable space, good for 1–2 hours."
-          data-ko="사설 미술관, 기획전 자주 교체. 깔끔한 실내, 1–2시간 관람 추천."
-          data-ja="企画展が頻繁に変わる私立美術館。清潔な館内で1〜2時間の鑑賞に最適。"
-          data-zh="私立美术馆，特展轮换频繁。环境舒适，适合游览1-2小时。"
-        ></div>
-      </div>
-      <div class="place-item">
-        <div class="place-name" data-en="2GIL29 Gallery" data-ko="이길이구 갤러리" data-ja="イギルイク ギャラリー" data-zh="2GIL29艺廊"></div>
-        <div class="place-desc"
-          data-en="Contemporary art gallery — compact, stylish, with thoughtful exhibitions."
-          data-ko="현대미술 갤러리. 규모는 크지 않지만 세련되고 알찬 전시."
-          data-ja="現代美術ギャラリー。小規模ながらスタイリッシュで内容の濃い展示。"
-          data-zh="当代艺术画廊。规模不大但风格精致，展览内容丰富。"
-        ></div>
-      </div>
-      <div class="place-item">
-        <div class="place-name" data-en="Horim Museum Sinsa" data-ko="호림박물관 신사분관" data-ja="ホリム博物館新沙分館" data-zh="湖林博物馆新沙分馆"></div>
-        <div class="place-desc"
-          data-en="Traditional Korean crafts and artifacts. Quiet, less crowded than large museums."
-          data-ko="한국 전통 공예·유물 중심. 대형 박물관보다 한적하고 조용한 분위기."
-          data-ja="韓国の伝統工芸・遺物中心の博物館。大型博物館より静かで落ち着いた雰囲気。"
-          data-zh="以韩国传统工艺品和文物为主。比大型博物馆更安静、不拥挤。"
-        ></div>
-      </div>
-      <div class="place-item">
-        <div class="place-name" data-en="Kimreeaa Gallery" data-ko="김리아갤러리" data-ja="キムリアギャラリー" data-zh="Kimreeaa Gallery"></div>
-        <div class="place-desc"
-          data-en="Contemporary art gallery near Cheongdam luxury street. Great stop on a shopping stroll."
-          data-ko="청담 명품거리 근처 현대미술 갤러리. 산책 중 가볍게 들르기 좋음."
-          data-ja="清潭のブランド街近くの現代美術ギャラリー。ショッピングついでに立ち寄れる。"
-          data-zh="位于清潭名品街附近的当代艺术画廊。逛街时顺道一游的好选择。"
-        ></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 산책로 -->
-  <div class="section fade-in" id="section-walks">
-    <div class="section-title">
-      <span>🚶</span>
-      <span data-en="Recommended Walks" data-ko="추천 산책로" data-ja="おすすめ散歩コース" data-zh="推荐散步路线"></span>
-    </div>
-    <div class="card">
-      <div class="place-item">
-        <div class="place-name" data-en="Hakdong Neighborhood Park" data-ko="학동근린공원" data-ja="鶴洞近隣公園" data-zh="鹤洞邻里公园"></div>
-        <div class="place-desc"
-          data-en="Quiet park near Nonhyeon. Perfect for a short walk or relaxing break."
-          data-ko="논현동 인근 조용한 공원. 가볍게 산책하거나 쉬기에 좋습니다."
-          data-ja="論峴洞近くの静かな公園。軽い散歩やひと休みに最適。"
-          data-zh="位于论峴洞附近的安静公园。适合短暂散步或休息放松。"
-        ></div>
-      </div>
-      <div class="place-item">
-        <div class="place-name" data-en="Dosan Park" data-ko="도산공원" data-ja="島山公園" data-zh="岛山公园"></div>
-        <div class="place-desc"
-          data-en="Urban park within walking distance. Well-maintained paths and nearby cafés."
-          data-ko="도보 이동 가능한 도심 공원. 잘 조성된 산책로와 주변 카페 거리."
-          data-ja="徒歩圏内の都市公園。整備された遊歩道と周辺カフェストリート。"
-          data-zh="步行可达的城市公园。步道整洁，周边咖啡街一同游逛。"
-        ></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 비상 연락처 -->
-  <div class="section fade-in" id="section-emergency">
-    <div class="section-title">
-      <span>🚨</span>
-      <span data-en="Emergency Contacts" data-ko="비상 연락처" data-ja="緊急連絡先" data-zh="紧急联系方式"></span>
-    </div>
-    <div class="card emergency-card">
-      <div class="emergency-row">
-        <span class="info-label" data-en="Police" data-ko="경찰" data-ja="警察" data-zh="警察"></span>
-        <span class="emergency-num"><a href="tel:112">112</a></span>
-      </div>
-      <div class="emergency-row">
-        <span class="info-label" data-en="Fire & Rescue" data-ko="소방 / 구급" data-ja="消防・救急" data-zh="消防 / 急救"></span>
-        <span class="emergency-num"><a href="tel:119">119</a></span>
-      </div>
-      <div class="emergency-row">
-        <span class="info-label" data-en="Host (Lee Kang Min)" data-ko="호스트 (이강민)" data-ja="ホスト（イ・ガンミン）" data-zh="房东（李强民）"></span>
-        <span class="emergency-num"><a href="tel:+821053467704">010-5346-7704</a></span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 안전 -->
-  <div class="section fade-in" id="section-safety">
-    <div class="section-title">
-      <span>🛡️</span>
-      <span data-en="Safety" data-ko="안전 안내" data-ja="安全情報" data-zh="安全须知"></span>
-    </div>
-    <div class="card">
-      <div class="step">
-        <div class="step-num">•</div>
-        <div class="step-text"
-          data-en="Fire extinguishers in each unit and every stairwell."
-          data-ko="각 호실 및 층별 계단에 소화기 비치."
-          data-ja="各部屋および各フロア階段に消火器を設置。"
-          data-zh="每个房间及每层楼梯处均配有灭火器。"
-        ></div>
-      </div>
-      <div class="step">
-        <div class="step-num">•</div>
-        <div class="step-text"
-          data-en="Smoke detectors in every room and living area."
-          data-ko="화재 경보기가 각 방과 거실에 설치되어 있습니다."
-          data-ja="全部屋とリビングに火災感知器を設置。"
-          data-zh="每个房间及客厅均安装烟雾探测器。"
-        ></div>
-      </div>
-      <div class="step">
-        <div class="step-num">🏃</div>
-        <div class="step-text"
-          data-en="<strong>Evacuate:</strong> Use the stairs and exit through the main entrance."
-          data-ko="<strong>대피:</strong> 계단으로 내려와서 정문으로 나가주세요."
-          data-ja="<strong>避難：</strong>階段を使って正面玄関から外へ。"
-          data-zh="<strong>疏散：</strong>走楼梯从正门撤离。"
-        ></div>
-      </div>
-    </div>
-  </div>
-
+      ">📤 <span data-en="Submit Checkout" data-ja="チェックアウト完了を送信" data-ko="퇴실 완료 알림 보내기" data-ru="Подтвердить выезд" data-zh="提交退房通知"></span></button>
+<div id="submit-checkout-result" style="display:none;margin-top:10px;padding:12px;border-radius:10px;font-size:0.85rem;text-align:center;"></div>
+</div>
+</div>
+<!-- 맛집 -->
+<div class="section fade-in" id="section-restaurants">
+<div class="section-title">
+<span>🍽️</span>
+<span data-en="Nearby Restaurants" data-ja="近くのレストラン" data-ko="주변 맛집" data-ru="Рестораны рядом" data-zh="附近餐厅"></span>
+</div>
+<!-- Area Intro -->
+<div class="dining-intro">
+<div class="dining-intro-header">
+<div class="dining-intro-eyebrow" data-en="The Neighborhood" data-ja="このエリアについて" data-ko="이 동네에 대해" data-ru="Район" data-zh="关于这一街区">The Neighborhood</div>
+<div class="dining-intro-title" data-en="Gangnam's Finest Table" data-ja="江南グルメの中心" data-ko="강남 미식의 중심" data-ru="Лучшие рестораны Каннама" data-zh="江南美食精华">강남 미식의 중심</div>
+</div>
+<p class="dining-intro-text" data-en="JoveStay sits at the heart of one of Seoul's most celebrated dining neighborhoods. The streets of Nonhyeon-dong and Eonju-ro are lined with everything from Michelin-starred omakase and Italian fine dining to beloved Korean home cooking — all within a short walk." data-ja="JoveStayは、ソウル有数のグルメエリアの中心に位置しています。論峴洞と言住路沿いには、ミシュラン掲載のオマカセ、イタリアンファインダイニング、韓国家庭料理まで、徒歩圏内に揃っています。" data-ko="조브스테이는 서울 최고의 미식 동네 한복판에 위치해 있습니다. 논현동과 언주로 일대에는 미슐랭 오마카세, 이탈리안 파인다이닝, 정겨운 한식 가정식까지 — 도보 거리 안에 다양한 맛이 모여 있습니다." data-ru="JoveStay расположен в центре одного из самых известных гастрономических кварталов Сеула. Улицы Нонхёндон и Ыджуро предлагают всё — от ресторанов со звёздами Мишлен и итальянской высокой кухни до любимых заведений с домашней корейской едой — всё в шаговой доступности." data-zh="JoveStay坐落于首尔最负盛名的美食街区中心。论峴洞与言住路一带，从米其林推荐的怀石料理、意大利精品餐厅到朴实的韩式家常菜，步行即可一一品味。"></p>
+<div class="dining-stats">
+<div class="dining-stat">
+<div class="dining-stat-num">3+</div>
+<div class="dining-stat-label" data-en="Michelin spots" data-ja="ミシュラン店" data-ko="미슐랭 맛집" data-ru="Рестораны Мишлен" data-zh="米其林餐厅">미슐랭 맛집</div>
+</div>
+<div class="dining-stat">
+<div class="dining-stat-num">5 min</div>
+<div class="dining-stat-label" data-en="Walk radius" data-ja="徒歩圏内" data-ko="도보 거리" data-ru="Радиус прогулки" data-zh="步行范围">도보 거리</div>
+</div>
+<div class="dining-stat">
+<div class="dining-stat-num">KR · IT · JP</div>
+<div class="dining-stat-label" data-en="Cuisines" data-ja="各国料理" data-ko="다양한 요리" data-ru="Кухня" data-zh="多元美食">다양한 요리</div>
+</div>
+</div>
+</div>
+<div class="resto-card resto-featured" onclick="openResto('bornyon')">
+<div class="resto-img-wrap"><img alt="본연 Bornyon" class="resto-img" loading="lazy" src="img/bornyon.webp"/></div>
+<div class="resto-body">
+<div class="resto-name"><span class="place-tag" style="background:rgba(197,162,101,0.2);color:var(--gold-soft);">★ Featured</span>본연 Bornyon</div>
+<div class="resto-desc" data-en="Korean fine dining with wood-fire, fermentation &amp; seasonality. Seasonal tasting courses using Korea's finest local ingredients." data-ja="ウッドファイヤー、発酵、季節感を取り入れた韓国ファインダイニング。全国最高級食材を使ったシーズナルコース。" data-ko="우드파이어, 발효, 계절감을 담은 한식 파인다이닝. 전국 최상급 식재료로 완성하는 시즌 코스." data-ru="Изысканная корейская кухня с дровяным огнём, ферментацией и сезонностью. Сезонные дегустационные меню из лучших местных ингредиентов Кореи." data-zh="以木火、发酵与时令为核心的韩国精品料理，以全国顶级食材呈现季节性套餐。"></div>
+<div class="resto-more" data-en="View details →" data-ja="詳細を見る →" data-ko="자세히 보기 →" data-ru="Подробнее →" data-zh="查看详情 →">자세히 보기 →</div>
+</div>
+</div>
+<div class="resto-card" onclick="openResto('allaprima')">
+<div class="resto-img-wrap"><img alt="Alla Prima" class="resto-img" loading="lazy" src="img/allaprima.webp"/></div>
+<div class="resto-body">
+<div class="resto-name"><span class="place-tag">Michelin</span>알라프리마 Alla Prima</div>
+<div class="resto-desc" data-en="Michelin-listed Italian fine dining. Creative pasta and refined main courses." data-ja="ミシュラン掲載のイタリアンファインダイニング。" data-ko="미슐랭 선정 이탈리안 파인다이닝. 창의적인 파스타와 완성도 높은 메인 요리." data-ru="Итальянская высокая кухня в гиде Мишлен. Авторская паста и изысканные основные блюда." data-zh="米其林推荐意大利精品餐厅。"></div>
+<div class="resto-more" data-en="View details →" data-ja="詳細を見る →" data-ko="자세히 보기 →" data-ru="Подробнее →" data-zh="查看详情 →">자세히 보기 →</div>
+</div>
+</div>
+<div class="resto-card" onclick="openResto('hyunudon')">
+<div class="resto-img-wrap"><img alt="Hyun Udon" class="resto-img" loading="lazy" src="img/hyunudon.webp"/></div>
+<div class="resto-body">
+<div class="resto-name"><span class="place-tag">Bib Gourmand</span>현우동 Hyun Udon</div>
+<div class="resto-desc" data-en="Michelin Bib Gourmand udon spot. Chewy noodles and crispy tempura." data-ja="ミシュランビブグルマン掲載のうどん専門店。" data-ko="미슐랭 빕 구르망 우동 전문점. 탱탱한 면발과 바삭한 튀김." data-ru="Удон, отмеченный Bib Gourmand Мишлен. Упругая лапша и хрустящая темпура." data-zh="米其林必比登推荐乌冬面专门店。"></div>
+<div class="resto-more" data-en="View details →" data-ja="詳細を見る →" data-ko="자세히 보기 →" data-ru="Подробнее →" data-zh="查看详情 →">자세히 보기 →</div>
+</div>
+</div>
+<div class="resto-card" onclick="openResto('shim')">
+<div class="resto-img-wrap"><img alt="Shim Restaurant" class="resto-img" loading="lazy" src="img/shim.webp"/></div>
+<div class="resto-body">
+<div class="resto-name">쉼 Shim Restaurant</div>
+<div class="resto-desc" data-en="Modern Western bistro with seasonal dishes and wine pairings." data-ja="旬の料理とワインペアリングのモダンビストロ。" data-ko="제철 요리와 와인 페어링 중심의 모던 웨스턴 비스트로." data-ru="Современный западный бистро с сезонными блюдами и подбором вин." data-zh="现代西式小馆，季节料理与葡萄酒搭配。"></div>
+<div class="resto-more" data-en="View details →" data-ja="詳細を見る →" data-ko="자세히 보기 →" data-ru="Подробнее →" data-zh="查看详情 →">자세히 보기 →</div>
+</div>
+</div>
+<div class="resto-card" onclick="openResto('hane')">
+<div class="resto-img-wrap"><img alt="Hane" class="resto-img" loading="lazy" src="img/hane.webp"/></div>
+<div class="resto-body">
+<div class="resto-name"><span class="place-tag">Michelin</span>하네 Hane</div>
+<div class="resto-desc" data-en="Michelin sushi omakase. Premium ingredients, refined Japanese dining." data-ja="ミシュラン掲載の寿司おまかせ。" data-ko="미슐랭 스시 오마카세. 최고급 식재료로 절제된 미식의 정수." data-ru="Суши-омакасэ со звездой Мишлен. Премиальные ингредиенты, изысканная японская кухня." data-zh="米其林推荐寿司怀石料理。"></div>
+<div class="resto-more" data-en="View details →" data-ja="詳細を見る →" data-ko="자세히 보기 →" data-ru="Подробнее →" data-zh="查看详情 →">자세히 보기 →</div>
+</div>
+</div>
+<div class="resto-card" onclick="openResto('anshik')">
+<div class="resto-img-wrap"><img alt="Anshik Myeongga" class="resto-img" loading="lazy" src="img/anshik.webp"/></div>
+<div class="resto-body">
+<div class="resto-name">안식명가 Anshik Myeongga</div>
+<div class="resto-desc" data-en="Korean home-style restaurant. Hearty stews, braised dishes, and grilled meats." data-ja="家庭的な韓国料理の店。" data-ko="정갈한 한식 가정식. 찜·탕·구이 메뉴를 합리적인 가격에." data-ru="Ресторан в стиле домашней корейской кухни. Сытные супы, тушёные блюда и жареное мясо." data-zh="韩式家常料理餐厅。"></div>
+<div class="resto-more" data-en="View details →" data-ja="詳細を見る →" data-ko="자세히 보기 →" data-ru="Подробнее →" data-zh="查看详情 →">자세히 보기 →</div>
+</div>
+</div>
+</div>
+<!-- 관광지 -->
+<div class="section fade-in" id="section-attractions">
+<div class="section-title">
+<span>🏛️</span>
+<span data-en="Nearby Attractions" data-ja="近くの観光スポット" data-ko="주변 관광지" data-ru="Достопримечательности рядом" data-zh="附近景点"></span>
+</div>
+<div class="card">
+<div class="place-item">
+<div class="place-name" data-en="My Art Museum" data-ja="マイアートミュージアム" data-ko="마이아트뮤지엄" data-ru="Художественный музей My Art" data-zh="My Art Museum"></div>
+<div class="place-desc" data-en="Private museum with rotating exhibitions. Comfortable space, good for 1–2 hours." data-ja="企画展が頻繁に変わる私立美術館。清潔な館内で1〜2時間の鑑賞に最適。" data-ko="사설 미술관, 기획전 자주 교체. 깔끔한 실내, 1–2시간 관람 추천." data-ru="Частный музей с меняющимися выставками. Комфортное пространство, хорошо для 1–2 часов." data-zh="私立美术馆，特展轮换频繁。环境舒适，适合游览1-2小时。"></div>
+</div>
+<div class="place-item">
+<div class="place-name" data-en="2GIL29 Gallery" data-ja="イギルイク ギャラリー" data-ko="이길이구 갤러리" data-ru="Галерея 2GIL29" data-zh="2GIL29艺廊"></div>
+<div class="place-desc" data-en="Contemporary art gallery — compact, stylish, with thoughtful exhibitions." data-ja="現代美術ギャラリー。小規模ながらスタイリッシュで内容の濃い展示。" data-ko="현대미술 갤러리. 규모는 크지 않지만 세련되고 알찬 전시." data-ru="Галерея современного искусства — компактная, стильная, с продуманными выставками." data-zh="当代艺术画廊。规模不大但风格精致，展览内容丰富。"></div>
+</div>
+<div class="place-item">
+<div class="place-name" data-en="Horim Museum Sinsa" data-ja="ホリム博物館新沙分館" data-ko="호림박물관 신사분관" data-ru="Музей Хорим Синса" data-zh="湖林博物馆新沙分馆"></div>
+<div class="place-desc" data-en="Traditional Korean crafts and artifacts. Quiet, less crowded than large museums." data-ja="韓国の伝統工芸・遺物中心の博物館。大型博物館より静かで落ち着いた雰囲気。" data-ko="한국 전통 공예·유물 중심. 대형 박물관보다 한적하고 조용한 분위기." data-ru="Традиционные корейские ремёсла и артефакты. Тихое место, меньше посетителей, чем в крупных музеях." data-zh="以韩国传统工艺品和文物为主。比大型博物馆更安静、不拥挤。"></div>
+</div>
+<div class="place-item">
+<div class="place-name" data-en="Kimreeaa Gallery" data-ja="キムリアギャラリー" data-ko="김리아갤러리" data-ru="Галерея Kimreeaa" data-zh="Kimreeaa Gallery"></div>
+<div class="place-desc" data-en="Contemporary art gallery near Cheongdam luxury street. Great stop on a shopping stroll." data-ja="清潭のブランド街近くの現代美術ギャラリー。ショッピングついでに立ち寄れる。" data-ko="청담 명품거리 근처 현대미술 갤러리. 산책 중 가볍게 들르기 좋음." data-ru="Галерея современного искусства рядом с торговой улицей Чхондам. Отличная остановка во время шопинга." data-zh="位于清潭名品街附近的当代艺术画廊。逛街时顺道一游的好选择。"></div>
+</div>
+</div>
+</div>
+<!-- 산책로 -->
+<div class="section fade-in" id="section-walks">
+<div class="section-title">
+<span>🚶</span>
+<span data-en="Recommended Walks" data-ja="おすすめ散歩コース" data-ko="추천 산책로" data-ru="Рекомендуемые прогулки" data-zh="推荐散步路线"></span>
+</div>
+<div class="card">
+<div class="place-item">
+<div class="place-name" data-en="Hakdong Neighborhood Park" data-ja="鶴洞近隣公園" data-ko="학동근린공원" data-ru="Районный парк Хакдон" data-zh="鹤洞邻里公园"></div>
+<div class="place-desc" data-en="Quiet park near Nonhyeon. Perfect for a short walk or relaxing break." data-ja="論峴洞近くの静かな公園。軽い散歩やひと休みに最適。" data-ko="논현동 인근 조용한 공원. 가볍게 산책하거나 쉬기에 좋습니다." data-ru="Тихий парк рядом с Нонхёном. Идеально для короткой прогулки или отдыха." data-zh="位于论峴洞附近的安静公园。适合短暂散步或休息放松。"></div>
+</div>
+<div class="place-item">
+<div class="place-name" data-en="Dosan Park" data-ja="島山公園" data-ko="도산공원" data-ru="Парк Досан" data-zh="岛山公园"></div>
+<div class="place-desc" data-en="Urban park within walking distance. Well-maintained paths and nearby cafés." data-ja="徒歩圏内の都市公園。整備された遊歩道と周辺カフェストリート。" data-ko="도보 이동 가능한 도심 공원. 잘 조성된 산책로와 주변 카페 거리." data-ru="Городской парк в пешей доступности. Ухоженные дорожки и близлежащие кафе." data-zh="步行可达的城市公园。步道整洁，周边咖啡街一同游逛。"></div>
+</div>
+</div>
+</div>
+<!-- 비상 연락처 -->
+<div class="section fade-in" id="section-emergency">
+<div class="section-title">
+<span>🚨</span>
+<span data-en="Emergency Contacts" data-ja="緊急連絡先" data-ko="비상 연락처" data-ru="Экстренные контакты" data-zh="紧急联系方式"></span>
+</div>
+<div class="card emergency-card">
+<div class="emergency-row">
+<span class="info-label" data-en="Police" data-ja="警察" data-ko="경찰" data-ru="Полиция" data-zh="警察"></span>
+<span class="emergency-num"><a href="tel:112">112</a></span>
+</div>
+<div class="emergency-row">
+<span class="info-label" data-en="Fire &amp; Rescue" data-ja="消防・救急" data-ko="소방 / 구급" data-ru="Пожарная служба" data-zh="消防 / 急救"></span>
+<span class="emergency-num"><a href="tel:119">119</a></span>
+</div>
+<div class="emergency-row">
+<span class="info-label" data-en="Host (Lee Kang Min)" data-ja="ホスト（イ・ガンミン）" data-ko="호스트 (이강민)" data-ru="Хозяин (Ли Кан Мин)" data-zh="房东（李强民）"></span>
+<span class="emergency-num"><a href="tel:+821053467704">010-5346-7704</a></span>
+</div>
+</div>
+</div>
+<!-- 안전 -->
+<div class="section fade-in" id="section-safety">
+<div class="section-title">
+<span>🛡️</span>
+<span data-en="Safety" data-ja="安全情報" data-ko="안전 안내" data-ru="Безопасность" data-zh="安全须知"></span>
+</div>
+<div class="card">
+<div class="step">
+<div class="step-num">•</div>
+<div class="step-text" data-en="Fire extinguishers in each unit and every stairwell." data-ja="各部屋および各フロア階段に消火器を設置。" data-ko="각 호실 및 층별 계단에 소화기 비치." data-ru="Огнетушители в каждом номере и на каждой лестничной клетке." data-zh="每个房间及每层楼梯处均配有灭火器。"></div>
+</div>
+<div class="step">
+<div class="step-num">•</div>
+<div class="step-text" data-en="Smoke detectors in every room and living area." data-ja="全部屋とリビングに火災感知器を設置。" data-ko="화재 경보기가 각 방과 거실에 설치되어 있습니다." data-ru="Дымовые детекторы в каждой комнате и жилой зоне." data-zh="每个房间及客厅均安装烟雾探测器。"></div>
+</div>
+<div class="step">
+<div class="step-num">🏃</div>
+<div class="step-text" data-en="&lt;strong&gt;Evacuate:&lt;/strong&gt; Use the stairs and exit through the main entrance." data-ja="&lt;strong&gt;避難：&lt;/strong&gt;階段を使って正面玄関から外へ。" data-ko="&lt;strong&gt;대피:&lt;/strong&gt; 계단으로 내려와서 정문으로 나가주세요." data-ru="&lt;strong&gt;Эвакуация:&lt;/strong&gt; Используйте лестницу и выходите через главный вход." data-zh="&lt;strong&gt;疏散：&lt;/strong&gt;走楼梯从正门撤离。"></div>
+</div>
+</div>
+</div>
 </div><!-- /container -->
-
 <!-- Footer -->
 <div class="footer">
-  <p data-en="Questions? Contact your host anytime." data-ko="궁금한 점은 언제든지 호스트에게 연락해 주세요." data-ja="ご不明な点はいつでもホストにご連絡ください。" data-zh="如有疑问，随时联系房东。"></p>
-  <p style="margin-top:10px;"><a href="tel:+821053467704">📞 010-5346-7704</a></p>
-  <p style="margin-top:18px;font-size:0.7rem;opacity:0.5;">JoveStay Gangnam © 2026</p>
+<p data-en="Questions? Contact your host anytime." data-ja="ご不明な点はいつでもホストにご連絡ください。" data-ko="궁금한 점은 언제든지 호스트에게 연락해 주세요." data-ru="Есть вопросы? Связывайтесь с хозяином в любое время." data-zh="如有疑问，随时联系房东。"></p>
+<p style="margin-top:10px;"><a href="tel:+821053467704">📞 010-5346-7704</a></p>
+<p style="margin-top:18px;font-size:0.7rem;opacity:0.5;">JoveStay Gangnam © 2026</p>
 </div>
-
 </div><!-- /content-area -->
 </div><!-- /page-wrap -->
-
 <!-- Restaurant Modal -->
 <div class="rmodal-overlay" id="restoOverlay" onclick="closeResto()"></div>
 <div class="rmodal" id="restoModal">
-  <button class="rmodal-close" onclick="closeResto()">✕</button>
-  <div class="rmodal-img-wrap">
-    <img class="rmodal-img" id="restoModalImg" src="" alt="">
-    <div class="rmodal-img-overlay">
-      <div class="rmodal-tag-wrap" id="restoModalTag"></div>
-      <div class="rmodal-title" id="restoModalTitle"></div>
-      <div class="rmodal-cuisine" id="restoModalCuisine"></div>
-    </div>
-  </div>
-  <div class="rmodal-body">
-    <p class="rmodal-desc" id="restoModalDesc"></p>
-    <div class="rmodal-grid">
-      <div class="rmodal-item" id="restoModalAddr">
-        <div class="rmodal-item-icon">📍</div>
-        <div class="rmodal-item-body">
-          <div class="rmodal-item-label" data-en="Address" data-ko="위치" data-ja="住所" data-zh="地址">Address</div>
-          <div class="rmodal-item-val" id="restoModalAddrVal"></div>
-          <a class="rmodal-map-btn" id="restoModalMap" href="#" target="_blank" rel="noopener">
-            <span data-en="Open in Maps" data-ko="지도에서 보기" data-ja="地図で見る" data-zh="在地图中查看">지도에서 보기</span> ↗
-          </a>
-        </div>
-      </div>
-      <div class="rmodal-item">
-        <div class="rmodal-item-icon">🕐</div>
-        <div class="rmodal-item-body">
-          <div class="rmodal-item-label" data-en="Hours" data-ko="영업시간" data-ja="営業時間" data-zh="营业时间">영업시간</div>
-          <div class="rmodal-item-val" id="restoModalHours"></div>
-        </div>
-      </div>
-      <div class="rmodal-item">
-        <div class="rmodal-item-icon">💰</div>
-        <div class="rmodal-item-body">
-          <div class="rmodal-item-label" data-en="Price" data-ko="가격대" data-ja="価格帯" data-zh="价格">가격대</div>
-          <div class="rmodal-item-val" id="restoModalPrice"></div>
-        </div>
-      </div>
-      <div class="rmodal-item">
-        <div class="rmodal-item-icon">🚶</div>
-        <div class="rmodal-item-body">
-          <div class="rmodal-item-label" data-en="From JoveStay" data-ko="JoveStay에서" data-ja="JoveStayから" data-zh="距JoveStay">JoveStay에서</div>
-          <div class="rmodal-item-val" id="restoModalWalk"></div>
-        </div>
-      </div>
-      <div class="rmodal-item">
-        <div class="rmodal-item-icon">🍽️</div>
-        <div class="rmodal-item-body">
-          <div class="rmodal-item-label" data-en="Must Try" data-ko="추천 메뉴" data-ja="おすすめ" data-zh="必点">추천 메뉴</div>
-          <div class="rmodal-item-val" id="restoModalMust"></div>
-        </div>
-      </div>
-      <div class="rmodal-item">
-        <div class="rmodal-item-icon">📞</div>
-        <div class="rmodal-item-body">
-          <div class="rmodal-item-label" data-en="Reservation" data-ko="예약" data-ja="予約" data-zh="预约">예약</div>
-          <div class="rmodal-item-val" id="restoModalReserve"></div>
-        </div>
-      </div>
-    </div>
-  </div>
+<button class="rmodal-close" onclick="closeResto()">✕</button>
+<div class="rmodal-img-wrap">
+<img alt="" class="rmodal-img" id="restoModalImg" src=""/>
+<div class="rmodal-img-overlay">
+<div class="rmodal-tag-wrap" id="restoModalTag"></div>
+<div class="rmodal-title" id="restoModalTitle"></div>
+<div class="rmodal-cuisine" id="restoModalCuisine"></div>
 </div>
-
+</div>
+<div class="rmodal-body">
+<p class="rmodal-desc" id="restoModalDesc"></p>
+<div class="rmodal-grid">
+<div class="rmodal-item" id="restoModalAddr">
+<div class="rmodal-item-icon">📍</div>
+<div class="rmodal-item-body">
+<div class="rmodal-item-label" data-en="Address" data-ja="住所" data-ko="위치" data-ru="Адрес" data-zh="地址">Address</div>
+<div class="rmodal-item-val" id="restoModalAddrVal"></div>
+<a class="rmodal-map-btn" href="#" id="restoModalMap" rel="noopener" target="_blank">
+<span data-en="Open in Maps" data-ja="地図で見る" data-ko="지도에서 보기" data-ru="Открыть на карте" data-zh="在地图中查看">지도에서 보기</span> ↗
+          </a>
+</div>
+</div>
+<div class="rmodal-item">
+<div class="rmodal-item-icon">🕐</div>
+<div class="rmodal-item-body">
+<div class="rmodal-item-label" data-en="Hours" data-ja="営業時間" data-ko="영업시간" data-ru="Часы работы" data-zh="营业时间">영업시간</div>
+<div class="rmodal-item-val" id="restoModalHours"></div>
+</div>
+</div>
+<div class="rmodal-item">
+<div class="rmodal-item-icon">💰</div>
+<div class="rmodal-item-body">
+<div class="rmodal-item-label" data-en="Price" data-ja="価格帯" data-ko="가격대" data-ru="Цена" data-zh="价格">가격대</div>
+<div class="rmodal-item-val" id="restoModalPrice"></div>
+</div>
+</div>
+<div class="rmodal-item">
+<div class="rmodal-item-icon">🚶</div>
+<div class="rmodal-item-body">
+<div class="rmodal-item-label" data-en="From JoveStay" data-ja="JoveStayから" data-ko="JoveStay에서" data-ru="От JoveStay" data-zh="距JoveStay">JoveStay에서</div>
+<div class="rmodal-item-val" id="restoModalWalk"></div>
+</div>
+</div>
+<div class="rmodal-item">
+<div class="rmodal-item-icon">🍽️</div>
+<div class="rmodal-item-body">
+<div class="rmodal-item-label" data-en="Must Try" data-ja="おすすめ" data-ko="추천 메뉴" data-ru="Обязательно попробуйте" data-zh="必点">추천 메뉴</div>
+<div class="rmodal-item-val" id="restoModalMust"></div>
+</div>
+</div>
+<div class="rmodal-item">
+<div class="rmodal-item-icon">📞</div>
+<div class="rmodal-item-body">
+<div class="rmodal-item-label" data-en="Reservation" data-ja="予約" data-ko="예약" data-ru="Бронирование" data-zh="预约">예약</div>
+<div class="rmodal-item-val" id="restoModalReserve"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <!-- Chat Widget -->
 <button class="chat-fab" id="chatFab" onclick="toggleChat()">
-  <span id="fabIcon">💬</span>
+<span id="fabIcon">💬</span>
 </button>
-
 <div class="chat-panel" id="chatPanel">
-  <div class="chat-header">
-    <div class="chat-header-icon">🏠</div>
-    <div class="chat-header-text">
-      <div class="chat-header-title" data-en="Concierge" data-ko="컨시어지" data-ja="コンシェルジュ" data-zh="礼宾服务">Concierge</div>
-      <div class="chat-header-sub" data-en="Ask about your stay" data-ko="숙소 관련 문의" data-ja="滞在についてのご質問" data-zh="关于您的住宿">Ask about your stay</div>
-    </div>
-    <button class="chat-close" onclick="toggleChat()">✕</button>
-  </div>
-  <div class="chat-messages" id="chatMessages">
-    <div class="msg bot">
-      <div class="msg-avatar">🏠</div>
-      <div class="msg-bubble" data-en="Hello! How can I help you with your stay? 😊" data-ko="안녕하세요! 무엇을 도와드릴까요? 😊" data-ja="こんにちは！ご滞在についてご質問はありますか？😊" data-zh="您好！有什么可以帮助您的？😊">Hello! How can I help you with your stay? 😊</div>
-    </div>
-  </div>
-  <div class="chat-input-row">
-    <textarea class="chat-input" id="chatInput" rows="1"
-      placeholder="Ask a question..."
-      onkeydown="handleKey(event)"
-      oninput="autoResize(this)"
-    ></textarea>
-    <button class="chat-send" id="sendBtn" onclick="sendMessage()">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
-    </button>
-  </div>
+<div class="chat-header">
+<div class="chat-header-icon">🏠</div>
+<div class="chat-header-text">
+<div class="chat-header-title" data-en="Concierge" data-ja="コンシェルジュ" data-ko="컨시어지" data-ru="Консьерж" data-zh="礼宾服务">Concierge</div>
+<div class="chat-header-sub" data-en="Ask about your stay" data-ja="滞在についてのご質問" data-ko="숙소 관련 문의" data-ru="Вопросы о проживании" data-zh="关于您的住宿">Ask about your stay</div>
 </div>
-
+<button class="chat-close" onclick="toggleChat()">✕</button>
+</div>
+<div class="chat-messages" id="chatMessages">
+<div class="msg bot">
+<div class="msg-avatar">🏠</div>
+<div class="msg-bubble" data-en="Hello! How can I help you with your stay? 😊" data-ja="こんにちは！ご滞在についてご質問はありますか？😊" data-ko="안녕하세요! 무엇을 도와드릴까요? 😊" data-ru="Здравствуйте! Чем я могу помочь вам во время проживания? 😊" data-zh="您好！有什么可以帮助您的？😊">Hello! How can I help you with your stay? 😊</div>
+</div>
+</div>
+<div class="chat-input-row">
+<textarea class="chat-input" id="chatInput" oninput="autoResize(this)" onkeydown="handleKey(event)" placeholder="Ask a question..." rows="1"></textarea>
+<button class="chat-send" id="sendBtn" onclick="sendMessage()">
+<svg fill="currentColor" height="16" viewbox="0 0 24 24" width="16"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"></path></svg>
+</button>
+</div>
+</div>
 <script>
   // ─── Language ───
   const LANGS = {
     en: { copied: "Copied!" },
     ko: { copied: "복사됨!" },
     ja: { copied: "コピーしました！" },
-    zh: { copied: "已复制！" }
+    zh: { copied: "已复制！" },
+    ru: { copied: "Скопировано!" }
   };
 
   let currentLang = 'en';
@@ -1498,7 +1302,7 @@
   function setLang(lang) {
     currentLang = lang;
     document.querySelectorAll('.lang-btn').forEach(btn => {
-      const map = {en:'🇺🇸 EN',ko:'🇰🇷 KR',ja:'🇯🇵 JP',zh:'🇨🇳 ZH'};
+      const map = {en:'🇺🇸 EN',ko:'🇰🇷 KR',ja:'🇯🇵 JP',zh:'🇨🇳 ZH',ru:'🇷🇺 RU'};
       btn.classList.toggle('active', btn.textContent.trim() === map[lang]);
     });
     document.querySelectorAll(`[data-${lang}]`).forEach(el => {
@@ -1961,6 +1765,5 @@
   // ─── Init ───
   setLang('en');
 </script>
-
 </body>
 </html>
