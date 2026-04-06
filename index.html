@@ -111,7 +111,8 @@
       .nav-sidebar { transform: translateX(-100%); }
       .nav-sidebar.open { transform: translateX(0); }
       .content-area { margin-left: 0; }
-      .lang-toggle { right: 12px; top: 12px; }
+      .lang-toggle { display: none; }
+      .lang-dropdown { display: block; }
     }
 
     /* ─── Hero ─── */
@@ -149,6 +150,7 @@
     .hero-logo { width: 160px; max-width: 55vw; margin-bottom: 28px; opacity: 0.95; }
 
     /* ─── Language Toggle ─── */
+    /* ─── Language Toggle (Desktop) ─── */
     .lang-toggle {
       position: fixed; top: 16px; right: 16px; z-index: 100;
       display: flex;
@@ -162,6 +164,45 @@
       cursor: pointer; transition: all 0.3s; font-family: inherit;
     }
     .lang-btn.active { background: var(--gold); color: var(--bg); font-weight: 600; }
+
+    /* ─── Language Dropdown (Mobile) ─── */
+    .lang-dropdown {
+      display: none;
+      position: fixed; top: 12px; right: 12px; z-index: 100;
+    }
+    .lang-drop-trigger {
+      display: flex; align-items: center; gap: 5px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 20px; padding: 6px 12px 6px 10px;
+      cursor: pointer; font-size: 0.82rem; color: var(--text);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      font-family: inherit;
+    }
+    .lang-drop-trigger .drop-arrow {
+      font-size: 0.6rem; color: var(--text-muted); transition: transform 0.2s;
+    }
+    .lang-dropdown.open .drop-arrow { transform: rotate(180deg); }
+    .lang-drop-menu {
+      display: none;
+      position: absolute; top: calc(100% + 6px); right: 0;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      min-width: 110px;
+    }
+    .lang-dropdown.open .lang-drop-menu { display: block; }
+    .lang-drop-item {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 14px; font-size: 0.82rem;
+      color: var(--text-muted); cursor: pointer;
+      border: none; background: transparent; width: 100%;
+      font-family: inherit; text-align: left;
+      transition: background 0.15s;
+      border-bottom: 1px solid var(--border);
+    }
+    .lang-drop-item:last-child { border-bottom: none; }
+    .lang-drop-item:hover { background: var(--card-hover); color: var(--text); }
+    .lang-drop-item.active { color: var(--gold); font-weight: 600; }
 
     /* ─── Container ─── */
     .container { max-width: 620px; margin: 0 auto; padding: 0 20px 140px; }
@@ -604,6 +645,20 @@
 <button class="lang-btn" onclick="setLang('ja')">🇯🇵 JP</button>
 <button class="lang-btn" onclick="setLang('zh')">🇨🇳 ZH</button>
 <button class="lang-btn" onclick="setLang('ru')">🇷🇺 RU</button>
+</div>
+<div class="lang-dropdown" id="langDropdown">
+  <button class="lang-drop-trigger" onclick="toggleLangDropdown()">
+    <span id="langDropFlag">🇺🇸</span>
+    <span id="langDropCode">EN</span>
+    <span class="drop-arrow">▼</span>
+  </button>
+  <div class="lang-drop-menu">
+    <button class="lang-drop-item active" onclick="setLang('en');closeLangDropdown()">🇺🇸 English</button>
+    <button class="lang-drop-item" onclick="setLang('ko');closeLangDropdown()">🇰🇷 한국어</button>
+    <button class="lang-drop-item" onclick="setLang('ja');closeLangDropdown()">🇯🇵 日本語</button>
+    <button class="lang-drop-item" onclick="setLang('zh');closeLangDropdown()">🇨🇳 中文</button>
+    <button class="lang-drop-item" onclick="setLang('ru');closeLangDropdown()">🇷🇺 Русский</button>
+  </div>
 </div>
 <!-- Page Wrap -->
 <div class="page-wrap">
@@ -1299,17 +1354,50 @@
 
   let currentLang = 'en';
 
+  const LANG_META = {
+    en: { flag: '🇺🇸', code: 'EN', label: 'English' },
+    ko: { flag: '🇰🇷', code: 'KR', label: '한국어' },
+    ja: { flag: '🇯🇵', code: 'JP', label: '日本語' },
+    zh: { flag: '🇨🇳', code: 'ZH', label: '中文' },
+    ru: { flag: '🇷🇺', code: 'RU', label: 'Русский' },
+  };
+
   function setLang(lang) {
     currentLang = lang;
+    // Desktop buttons
     document.querySelectorAll('.lang-btn').forEach(btn => {
       const map = {en:'🇺🇸 EN',ko:'🇰🇷 KR',ja:'🇯🇵 JP',zh:'🇨🇳 ZH',ru:'🇷🇺 RU'};
       btn.classList.toggle('active', btn.textContent.trim() === map[lang]);
     });
+    // Mobile dropdown trigger
+    const meta = LANG_META[lang];
+    if (meta) {
+      const flagEl = document.getElementById('langDropFlag');
+      const codeEl = document.getElementById('langDropCode');
+      if (flagEl) flagEl.textContent = meta.flag;
+      if (codeEl) codeEl.textContent = meta.code;
+    }
+    // Mobile dropdown items
+    document.querySelectorAll('.lang-drop-item').forEach(item => {
+      item.classList.toggle('active', item.textContent.trim().startsWith(meta ? meta.flag : ''));
+    });
+    // Content
     document.querySelectorAll(`[data-${lang}]`).forEach(el => {
       const val = el.getAttribute(`data-${lang}`);
       if (val !== null) el.innerHTML = val;
     });
   }
+
+  function toggleLangDropdown() {
+    document.getElementById('langDropdown').classList.toggle('open');
+  }
+  function closeLangDropdown() {
+    document.getElementById('langDropdown').classList.remove('open');
+  }
+  document.addEventListener('click', function(e) {
+    const dropdown = document.getElementById('langDropdown');
+    if (dropdown && !dropdown.contains(e.target)) closeLangDropdown();
+  });
 
   // ─── Copy ───
   function copyText(text, btn) {
