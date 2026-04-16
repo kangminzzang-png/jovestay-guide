@@ -1550,10 +1550,10 @@
       formData.append('photo', checkinPhotoFile);
       const res = await fetch(`https://api.telegram.org/bot7819037919:AAFIBAUm7XNTy_F0QV8ef7I0guLfFvSD2zA/sendPhoto`, { method:'POST', body:formData });
       const tgData = await res.json();
-      if (!tgData.ok) throw new Error('Telegram error');
+      if (!tgData.ok) throw new Error('Telegram: ' + JSON.stringify(tgData));
 
-      // 2) EmailJS — confirmation to guest
-      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_CHECKIN_TPL, {
+      // 2) EmailJS — confirmation to guest (non-blocking)
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_CHECKIN_TPL, {
         guest_name:  name,
         email:       email,
         guest_email: email,
@@ -1561,7 +1561,7 @@
         time:        now,
         to_name:     name,
         to_email:    email,
-      });
+      }).catch(err => console.warn('EmailJS checkin error:', err));
 
       result.style.display = 'block';
       result.style.background = 'rgba(92,184,92,0.15)';
@@ -1576,7 +1576,7 @@
       result.style.background = 'rgba(201,74,74,0.1)';
       result.style.color = 'var(--accent-red)';
       result.style.border = '1px solid rgba(201,74,74,0.2)';
-      result.textContent = '전송 실패. 호스트에게 직접 연락해 주세요. (+82-10-5346-7704)';
+      result.textContent = '전송 실패: ' + (e.message || String(e)) + ' — 호스트: +82-10-5346-7704';
       btn.disabled = false;
       btn.innerHTML = '📤 <span data-en="Submit Check-in" data-ko="입실 인증 보내기" data-ja="チェックイン送信" data-zh="提交入住确认"></span>';
       applyLang(currentLang);
@@ -1626,10 +1626,10 @@
       formData.append('photo', checkoutPhotoFile);
       const res = await fetch(`https://api.telegram.org/bot7819037919:AAFIBAUm7XNTy_F0QV8ef7I0guLfFvSD2zA/sendPhoto`, { method:'POST', body:formData });
       const data = await res.json();
-      if (!data.ok) throw new Error('Telegram error');
+      if (!data.ok) throw new Error('Telegram: ' + JSON.stringify(data));
 
-      // 2) EmailJS — confirmation to guest
-      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_CHECKOUT_TPL, {
+      // 2) EmailJS — confirmation to guest (non-blocking)
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_CHECKOUT_TPL, {
         guest_name:  name,
         email:       email,
         guest_email: email,
@@ -1637,7 +1637,7 @@
         time:        now,
         to_name:     name,
         to_email:    email,
-      });
+      }).catch(err => console.warn('EmailJS checkout error:', err));
 
       result.style.display = 'block';
       result.style.background = 'rgba(92,184,92,0.15)';
@@ -1653,7 +1653,7 @@
       result.style.background = 'rgba(201,74,74,0.1)';
       result.style.color = 'var(--accent-red)';
       result.style.border = '1px solid rgba(201,74,74,0.2)';
-      result.textContent = '전송 실패. 호스트에게 직접 연락해 주세요. (+82-10-5346-7704)';
+      result.textContent = '전송 실패: ' + (e.message || String(e)) + ' — 호스트: +82-10-5346-7704';
       btn.disabled = false;
       btn.innerHTML = '📤 <span data-en="Submit Checkout" data-ko="퇴실 완료 알림 보내기" data-ja="チェックアウト完了を送信" data-zh="提交退房通知" data-ru="Подтвердить выезд"></span>';
       applyLang(currentLang);
