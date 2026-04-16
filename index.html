@@ -1568,7 +1568,7 @@
       result.style.color = 'var(--accent-green)';
       result.style.border = '1px solid rgba(92,184,92,0.3)';
       result.innerHTML = '✅ <span data-en="Check-in confirmed! A confirmation email has been sent." data-ko="입실 인증 완료! 확인 이메일이 발송되었습니다." data-ja="チェックイン完了！確認メールを送信しました。" data-zh="入住确认！确认邮件已发送。"></span>';
-      applyLang(currentLang);
+      setLang(currentLang);
       btn.style.display = 'none';
       document.getElementById('checkin-photo-preview').style.display = 'none';
     } catch(e) {
@@ -1579,7 +1579,7 @@
       result.textContent = '전송 실패: ' + (e.message || String(e)) + ' — 호스트: +82-10-5346-7704';
       btn.disabled = false;
       btn.innerHTML = '📤 <span data-en="Submit Check-in" data-ko="입실 인증 보내기" data-ja="チェックイン送信" data-zh="提交入住确认"></span>';
-      applyLang(currentLang);
+      setLang(currentLang);
     }
   }
 
@@ -1644,7 +1644,7 @@
       result.style.color = 'var(--accent-green)';
       result.style.border = '1px solid rgba(92,184,92,0.3)';
       result.innerHTML = '✅ <span data-en="Checkout complete! A confirmation email has been sent." data-ko="퇴실 완료! 확인 이메일이 발송되었습니다." data-ja="チェックアウト完了！確認メールを送信しました。" data-zh="退房完成！确认邮件已发送。" data-ru="Выезд завершён! Письмо с подтверждением отправлено."></span>';
-      applyLang(currentLang);
+      setLang(currentLang);
       btn.style.display = 'none';
       document.getElementById('checkout-name-wrap').style.display = 'none';
       document.getElementById('checkout-photo-preview').style.display = 'none';
@@ -1656,7 +1656,7 @@
       result.textContent = '전송 실패: ' + (e.message || String(e)) + ' — 호스트: +82-10-5346-7704';
       btn.disabled = false;
       btn.innerHTML = '📤 <span data-en="Submit Checkout" data-ko="퇴실 완료 알림 보내기" data-ja="チェックアウト完了を送信" data-zh="提交退房通知" data-ru="Подтвердить выезд"></span>';
-      applyLang(currentLang);
+      setLang(currentLang);
     }
   }
 
