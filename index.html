@@ -1072,6 +1072,19 @@
           color:var(--text); font-size:0.9rem; font-family:inherit;
           outline:none; box-sizing:border-box; transition:border-color 0.2s;
         " type="email"/>
+<label for="checkout-photo" onmouseout="this.style.background='rgba(197,162,101,0.08)'" onmouseover="this.style.background='rgba(197,162,101,0.15)'" style="
+          display:flex; align-items:center; justify-content:center; gap:8px;
+          margin-top:10px; padding:12px; border:1px dashed rgba(197,162,101,0.4);
+          border-radius:10px; cursor:pointer; font-size:0.88rem;
+          color:var(--gold); background:rgba(197,162,101,0.08);
+          transition:background 0.2s;
+        ">
+  📷 <span data-en="Take / Upload Photo" data-ja="写真を撮る / アップロード" data-ko="사진 촬영 / 업로드" data-ru="Сделать / загрузить фото" data-zh="拍照 / 上传照片">Take / Upload Photo</span>
+</label>
+<input accept="image/*" capture="environment" id="checkout-photo" onchange="onCheckoutPhotoSelected(this)" style="display:none;" type="file"/>
+<div id="checkout-photo-preview" style="display:none;margin-top:10px;">
+  <img id="checkout-preview-img" style="width:100%;max-height:200px;object-fit:cover;border-radius:10px;display:block;"/>
+</div>
 </div>
 <button id="submit-checkout-btn" onclick="submitCheckout()" style="
         display:none; width:100%; margin-top:8px; padding:14px;
@@ -1477,6 +1490,7 @@
 
   // ─── Check-in Verification ───
   let checkinPhotoFile = null;
+  let checkoutPhotoFile = null;
 
   function onCheckinPhotoSelected(input) {
     if (input.files && input.files[0]) {
@@ -1488,6 +1502,19 @@
       };
       reader.readAsDataURL(checkinPhotoFile);
       checkCheckinReady();
+    }
+  }
+
+  function onCheckoutPhotoSelected(input) {
+    if (input.files && input.files[0]) {
+      checkoutPhotoFile = input.files[0];
+      const reader = new FileReader();
+      reader.onload = e => {
+        document.getElementById('checkout-preview-img').src = e.target.result;
+        document.getElementById('checkout-photo-preview').style.display = 'block';
+      };
+      reader.readAsDataURL(checkoutPhotoFile);
+      checkNameInput();
     }
   }
 
@@ -1577,7 +1604,7 @@
     const name  = document.getElementById('checkout-guest-name').value.trim();
     const email = document.getElementById('checkout-guest-email').value.trim();
     const btn   = document.getElementById('submit-checkout-btn');
-    btn.style.display = (name.length > 0 && email.length > 0) ? 'block' : 'none';
+    btn.style.display = (name.length > 0 && email.length > 0 && checkoutPhotoFile) ? 'block' : 'none';
   }
 
   async function submitCheckout() {
@@ -1586,18 +1613,18 @@
     const name   = document.getElementById('checkout-guest-name').value.trim();
     const email  = document.getElementById('checkout-guest-email').value.trim();
     const now    = new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
-    const msg    = `✅ 퇴실 체크리스트 완료\n👤 ${name}\n📧 ${email}\n🏠 JoveStay Gangnam — Room 401\n🕐 ${now}`;
+    const caption = `🧳 퇴실 인증\n👤 ${name}\n📧 ${email}\n🏠 JoveStay Gangnam — Room 401\n🕐 ${now}`;
 
     btn.disabled = true;
     btn.innerHTML = '⏳ 전송 중...';
 
     try {
-      // 1) Telegram
-      const res = await fetch(`https://api.telegram.org/bot7819037919:AAFIBAUm7XNTy_F0QV8ef7I0guLfFvSD2zA/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: '-5249702388', text: msg })
-      });
+      // 1) Telegram photo + caption
+      const formData = new FormData();
+      formData.append('chat_id', '-5249702388');
+      formData.append('caption', caption);
+      formData.append('photo', checkoutPhotoFile);
+      const res = await fetch(`https://api.telegram.org/bot7819037919:AAFIBAUm7XNTy_F0QV8ef7I0guLfFvSD2zA/sendPhoto`, { method:'POST', body:formData });
       const data = await res.json();
       if (!data.ok) throw new Error('Telegram error');
 
@@ -1620,6 +1647,7 @@
       applyLang(currentLang);
       btn.style.display = 'none';
       document.getElementById('checkout-name-wrap').style.display = 'none';
+      document.getElementById('checkout-photo-preview').style.display = 'none';
     } catch(e) {
       result.style.display = 'block';
       result.style.background = 'rgba(201,74,74,0.1)';
