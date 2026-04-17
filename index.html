@@ -822,7 +822,7 @@
 </div>
 <div class="rule-item">
 <div class="rule-icon">🔇</div>
-<div class="rule-text" data-en="Quiet: 10PM–7AM" data-ja="静粛：22時〜7時" data-ko="소음 07–22시" data-ru="Тишина: с 22:00 до 7:00" data-zh="安静：22时至7时"></div>
+<div class="rule-text" data-en="Quiet: 10PM–7AM" data-ja="静粛：22時〜7時" data-ko="조용히: 22시–07시" data-ru="Тишина: с 22:00 до 7:00" data-zh="安静：22时至7时"></div>
 </div>
 <div class="rule-item">
 <div class="rule-icon">🗑️</div>
@@ -875,7 +875,7 @@
 </div>
 <div class="appliance">
 <div class="appliance-name">🪟 <span data-en="Balcony Safety" data-ja="バルコニー注意" data-ko="발코니 주의" data-ru="Безопасность на балконе" data-zh="阳台注意事项"></span></div>
-<div class="appliance-desc" data-en="Do not lean on railings. Do not climb over the balcony." data-ja="手すりに寄りかからないでください。バルコニーから乗り越えないでください。" data-ko="난간에 기대지 마세요. 발코니에서 넘어가지 마세요." data-ru="Не облокачивайтесь на перила. Не перелезайте через балкон." data-zh="请勿倚靠栏杆。请勿攀爬阳台。"></div>
+<div class="appliance-desc" data-en="Do not lean on railings. Do not climb over the balcony." data-ja="手すりに寄りかからないでください。バルコニーから乗り越えないでください。" data-ko="난간에 기대지 마세요. 발코니에서 넘어가지 마세요." data-ru="Не облокачивайтесь на перила. Не перелезайте через балконные перила." data-zh="请勿倚靠栏杆。请勿攀爬阳台。"></div>
 </div>
 </div>
 </div>
@@ -1045,7 +1045,7 @@
 <li class="checklist-item" onclick="toggleCheck(this,'checkout')">
 <div class="check-box"></div>
 <div class="check-label">
-<div class="check-label-main" data-en="Lock the front door (401)" data-ja="玄関ドアを施錠（401号室）" data-ko="현관문 잠금 확인 (401호)" data-ru="Закрыть входную дверь (401)" data-zh="锁好前门（401室）"></div>
+<div class="check-label-main" data-en="Lock the front door (401)" data-ja="玄関ドアを施錠（401号室）" data-ko="현관문 잠금 확인 (401호)" data-ru="Запереть входную дверь (401)" data-zh="锁好前门（401室）"></div>
 <div class="check-label-sub" data-en="Enter code → press * → door locks automatically" data-ja="暗証番号入力 → * → 自動施錠" data-ko="비번 입력 → * 버튼 → 자동 잠금" data-ru="Введите код → нажмите * → дверь заблокируется автоматически" data-zh="输入密码 → 按* → 自动上锁"></div>
 </div>
 </li>
@@ -1875,7 +1875,7 @@
       appendMsg('bot', data.reply || 'Sorry, something went wrong.');
     } catch (e) {
       hideTyping();
-      const err = { en: 'Connection error. Please try again.', ko: '연결 오류. 다시 시도해 주세요.', ja: '接続エラー。再試行してください。', zh: '连接错误，请重试。' };
+      const err = { en: 'Connection error. Please try again.', ko: '연결 오류. 다시 시도해 주세요.', ja: '接続エラー。再試行してください。', zh: '连接错误，请重试。', ru: 'Ошибка соединения. Попробуйте ещё раз.' };
       appendMsg('bot', err[currentLang] || err.en);
     }
     isTyping = false;
