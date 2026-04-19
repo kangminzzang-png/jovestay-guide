@@ -1548,6 +1548,7 @@
     btn.disabled = true;
     btn.innerHTML = '⏳ 전송 중...';
 
+    let sent = false;
     try {
       // 1) Telegram photo + caption
       const caption = `🏠 입실 인증\n👤 ${name}\n📧 ${email}\n🏠 JoveStay Gangnam — Room 401\n🕐 ${now}`;
@@ -1570,23 +1571,25 @@
         to_email:    email,
       }).catch(err => console.warn('EmailJS checkin error:', err));
 
+      sent = true;
       result.style.display = 'block';
       result.style.background = 'rgba(92,184,92,0.15)';
       result.style.color = 'var(--accent-green)';
       result.style.border = '1px solid rgba(92,184,92,0.3)';
       result.innerHTML = '✅ <span data-en="Check-in confirmed! A confirmation email has been sent." data-ko="입실 인증 완료! 확인 이메일이 발송되었습니다." data-ja="チェックイン完了！確認メールを送信しました。" data-zh="入住确认！确认邮件已发送。"></span>';
-      setLang(currentLang);
+      try { setLang(currentLang); } catch(_) {}
       btn.style.display = 'none';
       document.getElementById('checkin-photo-preview').style.display = 'none';
     } catch(e) {
+      if (sent) return;
       result.style.display = 'block';
       result.style.background = 'rgba(201,74,74,0.1)';
       result.style.color = 'var(--accent-red)';
       result.style.border = '1px solid rgba(201,74,74,0.2)';
-      result.textContent = '전송 실패: ' + (e.message || String(e)) + ' — 호스트: +82-10-5346-7704';
+      result.textContent = '전송 실패 — 호스트: +82-10-5346-7704';
       btn.disabled = false;
       btn.innerHTML = '📤 <span data-en="Submit Check-in" data-ko="입실 인증 보내기" data-ja="チェックイン送信" data-zh="提交入住确认"></span>';
-      setLang(currentLang);
+      try { setLang(currentLang); } catch(_) {}
     }
   }
 
@@ -1625,6 +1628,7 @@
     btn.disabled = true;
     btn.innerHTML = '⏳ 전송 중...';
 
+    let sent = false;
     try {
       // 1) Telegram photo + caption
       const formData = new FormData();
