@@ -1106,15 +1106,41 @@
 </div>
 
 <!-- 체크리스트 -->
-<div style="background:rgba(197,162,101,0.08);border:1px solid rgba(197,162,101,0.25);border-radius:10px;padding:16px 18px;margin-top:16px;">
-<div style="font-weight:600;color:var(--gold);margin-bottom:12px;">✅ 마지막 체크리스트</div>
-<div style="display:flex;flex-direction:column;gap:10px;font-size:0.88rem;">
-<div style="display:flex;gap:10px;"><span style="color:var(--gold);flex-shrink:0;">□</span><span>베란다 문을 열어 쓰레기 및 재활용을 모두 버렸나요?</span></div>
-<div style="display:flex;gap:10px;"><span style="color:var(--gold);flex-shrink:0;">□</span><span>두 화장실 모두 하수구 덼개를 열어서 안쪽 머리카락을 제거했나요?</span></div>
-<div style="display:flex;gap:10px;"><span style="color:var(--gold);flex-shrink:0;">□</span><span>화장실마다 수건을 1개 걸고, 2개는 잘 접어서 비치했나요?</span></div>
-<div style="display:flex;gap:10px;"><span style="color:var(--gold);flex-shrink:0;">□</span><span>침구 커버를 교체하고, 이불 속이 보이지 않게 반듯하게 세팅했나요?</span></div>
-<div style="display:flex;gap:10px;"><span style="color:var(--gold);flex-shrink:0;">□</span><span>거실/방 바닥의 검은색 캐리어 자국을 물티슈로 완벽하게 지웰나요?</span></div>
-<div style="display:flex;gap:10px;"><span style="color:var(--gold);flex-shrink:0;">□</span><span>비품, 리모콘 등 모든 물건의 위치를 사진과 릏같이 맞춤나요?</span></div>
+<div style="margin-top:16px;">
+<div style="font-weight:600;color:var(--gold);margin-bottom:10px;font-size:0.9rem;">✅ 마지막 체크리스트</div>
+<div class="checklist-progress" style="margin-bottom:10px;">
+<div class="progress-bar-wrap"><div class="progress-bar" id="final-bar" style="width:0%"></div></div>
+<div class="progress-text" id="final-progress">0 / 6</div>
+</div>
+<ul class="checklist" id="final-list">
+<li class="checklist-item" onclick="toggleCheck(this,'final')">
+<div class="check-box"></div>
+<div class="check-label"><div class="check-label-main">베란다 문을 열어 쓰레기 및 재활용을 모두 버렸나요?</div></div>
+</li>
+<li class="checklist-item" onclick="toggleCheck(this,'final')">
+<div class="check-box"></div>
+<div class="check-label"><div class="check-label-main">두 화장실 모두 하수구 덼개를 열어서 안쪽 머리카락을 제거했나요?</div></div>
+</li>
+<li class="checklist-item" onclick="toggleCheck(this,'final')">
+<div class="check-box"></div>
+<div class="check-label"><div class="check-label-main">화장실마다 수건을 1개 걸고, 2개는 잘 접어서 비치했나요?</div></div>
+</li>
+<li class="checklist-item" onclick="toggleCheck(this,'final')">
+<div class="check-box"></div>
+<div class="check-label"><div class="check-label-main">침구 커버를 교체하고, 이불 속이 보이지 않게 반듯하게 세팅했나요?</div></div>
+</li>
+<li class="checklist-item" onclick="toggleCheck(this,'final')">
+<div class="check-box"></div>
+<div class="check-label"><div class="check-label-main">거실/방 바닥의 검은색 캐리어 자국을 물티슈로 완벽하게 지웰나요?</div></div>
+</li>
+<li class="checklist-item" onclick="toggleCheck(this,'final')">
+<div class="check-box"></div>
+<div class="check-label"><div class="check-label-main">비품, 리모콘 등 모든 물건의 위치를 사진과 릏같이 맞춤나요?</div></div>
+</li>
+</ul>
+<div class="checklist-actions">
+<button class="checklist-btn btn-reset" onclick="resetChecklist('final')">초기화</button>
+<button class="checklist-btn btn-complete-all" onclick="completeAll('final')">모두 완료 ✓</button>
 </div>
 </div>
 
