@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JoveStay Gangnam — Cleaning Guide</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #0f0f0f;
+    --card: #1a1a1a;
+    --card-hover: #222;
+    --gold: #c5a265;
+    --gold-soft: #d4b87a;
+    --text: #e8e4dc;
+    --text-muted: #9a958c;
+    --border: #2a2825;
+    --accent-red: #c94a4a;
+    --accent-green: #5cb85c;
+    --radius: 12px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Sans KR', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: 36vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    text-align: center;
+    padding: 60px 24px 44px;
+    background: linear-gradient(180deg, #1a1714 0%, var(--bg) 100%);
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .hero-badge {
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: 5px; text-transform: uppercase;
+    font-size: 0.75rem; color: var(--gold); margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(2rem, 6vw, 3.2rem);
+    color: var(--gold-soft); margin-bottom: 10px; letter-spacing: 2px;
+  }
+  .hero-sub { color: var(--text-muted); font-size: 0.88rem; font-weight: 300; }
+  .hero-logo { width: 120px; max-width: 45vw; margin-bottom: 24px; opacity: 0.92; }
+
+  /* Back button */
+  .back-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    position: fixed; top: 14px; left: 14px; z-index: 100;
+    background: var(--card); border: 1px solid var(--border);
+    color: var(--text-muted); padding: 7px 14px; border-radius: 20px;
+    font-size: 0.8rem; text-decoration: none;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    transition: all 0.2s;
+  }
+  .back-btn:hover { color: var(--text); background: var(--card-hover); }
+
+  /* Container */
+  .container { max-width: 640px; margin: 0 auto; padding: 0 20px 100px; }
+
+  /* Section */
+  .section { margin-bottom: 32px; scroll-margin-top: 24px; }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 400; color: var(--gold);
+    margin-bottom: 16px; padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  /* Card */
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 20px; margin-bottom: 12px;
+    transition: background 0.2s;
+  }
+
+  /* Appliance */
+  .appliance-name { font-weight: 500; font-size: 0.9rem; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .appliance-desc { color: var(--text-muted); font-size: 0.83rem; line-height: 1.6; }
+
+  /* Checklist */
+  .checklist-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 4px 20px 16px; margin-bottom: 12px;
+  }
+  .checklist { list-style: none; }
+  .checklist-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 13px 0; border-bottom: 1px solid var(--border);
+    cursor: pointer; user-select: none;
+    transition: opacity 0.2s;
+  }
+  .checklist-item:last-child { border-bottom: none; }
+  .check-box {
+    flex-shrink: 0; width: 22px; height: 22px;
+    border: 2px solid #3a3835; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s; margin-top: 2px;
+  }
+  .checklist-item.done .check-box {
+    background: var(--gold); border-color: var(--gold);
+  }
+  .checklist-item.done .check-box::after {
+    content: '✓'; color: var(--bg); font-size: 0.72rem; font-weight: 800;
+  }
+  .checklist-item.done .check-label { opacity: 0.4; text-decoration: line-through; }
+  .check-label { flex: 1; }
+  .check-label-main { font-size: 0.88rem; line-height: 1.5; }
+
+  .checklist-progress {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 14px; padding-top: 12px;
+  }
+  .progress-bar-wrap {
+    flex: 1; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden;
+  }
+  .progress-bar { height: 100%; background: var(--gold); border-radius: 2px; transition: width 0.3s; }
+  .progress-text { font-size: 0.78rem; color: var(--text-muted); white-space: nowrap; }
+
+  .checklist-actions { display: flex; gap: 8px; margin-top: 14px; }
+  .checklist-btn {
+    flex: 1; padding: 9px; border-radius: 8px;
+    font-size: 0.82rem; cursor: pointer; font-family: inherit;
+    transition: all 0.2s; border: 1px solid var(--border);
+  }
+  .btn-reset { background: rgba(255,255,255,0.03); color: var(--text-muted); }
+  .btn-reset:hover { background: rgba(255,255,255,0.07); color: var(--text); }
+  .btn-complete-all {
+    background: rgba(197,162,101,0.1); color: var(--gold);
+    border-color: rgba(197,162,101,0.2);
+  }
+  .btn-complete-all:hover { background: rgba(197,162,101,0.18); }
+
+  /* Step counter badges */
+  .step-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(197,162,101,0.12); color: var(--gold);
+    border-radius: 6px; font-size: 0.78rem; padding: 3px 10px;
+    font-weight: 600; margin-bottom: 10px;
+  }
+
+  /* Fade in */
+  .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.5s, transform 0.5s; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* Footer */
+  .footer {
+    text-align: center; padding: 40px 20px;
+    color: var(--text-muted); font-size: 0.8rem;
+    border-top: 1px solid var(--border);
+  }
+  .footer a { color: var(--gold); text-decoration: none; }
+
+  @media (max-width: 400px) {
+    .back-btn span { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<a class="back-btn" href="index.html">← <span>Guest Guide</span></a>
+
+<!-- Hero -->
+<div class="hero">
+  <img alt="JoveStay Gangnam" class="hero-logo" src="img/logo.png"/>
+  <div class="hero-badge">Staff Only</div>
+  <h1>🧹 Cleaning Guide</h1>
+  <p class="hero-sub">조브스테이 강남 청소·세탁·최종세팅 안내문</p>
+</div>
+
+<div class="container">
+
+  <!-- 핵심 6가지 -->
+  <div class="section fade-in">
+    <div class="section-title"><span>📌</span> 꼭 확인할 6가지</div>
+    <div style="background:rgba(197,162,101,0.08);border:1px solid rgba(197,162,101,0.25);border-radius:10px;padding:16px 18px;">
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;gap:10px;font-size:0.88rem;"><span style="color:var(--gold);font-weight:600;flex-shrink:0;">1.</span><span><strong>침구 교체</strong>: 매트리스 커버, 베개커버 필수 교체 / 이불은 빨래 전 돌돌이 필수</span></div>
+        <div style="display:flex;gap:10px;font-size:0.88rem;"><span style="color:var(--gold);font-weight:600;flex-shrink:0;">2.</span><span><strong>수건 세탁</strong>: 사용한 수건은 모두 세탁. 각 화장실에 1개 걸고, 여분 2개 접어두기</span></div>
+        <div style="display:flex;gap:10px;font-size:0.88rem;"><span style="color:var(--gold);font-weight:600;flex-shrink:0;">3.</span><span><strong>욕실 배수구</strong>: 하수구를 꼭 열어서 안쪽 머리카락까지 제거</span></div>
+        <div style="display:flex;gap:10px;font-size:0.88rem;"><span style="color:var(--gold);font-weight:600;flex-shrink:0;">4.</span><span><strong>베란다 확인</strong>: 베란다 문을 열고 쓰레기통 및 재활용 확인 후 직접 버리기</span></div>
+        <div style="display:flex;gap:10px;font-size:0.88rem;"><span style="color:var(--gold);font-weight:600;flex-shrink:0;">5.</span><span><strong>비품 위치</strong>: 헷갈리면 무조건 사진 기준으로 맞추기</span></div>
+        <div style="display:flex;gap:10px;font-size:0.88rem;"><span style="color:var(--gold);font-weight:600;flex-shrink:0;">6.</span><span><strong>마무리</strong>: 청소 완료 후 전체 상태 확인 및 사진 전송</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1단계: 침구 세탁 및 교체 -->
+  <div class="section fade-in">
+    <div class="section-title"><span>🛏️</span> 1단계 · 침구 세탁 및 교체 <span style="font-size:0.8rem;color:var(--text-muted);font-family:inherit;">(약 40분)</span></div>
+    <div class="card">
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:0.88rem;">
+        <div style="display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">•</span><span>매트리스 커버와 베개커버는 <strong>필수 교체</strong></span></div>
+        <div style="display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">•</span><span>이불은 상태 확인 후 필요 시 교체</span></div>
+        <div style="display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">•</span><span>이불 세탁 전 <strong>돌돌이</strong>로 머리카락 등 이물질 1차 제거</span></div>
+        <div style="display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">•</span><span>사용한 침구류는 세탁 후 건조하여 <strong>안방 침대 아래 맨 왼쪽 1, 2번 서랍</strong>에 보관</span></div>
+        <div style="display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">•</span><span>침구류 세팅 시 <strong>벽 쪽에 이불 끝을 맞추고</strong>, 이불을 깐 뒤 위에 베개 2개를 나란히 놓기</span></div>
+        <div style="display:flex;gap:8px;"><span style="color:#e05555;flex-shrink:0;">⚠️</span><span><strong>이불 속이 보이게 끼우면 안 됨</strong></span></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;">
+        <div style="text-align:center;">
+          <img src="images/bedding-wrong.jpg" alt="잘못 끼운 예시" style="width:100%;border-radius:8px;object-fit:cover;max-height:200px;">
+          <div style="font-size:0.78rem;color:#e05555;margin-top:6px;">❌ 잘못 끼운 예시<br>(이불 속이 보이면 안 됩니다)</div>
+        </div>
+        <div style="text-align:center;">
+          <img src="images/bedding-kitchen-room.jpg" alt="올바른 침구 세팅 (부엌 뒤 방)" style="width:100%;border-radius:8px;object-fit:cover;max-height:200px;">
+          <div style="font-size:0.78rem;color:#aaa;margin-top:6px;">✅ 올바른 침구 세팅<br>(부엌 뒤 방)</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;">
+        <div style="text-align:center;">
+          <img src="images/bedding-living-room.jpg" alt="거실 뒤 방 침대 세팅" style="width:100%;border-radius:8px;object-fit:cover;max-height:200px;">
+          <div style="font-size:0.78rem;color:#aaa;margin-top:6px;">✅ 거실 뒤 방 침대 세팅</div>
+        </div>
+        <div style="text-align:center;">
+          <img src="images/bedding-living-room2.jpg" alt="거실 뒤 방 침대 세팅" style="width:100%;border-radius:8px;object-fit:cover;max-height:200px;">
+          <div style="font-size:0.78rem;color:#aaa;margin-top:6px;">✅ 거실 뒤 방 침대 세팅</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2단계: 화장실 수건 -->
+  <div class="section fade-in">
+    <div class="section-title"><span>🛁</span> 2단계 · 화장실 수건 세탁 및 정리 <span style="font-size:0.8rem;color:var(--text-muted);font-family:inherit;">(약 20분)</span></div>
+    <div class="card">
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:0.88rem;">
+        <div style="display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">•</span><span>안방/거실 화장실 사용 수건 <strong>모두 세탁 후 건조</strong></span></div>
+        <div style="display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">•</span><span>각 화장실에 수건 <strong>1개 걸기</strong>, 나머지는 변기 위 공간에 배치</span></div>
+        <div style="display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">•</span><span>남은 여분 수건은 <strong>안방 침대 아래 맨 오른쪽 서랍</strong>에 보관</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3단계: 화장실 청소 -->
+  <div class="section fade-in">
+    <div class="section-title"><span>🚿</span> 3단계 · 화장실 청소 및 비품 채우기 <span style="font-size:0.8rem;color:var(--text-muted);font-family:inherit;">(약 20분)</span></div>
+    <div class="card">
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:0.88rem;">
+        <div style="display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">•</span><span>변기, 세면대, 거울, 바닥 청소 및 <strong>물때와 곰팡이 제거</strong></span></div>
+        <div style="display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">•</span><span><strong>하수구를 꼭 열어서</strong> 머리카락 모두 제거</span></div>
+        <div style="display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">•</span><span>청소 후 <strong>밀대걸레로 물기 제거</strong></span></div>
+        <div style="display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">•</span><span>화장지는 <strong>걸이 위 1개</strong>, 수건함에 <strong>2개</strong> 채우기</span></div>
+        <div style="display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">•</span><span>쓰레기통 비우기, 욕실신발 정돈</span></div>
+        <div style="display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">•</span><span>샴푸 등 욕실 용품은 <strong>나란히 정리</strong> (헷갈리면 사진 기준으로 맞추기)</span></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr;gap:10px;margin-top:16px;">
+        <div style="text-align:center;">
+          <img src="images/bathroom-drain.jpg" alt="배수구 머리카락 제거" style="width:100%;border-radius:8px;object-fit:cover;max-height:220px;">
+          <div style="font-size:0.78rem;color:#aaa;margin-top:6px;">🔍 배수구를 열어서 안쪽 머리카락 완벽 제거</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;">
+        <div style="text-align:center;">
+          <img src="images/bathroom-living.jpg" alt="거실 화장실 세팅" style="width:100%;border-radius:8px;object-fit:cover;max-height:220px;">
+          <div style="font-size:0.78rem;color:#aaa;margin-top:6px;">✅ 거실 화장실 세팅</div>
+        </div>
+        <div style="text-align:center;">
+          <img src="images/bathroom-master.jpg" alt="안방 화장실 세팅" style="width:100%;border-radius:8px;object-fit:cover;max-height:220px;">
+          <div style="font-size:0.78rem;color:#aaa;margin-top:6px;">✅ 안방 화장실 세팅</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4단계: 주방 -->
+  <div class="section fade-in">
+    <div class="section-title"><span>🍳</span> 4단계 · 주방 및 싱크대 <span style="font-size:0.8rem;color:var(--text-muted);font-family:inherit;">(약 15분)</span></div>
+    <div class="card">
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:0.88rem;">
+        <div style="display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">•</span><span><strong>인덕션, 싱크대, 상판, 식탁</strong> 청소</span></div>
+        <div style="display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">•</span><span>사용된 그릇 <strong>설거지 후 정리</strong> 및 음식물 쓰레기 처리</span></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;">
+        <div style="text-align:center;">
+          <img src="images/kitchen-cabinet.jpg" alt="주방 하부장 소모품" style="width:100%;border-radius:8px;object-fit:cover;max-height:220px;">
+          <div style="font-size:0.78rem;color:#aaa;margin-top:6px;">📦 주방 하부장에는 휴지, 쓰레기 봉투 등<br>소모품이 보관되어 있습니다</div>
+        </div>
+        <div style="text-align:center;">
+          <img src="images/kitchen-dining.jpg" alt="식탁 및 다이닝 정리 상태" style="width:100%;border-radius:8px;object-fit:cover;max-height:220px;">
+          <div style="font-size:0.78rem;color:#aaa;margin-top:6px;">✅ 식탁 및 다이닝 정리 상태</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5단계: 방 + 거실 -->
+  <div class="section fade-in">
+    <div class="section-title"><span>🧹</span> 5단계 · 각 방 + 거실 청소 <span style="font-size:0.8rem;color:var(--text-muted);font-family:inherit;">(약 30분)</span></div>
+    <div class="card">
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:0.88rem;">
+        <div style="display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">•</span><span><strong>청소기와 물걸레</strong>로 바닥 청소 <span style="color:#aaa;">(기본 도구는 거실 베란다에 있습니다)</span></span></div>
+        <div style="display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">•</span><span>바닥의 <strong>검은색 캐리어 자국</strong>은 물티슈로 완전히 지우기</span></div>
+        <div style="display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">•</span><span>먼지 제거 및 쓰레기통 비우기</span></div>
+        <div style="display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">•</span><span><strong>거실 테이블 및 소파</strong> 바르게 정리</span></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;">
+        <div style="text-align:center;">
+          <img src="images/living-sofa.jpg" alt="거실 정리 모습" style="width:100%;border-radius:8px;object-fit:cover;max-height:220px;">
+          <div style="font-size:0.78rem;color:#aaa;margin-top:6px;">✅ 거실 정리 모습</div>
+        </div>
+        <div style="text-align:center;">
+          <img src="images/living-table.jpg" alt="거실 테이블 정리 모습" style="width:100%;border-radius:8px;object-fit:cover;max-height:220px;">
+          <div style="font-size:0.78rem;color:#aaa;margin-top:6px;">✅ 거실 테이블 정리 모습</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6단계: 베란다 + 분리수거 -->
+  <div class="section fade-in">
+    <div class="section-title"><span>🌿</span> 6단계 · 부엌 옆 베란다 및 분리수거 <span style="font-size:0.8rem;color:var(--text-muted);font-family:inherit;">(약 10분)</span></div>
+    <div class="card">
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:0.88rem;">
+        <div style="display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">•</span><span><strong>부엌 옆 베란다 문을 직접 열어</strong> 쓰레기통과 재활용품 확인</span></div>
+        <div style="display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">•</span><span>고객이 분리수거하지 않은 품목 <strong>직접 분리수거</strong></span></div>
+        <div style="display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">•</span><span>냉장고 안에 남은 음식이나 놓고 간 물건 <strong>모두 폐기</strong></span></div>
+      </div>
+
+      <div style="margin-top:16px;text-align:center;">
+        <img src="images/veranda-door.jpg" alt="베란다 문 위치" style="width:100%;border-radius:8px;object-fit:contain;">
+        <div style="font-size:0.78rem;color:#e05555;margin-top:6px;font-weight:600;">⚠️ 베란다 문을 직접 열어 쓰레기통과 재활용을 꼭 확인해주세요</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7단계: 최종 정리 -->
+  <div class="section fade-in">
+    <div class="section-title"><span>✨</span> 7단계 · 최종 정리 <span style="font-size:0.8rem;color:var(--text-muted);font-family:inherit;">(약 10분)</span></div>
+    <div class="card">
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:0.88rem;">
+        <div style="display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">•</span><span>리모콘, 신발, 테이블, 소파, 욕실용품 등 <strong>사진처럼 제자리에 정리</strong></span></div>
+        <div style="display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">•</span><span>분리수거한 쓰레기는 <strong>모두 집 밖으로 가져나가서</strong> 표시된 배출 구간에 버리기</span></div>
+        <div style="display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">•</span><span>음식물 쓰레기는 <strong>아래 사진에 표시된 음식물 쓰레기통</strong> 위치에 버리기</span></div>
+        <div style="display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">•</span><span><strong>세탁기/건조기</strong>에 완료되지 않은 빨래가 없는지 확인</span></div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:16px;">
+        <div style="text-align:center;">
+          <img src="images/trash-spot.jpg" alt="쓰레기 배출 구간" style="width:100%;border-radius:8px;object-fit:contain;">
+          <div style="font-size:0.78rem;color:#aaa;margin-top:6px;">🗑️ 분리수거한 쓰레기는 모두 가져나가서 표시된 구간에 버려주세요</div>
+        </div>
+        <div style="text-align:center;">
+          <img src="images/food-waste-spot.jpg" alt="음식물 쓰레기통 위치" style="width:100%;border-radius:8px;object-fit:contain;">
+          <div style="font-size:0.78rem;color:#aaa;margin-top:6px;">🌿 음식물 쓰레기통은 여기 있으니, 음식물 쓰레기는 이곳에 버려주세요</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8단계: 최종점검 및 사진전송 -->
+  <div class="section fade-in">
+    <div class="section-title"><span>📸</span> 8단계 · 최종점검 및 사진전송 <span style="font-size:0.8rem;color:var(--text-muted);font-family:inherit;">(약 10분)</span></div>
+    <div class="card">
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;font-size:0.88rem;">
+        <div style="display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">•</span><span>빠진 부분 없는지 <strong>전체 확인</strong></span></div>
+        <div style="display:flex;gap:8px;"><span style="color:var(--gold);flex-shrink:0;">•</span><span>청소 완료 후 <strong>모든 작업 공간 사진 전송</strong></span></div>
+      </div>
+
+      <!-- 마지막 체크리스트 -->
+      <div style="font-weight:600;color:var(--gold);margin-bottom:10px;font-size:0.9rem;">✅ 마지막 체크리스트</div>
+      <div class="checklist-progress">
+        <div class="progress-bar-wrap"><div class="progress-bar" id="final-bar" style="width:0%"></div></div>
+        <div class="progress-text" id="final-progress">0 / 6</div>
+      </div>
+      <ul class="checklist" id="final-list">
+        <li class="checklist-item" onclick="toggleCheck(this,'final')">
+          <div class="check-box"></div>
+          <div class="check-label"><div class="check-label-main">베란다 문을 열어 쓰레기 및 재활용을 모두 버렸나요?</div></div>
+        </li>
+        <li class="checklist-item" onclick="toggleCheck(this,'final')">
+          <div class="check-box"></div>
+          <div class="check-label"><div class="check-label-main">두 화장실 모두 하수구 덮개를 열어서 안쪽 머리카락을 제거했나요?</div></div>
+        </li>
+        <li class="checklist-item" onclick="toggleCheck(this,'final')">
+          <div class="check-box"></div>
+          <div class="check-label"><div class="check-label-main">화장실마다 수건을 1개 걸고, 2개는 잘 접어서 비치했나요?</div></div>
+        </li>
+        <li class="checklist-item" onclick="toggleCheck(this,'final')">
+          <div class="check-box"></div>
+          <div class="check-label"><div class="check-label-main">침구 커버를 교체하고, 이불 속이 보이지 않게 반듯하게 세팅했나요?</div></div>
+        </li>
+        <li class="checklist-item" onclick="toggleCheck(this,'final')">
+          <div class="check-box"></div>
+          <div class="check-label"><div class="check-label-main">거실/방 바닥의 검은색 캐리어 자국을 물티슈로 완벽하게 지웠나요?</div></div>
+        </li>
+        <li class="checklist-item" onclick="toggleCheck(this,'final')">
+          <div class="check-box"></div>
+          <div class="check-label"><div class="check-label-main">비품, 리모콘 등 모든 물건의 위치를 사진과 똑같이 맞췄나요?</div></div>
+        </li>
+      </ul>
+      <div class="checklist-actions">
+        <button class="checklist-btn btn-reset" onclick="resetChecklist('final')">초기화</button>
+        <button class="checklist-btn btn-complete-all" onclick="completeAll('final')">모두 완료 ✓</button>
+      </div>
+
+      <!-- 완료 연락처 -->
+      <div style="background:rgba(197,162,101,0.15);border:1px solid rgba(197,162,101,0.4);border-radius:10px;padding:14px 18px;margin-top:16px;text-align:center;font-size:0.9rem;">
+        📞 청소 완료 후 <strong>010-3061-8336</strong>으로 사진 전송 부탁드립니다.<br>
+        <span style="color:var(--gold);font-weight:600;">수고하셨습니다! 🙏</span>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<!-- Footer -->
+<div class="footer">
+  <p>청소 관련 문의: <a href="tel:+821030618336">010-3061-8336</a></p>
+  <p style="margin-top:10px;"><a href="index.html">← 게스트 가이드로 돌아가기</a></p>
+  <p style="margin-top:18px;font-size:0.7rem;opacity:0.5;">JoveStay Gangnam © 2026</p>
+</div>
+
+<script>
+  // Checklist logic
+  function toggleCheck(item, id) {
+    item.classList.toggle('done');
+    updateProgress(id);
+  }
+  function updateProgress(id) {
+    const list = document.getElementById(id + '-list');
+    const bar = document.getElementById(id + '-bar');
+    const prog = document.getElementById(id + '-progress');
+    if (!list) return;
+    const items = list.querySelectorAll('.checklist-item');
+    const done = list.querySelectorAll('.checklist-item.done').length;
+    const total = items.length;
+    if (bar) bar.style.width = (total ? (done/total*100) : 0) + '%';
+    if (prog) prog.textContent = done + ' / ' + total;
+  }
+  function resetChecklist(id) {
+    const list = document.getElementById(id + '-list');
+    if (!list) return;
+    list.querySelectorAll('.checklist-item').forEach(i => i.classList.remove('done'));
+    updateProgress(id);
+  }
+  function completeAll(id) {
+    const list = document.getElementById(id + '-list');
+    if (!list) return;
+    list.querySelectorAll('.checklist-item').forEach(i => i.classList.add('done'));
+    updateProgress(id);
+  }
+
+  // Fade in
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Init
+  updateProgress('final');
+</script>
+</body>
+</html>
