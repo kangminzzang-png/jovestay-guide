@@ -1695,26 +1695,36 @@
   window.addEventListener('scroll', updateActiveNav, { passive: true });
 
   // ─── Scroll reveal ───
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-  }, { threshold: 0.04, rootMargin: '0px 0px 0px 0px' });
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  // 선에 보이는 섹션들은 바로 visible
+  document.querySelectorAll('.fade-in').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight + 200) el.classList.add('visible');
+  });
 
-  // ─── Anchor nav: force-reveal section on click ───
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.01, rootMargin: '200px 0px 200px 0px' });
+  document.querySelectorAll('.fade-in:not(.visible)').forEach(el => observer.observe(el));
+
+  // ─── Anchor nav: force-reveal on click ───
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', () => {
       const id = link.getAttribute('href').slice(1);
       const target = document.getElementById(id);
-      if (target) {
-        // reveal the target section and all fade-in children
+      if (!target) return;
+      // 즉시 reveal
+      target.classList.add('visible');
+      target.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+      // 애니메이션 후에도 한번 더
+      setTimeout(() => {
         target.classList.add('visible');
         target.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
-        // also reveal a couple sections ahead in case of scroll overshoot
-        setTimeout(() => {
-          target.classList.add('visible');
-          target.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
-        }, 100);
-      }
+      }, 50);
     });
   });
 
